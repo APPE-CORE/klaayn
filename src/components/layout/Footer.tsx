@@ -2,110 +2,128 @@
 
 import React from "react";
 import Link from "next/link";
-import { Terminal, MessageSquare, ChevronRight, Linkedin, Twitter, Instagram } from "lucide-react";
-
-// IMPORTATION DE L'ATOME UI RÉVISÉ
-import Button from "@/components/ui/Button";
+import { ArrowRight, Linkedin, Twitter, Instagram, Terminal } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const navLinks = [
+    { href: "/vitrine", label: "Vitrine" },
+    { href: "/ecommerce", label: "E-commerce" },
+    { href: "/outils-ia", label: "Outils IA" },
+    { href: "/agence", label: "Agence" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
-    <footer className="relative w-full bg-[#020003] flex flex-col items-center overflow-hidden border-t border-white/10">
+    <footer className="relative w-full bg-[#020003] border-t border-white/5 pt-16 pb-10 overflow-hidden font-sans">
       
-      {/* === TRANSITION : ARCHE ARCHITECTURELLE === */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
-        <svg viewBox="0 0 1440 60" fill="none" className="relative block w-full h-[30px] md:h-[60px] text-[#020003] rotate-180" preserveAspectRatio="none">
-          <path d="M0 60C360 0 1080 0 1440 60V0H0V60Z" fill="currentColor"/>
-        </svg>
-      </div>
+      {/* Texture de fond systémique */}
+      <div className="absolute inset-0 z-0 opacity-[0.015]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
 
-      {/* === FOND : GRILLE & GLOW SYSTÉMIQUE === */}
-      <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
-          <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-[#7c1fac]/10 rounded-full blur-[100px] pointer-events-none"></div>
-      </div>
-
-      <div className="relative z-10 w-full max-w-[85rem] mx-auto px-6 pt-10 md:pt-24 pb-8 flex flex-col gap-10 md:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col">
         
-        {/* === SECTION IMPACT : CTA ATOMIQUE === */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12">
-            <div className="text-left">
-                <h2 className="text-[10vw] md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[0.85] uppercase">
-                    Forger <br /> <span className="text-[#7c1fac]">l'autorité.</span>
-                </h2>
-                <p className="mt-4 text-white/50 text-xs font-mono uppercase tracking-[0.4em]">
-                    High-Performance Systems — V.2026
-                </p>
-            </div>
-
-            {/* ATOME BOUTON : IDENTIQUE AU HERO (Pleine largeur mobile / Original PC) */}
-            <div className="flex justify-start w-full lg:w-auto">
-                <Button 
-                  href="/contact" 
-                  className="w-full" 
-                >
-                    L'ALLIANCE
-                </Button>
-            </div>
+        {/* INTRODUCTION HAUTE PERFORMANCE
+            - Titre agrandi (text-5xl mobile / text-7xl desktop)
+            - Rupture de ligne forcée sur mobile
+        */}
+        <div className="flex flex-col items-center text-center mb-12">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-[800] tracking-tighter text-white leading-[0.9] mb-4">
+                Ingénierie <br className="md:hidden" />
+                <span className="text-[#7c1fac]">souveraine.</span>
+            </h2>
+            <p className="max-w-xl text-white/40 text-sm md:text-base font-medium leading-relaxed italic">
+                Standard technologique pour leaders exigeants.
+            </p>
         </div>
 
-        {/* === SECTION MATRICE : BENTO GRID === */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-5">
+        {/* SECTION BENTO SYNCHRONISÉE (STRICTEMENT INTACTE) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             
-            {/* Nav : Grid 2x2 Mobile */}
-            <div className="md:col-span-4 bg-white/[0.02] backdrop-blur-xl border border-white/10 p-6 md:p-9 rounded-2xl md:rounded-[2rem]">
-                <h4 className="text-[9px] font-mono text-[#7c1fac] uppercase tracking-[0.4em] font-bold mb-6">Navigation</h4>
-                <div className="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-5">
-                    {["Vitrine", "E-commerce", "Outils IA", "Agence"].map((item) => (
-                        <Link key={item} href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-xl md:text-lg font-bold uppercase tracking-tight text-white/50 hover:text-white transition-all flex items-center justify-between border-b border-white/5 pb-2 md:pb-0 md:border-none group/link">
-                            {item}
-                            <ChevronRight size={14} className="opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all text-[#7c1fac]" />
+            {/* 1. MASTER CTA (PIVOT PEER)
+                - Arrondis alignés Hero (1.5rem)
+                - Effet repoussoir (scale-1.02)
+            */}
+            <Link 
+                href="/contact"
+                className="order-1 lg:order-2 lg:col-span-2 relative peer z-20 group bg-black border border-white/10 p-10 md:p-12 rounded-[1.5rem] flex flex-col justify-center lg:justify-between items-center lg:items-start min-h-[450px] lg:min-h-0 transition-all duration-500 ease-out hover:scale-[1.02] hover:border-[#7c1fac]/60 hover:shadow-[0_0_120px_rgba(124,31,172,0.3)] overflow-hidden"
+            >
+                <div className="absolute -inset-10 bg-[#7c1fac]/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:items-start relative z-10 text-center lg:text-left gap-10">
+                    <h3 className="text-5xl md:text-5xl lg:text-6xl font-[900] text-white italic tracking-tighter leading-[0.9]">
+                        Forge le <br /> Standard.
+                    </h3>
+                    
+                    <div className="w-24 h-24 md:w-24 md:h-24 rounded-full border border-white/10 flex items-center justify-center text-white group-hover:bg-[#7c1fac] group-hover:border-[#7c1fac] transition-all duration-500">
+                        <ArrowRight size={40} className="transition-transform duration-500 group-hover:-rotate-45" />
+                    </div>
+                </div>
+
+                <p className="mt-12 lg:mt-8 text-white/40 text-base font-medium italic relative z-10 text-center lg:text-left">
+                    Activez votre unité opérationnelle.
+                </p>
+            </Link>
+
+            {/* 2. BLOC NAVIGATION (MASQUAGE STATIQUE) */}
+            <div className="order-2 lg:order-1 lg:col-span-1 relative z-10 bg-black border border-white/10 p-8 md:p-10 rounded-[1.5rem] flex flex-col justify-between transition-opacity duration-500 ease-out hover:border-white/20 lg:peer-hover:opacity-40 lg:peer-hover:blur-[1px]">
+                <h3 className="text-[10px] font-mono text-[#7c1fac] uppercase tracking-[0.4em] font-black mb-10">Exploration</h3>
+                <nav className="flex flex-col gap-6">
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href} className="group/link flex items-center justify-between text-[17px] md:text-base font-medium text-white/40 hover:text-white transition-all tracking-tight">
+                            <span>{link.label}</span>
+                            <ArrowRight size={18} className="opacity-0 group-hover/link:opacity-100 -rotate-45 transition-all" />
                         </Link>
                     ))}
-                </div>
+                </nav>
             </div>
 
-            {/* Contact & Social Hub */}
-            <div className="md:col-span-8 grid grid-cols-1 gap-3 md:gap-5">
-                <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-6 md:p-10 rounded-2xl md:rounded-[2rem] flex flex-col justify-center group hover:border-white/20 transition-colors">
-                    <p className="text-[10px] font-mono text-white/50 uppercase tracking-[0.4em] mb-2">Canal Sécurisé</p>
-                    <a href="mailto:contact@klaayn.com" className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tighter text-white hover:text-[#7c1fac] transition-colors break-all">
-                        contact@klaayn.com
-                    </a>
-                </div>
-
-                <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-5 md:p-8 rounded-2xl md:rounded-[2rem] flex flex-col md:flex-row justify-between items-center gap-6 group hover:border-white/20 transition-colors">
-                    <div className="text-center md:text-left">
-                        <p className="text-[10px] font-mono text-white/50 uppercase tracking-[0.4em] mb-1">Social Node</p>
-                        <span className="hidden md:block text-[10px] md:text-xs font-bold text-white/40 italic">@klaayn_dominance</span>
-                    </div>
-                    <div className="flex gap-2">
-                        {[<Linkedin key="li" size={18} />, <Twitter key="tw" size={18} />, <Instagram key="ig" size={18} />].map((icon, i) => (
-                            <a key={i} href="#" className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-[#7c1fac]/10 hover:border-[#7c1fac] transition-all">
-                                {icon}
-                            </a>
+            {/* 3. HUB SOCIAL (MASQUAGE STATIQUE) */}
+            <div className="order-3 lg:col-span-3 relative z-10 bg-white/[0.02] border border-white/10 rounded-[1.5rem] p-8 md:px-10 md:py-6 transition-opacity duration-500 ease-out hover:border-white/20 lg:peer-hover:opacity-40 lg:peer-hover:blur-[1px] mt-2">
+                <div className="flex flex-row flex-wrap justify-center md:justify-between items-center gap-12 md:gap-8">
+                    <div className="flex flex-row items-center justify-center gap-12 md:gap-16 w-full md:w-auto">
+                        {[
+                            { name: "LinkedIn", Icon: Linkedin },
+                            { name: "Instagram", Icon: Instagram },
+                            { name: "Twitter", Icon: Twitter }
+                        ].map(({ name, Icon }) => (
+                            <Link 
+                                key={name} 
+                                href="#" 
+                                className="flex items-center gap-3 transition-all duration-300 text-white md:text-white/40 hover:text-[#7c1fac] active:text-[#7c1fac] md:hover:text-white group"
+                            >
+                                <span className="scale-[1.4] md:scale-100 transition-transform text-white group-hover:text-[#7c1fac] group-active:text-[#7c1fac] md:text-inherit md:group-hover:text-[#7c1fac]">
+                                    <Icon size={24} />
+                                </span>
+                                <span className="hidden md:inline text-[16px] font-medium tracking-tight">{name}</span>
+                            </Link>
                         ))}
+                    </div>
+
+                    <div className="hidden md:flex items-center gap-3">
+                        <span className="text-[10px] font-mono text-[#7c1fac] uppercase tracking-[0.4em] font-black">Social Hub Active</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        {/* === BARRE SYSTÈME : FINALE === */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 gap-6 text-[10px] font-mono text-white/50 uppercase tracking-[0.3em]">
-            <div className="flex items-center gap-3">
-                <Terminal size={16} className="text-[#7c1fac]" />
-                <span className="text-base font-black tracking-tighter text-white uppercase">KLAAYN.</span>
+        {/* BARRE SYSTÈME FINALE */}
+        <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-[700]">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 order-1">
+                <p className="text-white/40 tracking-tight">© {currentYear} Klaayn Unit</p>
+                <nav className="flex gap-8 items-center text-center">
+                    <Link href="/legal" className="text-white/50 hover:text-white transition-colors tracking-tight">Mentions légales</Link>
+                    <Link href="/confidentialite" className="text-white/50 hover:text-white transition-colors tracking-tight">Confidentialité</Link>
+                </nav>
             </div>
-            
-            <p className="order-3 md:order-2 tracking-[0.4em]">© {currentYear} OPERATIONAL UNIT</p>
 
-            <div className="flex items-center gap-6 order-2 md:order-3">
-                <Link href="/legal" className="hover:text-white transition-colors">Légal</Link>
-                <div className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-[#7c1fac] animate-pulse"></span>
-                    <span className="text-white/60">Secure Node</span>
+            <div className="flex items-center gap-3 order-2">
+                <div className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7c1fac] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#7c1fac]"></span>
                 </div>
+                <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em] font-bold italic">Node Active — Protocol v4.0.2</span>
             </div>
         </div>
       </div>

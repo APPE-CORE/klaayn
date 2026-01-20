@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Terminal, ArrowUpRight, MapPin } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
-// IMPORTATION DE L'ATOME UI
+// IMPORTATION DE L'ATOME UNIFIÉ
 import Button from "@/components/ui/Button";
 
 const menuVariants: Variants = {
@@ -36,12 +36,10 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Gestion du scroll lock pour le menu mobile
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
   }, [isMobileMenuOpen]);
 
-  // Détection du scroll pour le style du Header
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -55,7 +53,6 @@ export default function Header() {
     { href: "/agence", label: "Agence" },
   ];
 
-  // Sous-composant pour la navigation interne (Atome local)
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = pathname === href;
     return (
@@ -83,7 +80,6 @@ export default function Header() {
         >
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 
-                {/* LOGO SYSTEM */}
                 <Link href="/" className="flex items-center gap-2 group z-50">
                     <div className="text-white group-hover:text-[#ff6b00] transition-colors duration-300">
                         <Terminal size={22} strokeWidth={2.5}/>
@@ -91,16 +87,15 @@ export default function Header() {
                     <span className="text-xl font-bold tracking-tighter uppercase text-white">KLAAYN.</span>
                 </Link>
 
-                {/* NAVIGATION CENTRALE (DESKTOP) */}
                 <div className="hidden md:flex items-center space-x-1 bg-black/40 backdrop-blur-md p-1.5 rounded-full border border-white/10 absolute left-1/2 -translate-x-1/2 shadow-2xl">
                     {navLinks.map((link) => (
                         <NavLink key={link.href} {...link} />
                     ))}
                 </div>
 
-                {/* ACTIONS (CTA ATOMIQUE & TOGGLE) */}
                 <div className="flex items-center gap-3 relative z-50">
-                    <Button href="/contact" variant="header">
+                    {/* APPEL UNIFIÉ : Plus besoin de variant="header" */}
+                    <Button href="/contact">
                         Lancer un projet
                     </Button>
 
@@ -114,7 +109,6 @@ export default function Header() {
             </div>
         </nav>
 
-        {/* MENU MOBILE (FULL-SCREEN OVERLAY) */}
         <AnimatePresence>
             {isMobileMenuOpen && (
                 <motion.div 
@@ -148,8 +142,8 @@ export default function Header() {
                             ))}
                         </div>
 
-                        {/* CTA MOBILE : PLEINE LARGEUR (ATOME PRIMARY) */}
                         <motion.div variants={itemVariants} className="mt-10">
+                            {/* CTA MOBILE : Unifié et en pleine largeur */}
                             <Button 
                                 href="/contact" 
                                 className="w-full" 
@@ -160,7 +154,6 @@ export default function Header() {
                         </motion.div>
                     </div>
 
-                    {/* FOOTER MENU MOBILE */}
                     <motion.div variants={itemVariants} className="p-8 border-t border-white/10 bg-black/40 relative z-10">
                         <div className="flex justify-between items-center">
                              <div className="flex flex-col gap-1">
