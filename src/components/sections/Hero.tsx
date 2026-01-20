@@ -1,0 +1,156 @@
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
+import { Zap, Target, Crown, ChevronRight } from "lucide-react";
+
+// IMPORTATION DES ATOMES UI RÉVISÉS
+import Button from "@/components/ui/Button";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+
+  // Effets de parallaxe
+  const yTop = useTransform(scrollY, [0, 500], [0, 50]);
+  const yBottom = useTransform(scrollY, [0, 500], [0, -20]);
+
+  // Logique du scanner lumineux (Souris)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { stiffness: 150, damping: 20 };
+  const lightX = useSpring(mouseX, springConfig);
+  const lightY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+        mouseX.set(e.clientX - rect.left);
+        mouseY.set(e.clientY - rect.top);
+    }
+  };
+
+  const maskImage = useMotionTemplate`radial-gradient(800px circle at ${lightX}px ${lightY}px, black, transparent 80%)`;
+
+  return (
+    <section 
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        className="relative h-[100dvh] w-full flex flex-col items-center justify-between overflow-hidden bg-[#020003] text-white selection:bg-[#7c1fac] pt-24 pb-10 md:pt-32 md:pb-16"
+    >
+      
+      {/* === FOND : GRILLE & NOISE === */}
+      <div className="absolute inset-0 z-0 bg-[#020003]">
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
+          <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+      </div>
+
+      {/* === SCANNER INTERACTIF === */}
+      <motion.div className="absolute inset-0 z-1 pointer-events-none bg-[#0a0112]" style={{ maskImage, WebkitMaskImage: maskImage }}>
+         <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(#7c1fac 1px, transparent 1px), linear-gradient(90deg, #7c1fac 1px, transparent 1px)`, backgroundSize: '40px 40px', opacity: 0.5, filter: 'drop-shadow(0 0 3px #7c1fac)' }}></div>
+          <motion.div style={{ x: lightX, y: lightY, translateX: "-50%", translateY: "-50%" }} className="absolute top-0 left-0 w-[800px] h-[800px] bg-[#7c1fac] rounded-full blur-[120px] opacity-40 mix-blend-screen" />
+      </motion.div>
+
+
+      {/* === 1. BLOC TITRE ET CTAS ATOMIQUES === */}
+      <motion.div 
+        style={{ y: yTop }} 
+        className="relative z-20 flex flex-col items-center text-center max-w-6xl px-6 flex-1 justify-center"
+      >
+          <div className="mb-4 md:mb-8 flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-fit backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#7c1fac] animate-pulse"></span>
+              <span className="text-[10px] md:text-[11px] font-mono uppercase tracking-[0.2em] text-white/70">Architectes de performance</span>
+          </div>
+          
+          <h1 className="text-[16vw] md:text-7xl lg:text-[9rem] font-bold tracking-tighter leading-[0.85] md:leading-none mb-6 text-white whitespace-nowrap">
+            Forger <br className="md:hidden" /> l'autorité.
+          </h1>
+          
+          <p className="text-sm md:text-xl lg:text-2xl text-white/50 font-light leading-relaxed mb-8 md:mb-10 px-2 lg:max-w-[42rem]">
+              Infrastructures digitales de haute précision. <br className="hidden md:block" />
+              Conçues pour transformer votre vision en standard de marché.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+              {/* ATOME PRINCIPAL : Pleine largeur mobile / Original PC */}
+              <Button href="/contact">
+                  Lancer un projet
+              </Button>
+
+              {/* ATOME SECONDAIRE : Pleine largeur mobile / Original PC */}
+              <SecondaryButton href="/work">
+                  Explorer nos solutions
+              </SecondaryButton>
+          </div>
+      </motion.div>
+
+
+      {/* === 2. MONOLITHES "OBSIDIENNE CRISTALLINE" === */}
+      <motion.div 
+          style={{ y: yBottom }} 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+          className="relative z-20 w-full max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 mb-4 md:mb-0"
+      >
+          {[
+              { title: "Domination", value: "Elite", desc: "Secteur", icon: <Crown size={16} />, metric: "UI/UX" },
+              { title: "Conversion", value: "+42%", desc: "ROI", icon: <Target size={16} />, metric: "Revenue" },
+              { title: "Performance", value: "Ultra", desc: "Grade", icon: <Zap size={16} />, metric: "Latency" }
+          ].map((item, i) => {
+              const cardRef = useRef<HTMLDivElement>(null);
+              const cardMouseX = useMotionValue(0);
+              const cardMouseY = useMotionValue(0);
+
+              const handleCardMouseMove = (e: React.MouseEvent) => {
+                const rect = cardRef.current?.getBoundingClientRect();
+                if (rect) {
+                  cardMouseX.set(e.clientX - rect.left);
+                  cardMouseY.set(e.clientY - rect.top);
+                }
+              };
+
+              const cardMask = useMotionTemplate`radial-gradient(180px circle at ${cardMouseX}px ${cardMouseY}px, white, transparent 70%)`;
+
+              return (
+                <div 
+                    key={i}
+                    ref={cardRef}
+                    onMouseMove={handleCardMouseMove}
+                    className="group relative bg-[#050505]/60 backdrop-blur-2xl border border-white/10 border-t-white/20 p-5 md:p-6 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 h-24 md:h-28 flex items-center"
+                >
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{ WebkitMaskImage: cardMask, maskImage: cardMask }}
+                    />
+
+                    <div className="relative z-10 w-full flex items-center justify-between gap-4">
+                        <div className="flex flex-col justify-center">
+                            <span className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-none">
+                                {item.value}
+                            </span>
+                            <span className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mt-1">
+                                {item.desc}
+                            </span>
+                        </div>
+
+                        <div className="flex flex-col items-end text-right">
+                            <div className="flex items-center gap-2 text-[#7c1fac] mb-1">
+                                <span className="text-[10px] font-mono uppercase tracking-widest font-bold">{item.title}</span>
+                                {item.icon}
+                            </div>
+                            <span className="text-[9px] font-mono text-white/25 uppercase tracking-widest">{item.metric}</span>
+                            <ChevronRight size={14} className="text-white/10 mt-2" />
+                        </div>
+                    </div>
+                    <div className="absolute left-0 bottom-0 w-full h-[1px] bg-white/5"></div>
+                </div>
+              );
+          })}
+      </motion.div>
+
+    </section>
+  );
+}
