@@ -1,17 +1,20 @@
 import Hero from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
+import Work from "@/components/sections/Work";
 
 export default function Home() {
   return (
-    <main className="bg-black w-full min-h-screen">
-      {/* Le Hero prend 100vh (hauteur d'écran). 
-        Le reste du contenu viendra en dessous.
-      */}
+    <main className="bg-void w-full min-h-screen">
+      
+      {/* 1. HERO (L'Impact) */}
       <Hero />
       
-      {/* Zone temporaire pour tester le scroll */}
-      <div className="h-screen w-full flex items-center justify-center bg-[#050505] text-white">
-        <p className="font-mono text-gray-600">SECTION SUIVANTE (SELECTED WORKS)</p>
-      </div>
+      {/* 2. SERVICES (L'Arsenal) */}
+      <Services />
+
+      {/* 3. WORK (La Preuve - Section Cinématique) */}
+      <Work />
+      
     </main>
   );
 }

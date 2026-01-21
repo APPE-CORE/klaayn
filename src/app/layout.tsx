@@ -2,20 +2,23 @@ import type { Metadata } from "next";
 import { Oswald, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Imports des composants structurels
+// Imports
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer"; // Importation du nouveau Mega Footer
-import SmoothScroll from "@/components/ui/smooth-scroll";
+import Footer from "@/components/layout/Footer"; 
+import SmoothScroll from "@/components/ui/smooth-scroll"; // Ton fichier restauré
 import CustomCursor from "@/components/ui/CustomCursor";
 
+// Configuration Polices (Variable = Poids auto)
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",
+  display: "swap",
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -29,22 +32,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
-        className={`${oswald.variable} ${jetbrains.variable} bg-background text-foreground antialiased selection:bg-white selection:text-black`}
+        className={`${oswald.variable} ${jetbrains.variable} bg-void text-white antialiased selection:bg-brand selection:text-white`}
       >
-        {/* Le Header reste fixe en haut */}
         <Header />
 
-        {/* Le SmoothScroll englobe les enfants ET le footer pour un défilement fluide global */}
+        {/* Le moteur SmoothScroll englobe tout sauf le Header (qui est fixed) et le Cursor */}
         <SmoothScroll>
-          <main>
+          <main className="relative z-10 min-h-screen">
             {children}
           </main>
           <Footer />
         </SmoothScroll>
 
-        {/* Le curseur est placé en dernier pour être au-dessus de tout le reste */}
         <CustomCursor />
       </body>
     </html>

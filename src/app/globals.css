@@ -1,14 +1,124 @@
 @import "tailwindcss";
 @source "../components";
 
+@theme {
+  /* --- 1. COULEURS (L'Atmosphère) --- */
+  --color-void: #020003;        /* Noir Profond */
+  --color-surface: #050505;     /* Noir Carte */
+  
+  --color-brand: #7c1fac;       /* Violet */
+  --color-brand-glow: rgba(124, 31, 172, 0.4);
+  
+  --color-action: #ff6b00;      /* Orange */
+  --color-action-hover: #cc5500;
+  --color-action-glow: rgba(255, 107, 0, 0.5);
+
+  --color-txt-main: #ffffff;    /* Blanc */
+  --color-txt-muted: rgba(255, 255, 255, 0.5); /* Texte secondaire (50%) */
+  --color-txt-dim: rgba(255, 255, 255, 0.25);  /* Texte tertiaire (25%) */
+  
+  /* RÉGLAGE PRÉCIS : Bordure à 8% d'opacité (Invisible tant qu'on ne cherche pas) */
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* --- 2. POLICES --- */
+  --font-sans: var(--font-oswald), sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  /* --- 3. FORMES --- */
+  --radius-card: 1rem; /* 16px */
+}
+
 :root {
-  --background: #1b1b1c;
-  --foreground: #ededed;
+  --background: var(--color-void);
+  --foreground: var(--color-txt-main);
 }
 
 body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+
+  /* === TYPOGRAPHIE === */
+
+  /* Titre GÉANT (Hero) */
+  .text-display {
+    font-family: var(--font-sans);
+    font-weight: 700; 
+    letter-spacing: -0.05em; 
+    line-height: 0.85;
+  }
+
+  /* Gros Chiffres (Elite, +42%) */
+  .text-value-box {
+    font-family: var(--font-sans);
+    font-weight: 900; 
+    letter-spacing: -0.05em; 
+    line-height: 1;
+    color: var(--color-txt-main);
+  }
+
+  /* Titres Standards (H2/H3) */
+  .text-h2 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  /* Intro / Chapeau */
+  .text-body-large {
+    font-family: var(--font-sans);
+    font-weight: 300; 
+    line-height: 1.625; 
+    color: var(--color-txt-muted);
+  }
+
+  /* Labels Techniques (Architectes, Secteur...) */
+  .text-label-tech {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+  }
+  
+  /* Labels Gras (Domination) */
+  .text-label-bold {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+  }
+
+  /* === STRUCTURES === */
+
+  /* La Carte Monolithe (Hero / Footer) */
+  /* C'est elle qui donne l'aspect "Obsidienne" */
+  .card-monolith {
+    background-color: rgba(5, 5, 5, 0.6);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    
+    /* Utilise la bordure subtile (8%) */
+    border: 1px solid var(--color-border);
+    
+    /* Le haut reste un peu plus clair pour la lumière (15%) */
+    border-top-color: rgba(255, 255, 255, 0.15);
+    
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  /* Le Badge Pilule (Header / Hero) */
+  .badge-pill {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border); /* 8% aussi */
+    backdrop-filter: blur(12px);
+    border-radius: 9999px;
+  }
 }

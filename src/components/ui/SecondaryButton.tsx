@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 interface SecondaryButtonProps {
@@ -10,21 +11,35 @@ interface SecondaryButtonProps {
   onClick?: () => void;
 }
 
-export default function SecondaryButton({ href, children, className = "", onClick }: SecondaryButtonProps) {
+export default function SecondaryButton({ 
+  href, 
+  children, 
+  className = "", 
+  onClick 
+}: SecondaryButtonProps) {
   return (
-    <Link href={href} onClick={onClick} className={`block w-full md:w-auto ${className}`}>
-        <div className="relative group cursor-pointer w-full">
-            <button className="relative w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-bold border border-transparent text-gray-400 group-hover:text-white group-hover:bg-white/5 transition-all overflow-hidden">
-                
-                {/* EFFET DE BRILLANCE (SHIMMER) */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`block md:inline-block ${className}`}
+    >
+      <Link href={href} onClick={onClick} className="block w-full">
+        {/* AJOUT DES CLASSES active:... POUR LE MOBILE */}
+        <button className="relative group w-full flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 rounded-full text-sm font-extrabold transition-all duration-500 border border-transparent text-gray-400 
+        hover:text-white active:text-white 
+        hover:bg-white/5 active:bg-white/5 
+        overflow-hidden">
+            
+            {/* Shimmer : S'active aussi au group-active */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
 
-                <span className="relative z-10 flex items-center gap-2">
-                    {children} 
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-            </button>
-        </div>
-    </Link>
+            <span className="relative z-10 flex items-center gap-2">
+                <span>{children}</span>
+                {/* Flèche : Translation active au toucher */}
+                <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform" />
+            </span>
+        </button>
+      </Link>
+    </motion.div>
   );
 }
