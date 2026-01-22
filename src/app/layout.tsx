@@ -22,7 +22,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Klaayn | Digital Dominance",
+  title: "Klaayn | Vous méritez mieux qu'un site moyen...",
   description: "High-performance web agency.",
 };
 
