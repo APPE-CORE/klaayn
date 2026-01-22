@@ -1,19 +1,17 @@
 import Hero from "@/components/sections/Hero";
+import Philosophy from "@/components/sections/Philosophy";
 import Services from "@/components/sections/Services";
 import Work from "@/components/sections/Work";
+import Process from "@/components/sections/Process"; // <--- IMPORT
 
 export default function Home() {
   return (
     <main className="bg-void w-full min-h-screen">
-      
-      {/* 1. HERO (L'Impact) */}
       <Hero />
-      
-      {/* 2. SERVICES (L'Arsenal) */}
-      <Services />
-
-      {/* 3. WORK (La Preuve - Section Cinématique) */}
+      <Philosophy />
       <Work />
+      <Services />
+      <Process />
       
     </main>
   );

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { Monitor, ShoppingBag, Cpu, ArrowUpRight, CheckCircle2, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion"; 
+import { Monitor, ShoppingBag, Cpu, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 // LOGIQUE MARQUEE
@@ -14,12 +14,13 @@ export default function Services() {
   return (
     <section ref={containerRef} className="relative w-full bg-void py-24 md:py-32 overflow-hidden">
       
-      {/* 1. MARQUEE DE CONFIANCE */}
+      {/* 1. MARQUEE DE CONFIANCE (Bande passante infinie) */}
       <div className="relative w-full mb-20 md:mb-32 opacity-40 hover:opacity-100 transition-opacity duration-700">
         <div className="absolute left-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-r from-void to-transparent"></div>
         <div className="absolute right-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-l from-void to-transparent"></div>
         
         <div className="flex overflow-hidden gap-16 select-none">
+          {/* Animation infinie conservée car c'est un défilement continu */}
           <motion.div 
             initial={{ x: 0 }} 
             animate={{ x: "-50%" }} 
@@ -37,29 +38,27 @@ export default function Services() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
-        {/* 2. EN-TÊTE STRATÉGIQUE (CORRIGÉ MOBILE) */}
-        {/* items-start : Aligne tout à gauche */}
+        {/* 2. EN-TÊTE STRATÉGIQUE */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-8 md:gap-10">
             <div className="max-w-3xl">
                 <div className="flex items-center gap-3 mb-6">
-                    <span className="w-1.5 h-1.5 rounded-full bg-action animate-pulse"></span>
-                    <span className="text-label-tech text-action">Systèmes Opérationnels</span>
+                    {/* CORRECTION COULEUR : Orange -> Brand (Violet) */}
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
+                    <span className="text-label-tech text-brand">Systèmes Opérationnels</span>
                 </div>
                 
-                {/* CORRECTION TAILLE : text-4xl sur mobile (au lieu de 5xl) pour éviter le débordement */}
                 <h2 className="text-display text-4xl md:text-7xl text-white mb-6">
                     Au-delà du code.<br />
                     <span className="text-txt-muted">Une infrastructure.</span>
                 </h2>
             </div>
 
-            {/* CORRECTION ALIGNEMENT : text-left partout */}
             <p className="text-body-large max-w-md text-left">
                 Nous ne vendons pas des pages web. Nous déployons des écosystèmes digitaux conçus pour la domination de marché.
             </p>
         </div>
 
-        {/* 3. GRILLE BENTO */}
+        {/* 3. GRILLE BENTO (Affichage statique immédiat) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* MODULE 1 */}
@@ -70,7 +69,6 @@ export default function Services() {
                 icon={<Monitor size={32} />}
                 desc="Expériences immersives (WebGL/3D) qui fixent votre standard visuel et écrasent la concurrence."
                 features={["Design System Avancé", "Animations Framer", "SEO Sémantique"]}
-                delay={0}
             />
 
             {/* MODULE 2 */}
@@ -81,7 +79,6 @@ export default function Services() {
                 icon={<ShoppingBag size={32} />}
                 desc="Architectures de vente haute performance. Optimisées pour la conversion brute et la rapidité."
                 features={["Shopify / Next.js", "Paiement Unifié", "CRO & Analytics"]}
-                delay={0.1}
             />
 
             {/* MODULE 3 */}
@@ -92,7 +89,6 @@ export default function Services() {
                 icon={<Cpu size={32} />}
                 desc="Intégration d'agents IA et automatisation de workflows pour démultiplier votre force de frappe."
                 features={["Agents LLM Custom", "RAG & Data", "Workflows n8n"]}
-                delay={0.2}
             />
 
         </div>
@@ -102,14 +98,10 @@ export default function Services() {
 }
 
 // --- SOUS-COMPOSANT CARTE ---
-function ServiceCard({ title, subtitle, icon, desc, features, href, delay }: any) {
+function ServiceCard({ title, subtitle, icon, desc, features, href }: any) {
     return (
         <Link href={href} className="block h-full">
-            <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: delay, ease: [0.22, 1, 0.36, 1] }}
+            <div 
                 className="card-monolith group relative h-full p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_80px_rgba(124,31,172,0.15)] hover:border-brand"
             >
                 {/* EFFET GLOW INTERNE */}
@@ -121,7 +113,12 @@ function ServiceCard({ title, subtitle, icon, desc, features, href, delay }: any
                         <div className="p-4 rounded-2xl border border-[var(--color-border)] bg-white/5 text-white transition-colors duration-500 group-hover:bg-brand group-hover:border-brand">
                             {icon}
                         </div>
-                        <ArrowRight className="text-txt-dim -rotate-45 group-hover:text-white group-hover:rotate-0 transition-all duration-500" />
+                        
+                        {/* CORRECTION FLÈCHE : 
+                            - Repos : rotate-0 (Horizontale)
+                            - Hover : -rotate-45 (Haut-Droit)
+                        */}
+                        <ArrowRight className="text-txt-dim rotate-0 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
                     </div>
 
                     {/* TITRES */}
@@ -145,7 +142,7 @@ function ServiceCard({ title, subtitle, icon, desc, features, href, delay }: any
                         </div>
                     ))}
                 </div>
-            </motion.div>
+            </div>
         </Link>
     )
 }

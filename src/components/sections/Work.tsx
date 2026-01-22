@@ -72,20 +72,55 @@ export default function Work() {
         
         {/* 1. ZONE HAUTE */}
         <div className="flex-none flex flex-col items-center justify-center pt-24 pb-2 md:pt-32 md:pb-6 z-30 px-6 bg-gradient-to-b from-void via-void/90 to-transparent">
-             <div className="badge-pill flex items-center gap-3 px-3 py-1.5 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse shadow-[0_0_15px_#7c1fac]"></span>
-                <span className="text-label-tech text-brand">Collection Privée</span>
+             <div className="flex items-center gap-3 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse shadow-[0_0_15px_var(--color-brand)]"></span>
+                <span className="text-label-tech text-brand">SELECTED WORKS</span>
             </div>
+            
             <h2 className="text-display text-4xl md:text-5xl text-white text-center leading-none">
                 Standards <span className="text-txt-muted">du Marché.</span>
             </h2>
         </div>
 
-        {/* 2. ZONE MILIEU */}
+        {/* 2. ZONE MILIEU (Écran Cinéma) */}
         <div className="flex-1 w-full min-h-0 flex flex-col items-center justify-center px-4 relative z-10 py-1 md:py-6">
-            <div className="relative w-full max-w-5xl h-full flex items-center justify-center z-10">
-                <div className="absolute -inset-4 md:-inset-10 bg-gradient-to-r from-amber-600/20 via-yellow-500/20 to-amber-600/20 blur-2xl md:blur-3xl z-[-1] rounded-full opacity-60"></div>
-                <div className="relative w-full h-full p-[1px] md:p-[2px] rounded-none bg-gradient-to-b from-amber-200 via-yellow-500 to-amber-400 shadow-2xl z-10 flex flex-col">
+            
+            {/* CONTENEUR PRINCIPAL CENTRÉ */}
+            <div className="relative w-full max-w-5xl aspect-video md:aspect-auto md:h-full flex items-center justify-center z-10">
+                
+                {/* --- BARRE DE NAVIGATION PC --- */}
+                <div className="hidden md:flex flex-col absolute -left-16 top-1/2 -translate-y-1/2 gap-6 z-50">
+                    {segments.map((p, i) => (
+                        // AJUSTEMENT ÉPAISSEUR : w-[3px] devient w-[4px]
+                        <div key={i} className="w-[4px] h-24 bg-white/5 rounded-full overflow-hidden relative border border-white/5 backdrop-blur-sm">
+                            <div className="absolute inset-0 bg-void/50"></div>
+                            <motion.div 
+                                style={{ scaleY: p, transformOrigin: "top" }} 
+                                className="w-full h-full relative overflow-hidden bg-brand rounded-full"
+                            >
+                                <div className="absolute inset-0 bg-brand shadow-[0_0_15px_2px_rgba(124,31,172,0.6),0_0_5px_1px_rgba(255,255,255,0.8)]"></div>
+                                <motion.div
+                                    animate={{ y: ["-100%", "100%"] }}
+                                    transition={{ 
+                                        duration: SEGMENT_DURATION, 
+                                        ease: "linear", 
+                                        repeat: Infinity,
+                                        repeatDelay: CYCLE_DURATION - SEGMENT_DURATION,
+                                        delay: i * SEGMENT_DURATION 
+                                    }}
+                                    className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-white to-transparent opacity-100 mix-blend-overlay"
+                                />
+                            </motion.div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* BACKLIGHT SYSTEMIQUE */}
+                <div className="absolute -inset-10 md:-inset-20 bg-gradient-to-r from-brand/10 via-brand-glow/10 to-brand/10 blur-[60px] md:blur-[100px] z-[-2] rounded-full opacity-40"></div>
+                <div className="absolute -inset-1 md:-inset-2 bg-gradient-to-b from-brand/20 via-brand/30 to-brand/20 blur-2xl md:blur-3xl z-[-1] rounded-full opacity-60"></div>
+
+                {/* CADRE NÉON/LASER */}
+                <div className="relative w-full h-full p-[1px] md:p-[2px] rounded-none bg-violet-200/80 shadow-[0_0_25px_var(--color-brand-glow),inset_0_0_10px_var(--color-brand-glow)] z-10 flex flex-col">
                     <div className="absolute inset-[1px] md:inset-[2px] bg-void border-[4px] md:border-[12px] border-void rounded-none overflow-hidden">
                         <div className="relative w-full h-full bg-surface overflow-hidden rounded-none">
                             <AnimatePresence mode="wait">
@@ -94,7 +129,8 @@ export default function Work() {
                                     initial={{ scale: 1.1, opacity: 0.8, filter: "blur(10px)" }}
                                     animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
                                     exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.7, ease: "circOut" }}
+                                    // SYNCHRONISATION : Durée passée de 1.2 à 0.8 pour accélérer l'image et matcher le texte
+                                    transition={{ duration: 0.8, ease: "circOut" }}
                                     className="relative w-full h-full"
                                 >
                                     <Image 
@@ -117,11 +153,12 @@ export default function Work() {
         {/* BARRE PROGRESSION MOBILE */}
         <div className="flex-none md:hidden w-full px-6 py-2 flex gap-2 justify-center z-20">
             {segments.map((p, i) => (
-                <div key={i} className="h-[2px] w-16 bg-white/5 rounded-full overflow-hidden relative">
-                    <div className="absolute inset-0 bg-amber-950/50"></div>
+                // AJUSTEMENT ÉPAISSEUR MOBILE : h-[2px] devient h-[3px]
+                <div key={i} className="h-[3px] w-16 bg-white/5 rounded-full overflow-hidden relative">
+                    <div className="absolute inset-0 bg-brand/10"></div>
                     <motion.div 
                         style={{ scaleX: p, transformOrigin: "left" }} 
-                        className="h-full w-full relative overflow-hidden bg-amber-500 rounded-full shadow-[0_0_8px_#fbbf24]"
+                        className="h-full w-full relative overflow-hidden bg-brand rounded-full shadow-[0_0_8px_var(--color-brand)]"
                     >
                         <motion.div
                             animate={{ x: ["-100%", "100%"] }}
@@ -142,7 +179,7 @@ export default function Work() {
         {/* 3. ZONE BASSE : INFOS & CTA */}
         <div className="flex-none w-full flex justify-center pb-6 md:pb-12 px-6 bg-void z-50">
             <div className="w-full max-w-5xl">
-                {/* LA LIGNE FIXE : Sortie de l'AnimatePresence pour ne pas bouger */}
+                {/* LA LIGNE FIXE */}
                 <div className="w-full border-t border-[var(--color-border)] mb-4"></div>
                 
                 <AnimatePresence mode="wait">
@@ -151,7 +188,8 @@ export default function Work() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4 }}
+                        // SYNCHRONISATION : Durée passée de 0.6 à 0.8 pour matcher l'image
+                        transition={{ duration: 0.8 }}
                         className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-0"
                     >
                         <div className="w-full md:w-auto shrink-0">
@@ -177,31 +215,6 @@ export default function Work() {
                     </motion.div>
                 </AnimatePresence>
             </div>
-        </div>
-
-        {/* BARRE PROGRESSION PC */}
-        <div className="hidden md:flex flex-col absolute left-6 top-1/2 -translate-y-1/2 gap-4 z-30">
-             {segments.map((p, i) => (
-                <div key={i} className="w-[2px] h-20 bg-white/5 rounded-full overflow-hidden relative">
-                    <div className="absolute inset-0 bg-amber-950/50"></div>
-                    <motion.div 
-                        style={{ scaleY: p, transformOrigin: "top" }} 
-                        className="w-full h-full relative overflow-hidden bg-amber-500 rounded-full shadow-[0_0_10px_#fbbf24]"
-                    >
-                        <motion.div
-                            animate={{ y: ["-100%", "100%"] }}
-                            transition={{ 
-                                duration: SEGMENT_DURATION, 
-                                ease: "linear", 
-                                repeat: Infinity,
-                                repeatDelay: CYCLE_DURATION - SEGMENT_DURATION,
-                                delay: i * SEGMENT_DURATION 
-                            }}
-                            className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-white to-transparent opacity-90"
-                        />
-                    </motion.div>
-                </div>
-            ))}
         </div>
 
       </div>

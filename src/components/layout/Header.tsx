@@ -53,7 +53,6 @@ export default function Header() {
             : "border-transparent text-txt-muted hover:text-white hover:bg-white/5 hover:border-[var(--color-border)]"
         } group overflow-hidden cursor-pointer`}>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            {/* J'ai retiré 'uppercase' ici. C'est ton CSS ou ton texte qui décide. */}
             <span className="relative z-10 font-sans tracking-wide">{label}</span>
         </div>
       </Link>
@@ -69,7 +68,6 @@ export default function Header() {
                     <div className="text-white group-hover:text-action transition-colors duration-300">
                         <Terminal size={22} strokeWidth={2.5}/>
                     </div>
-                    {/* Logo toujours en majuscule via la classe CSS .text-display ou manuellement ici */}
                     <span className="text-xl font-sans font-bold tracking-tighter text-white">KLAAYN.</span>
                 </Link>
 
@@ -81,8 +79,12 @@ export default function Header() {
                 <div className="flex items-center gap-3 relative z-50">
                     <Button href="/contact" responsive={true}>Lancer un projet</Button>
                     
-                    {/* Bouton Hamburger Mobile */}
-                    <button className={`md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 overflow-hidden active:scale-95 ${isMobileMenuOpen ? "bg-white/10 border border-white/20" : "bg-transparent border border-transparent hover:bg-white/5 hover:border-[var(--color-border)]"}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    {/* Bouton Hamburger Mobile - STYLE UNIFIÉ AVEC LE BOUTON PRINCIPAL */}
+                    {/* J'ai appliqué les classes bg-white/10, border-white/20 et shadow pour qu'il soit identique au bouton Contact */}
+                    <button 
+                        className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 overflow-hidden active:scale-95 bg-white/10 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:bg-white/20" 
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                         <span className="relative z-10 text-white">{isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</span>
                     </button>
@@ -104,7 +106,6 @@ export default function Header() {
                                     <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="group flex items-center justify-between border-b border-[var(--color-border)] pb-6">
                                         <div className="flex items-baseline gap-4">
                                             <span className="text-label-tech text-action">0{index + 1}</span>
-                                            {/* Ici j'utilise text-h3 (defini dans CSS). Si tu veux minuscule, enlève text-transform dans .text-h3 du CSS */}
                                             <span className="text-h3 text-white group-hover:text-action transition-colors duration-300">
                                                 {link.label}
                                             </span>
