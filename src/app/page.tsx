@@ -9,9 +9,9 @@ export default function Home() {
     <main className="bg-void w-full min-h-screen">
       <Hero />
       <Philosophy />
-      <Work />
       <Services />
-      <Process />
+      <Process/>
+      <Work  />
       
     </main>
   );

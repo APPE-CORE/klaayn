@@ -85,7 +85,6 @@ export default function Process() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 mb-32">
           
           {/* LIGNE CENTRALE (Fond) - Z-0 */}
-          {/* Sur Mobile : left-1/2 (Centré) | Sur PC : left-1/2 (Centré) */}
           <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2 z-0"></div>
           
           {/* LIGNE CENTRALE (Active - Brand) - Z-0 */}
@@ -102,7 +101,7 @@ export default function Process() {
                     step={step} 
                     index={index} 
                     total={STEPS.length}
-                    progress={scrollYProgress} // On passe la progression globale pour l'illumination
+                    progress={scrollYProgress} 
                   />
               ))}
           </div>
@@ -156,19 +155,16 @@ function BentoCard({ icon: Icon, title, desc }: { icon: any, title: string, desc
 }
 
 
-// --- COMPOSANT ENFANT : CARTE ÉTAPE (GHOST STYLE) ---
+// --- COMPOSANT ENFANT : CARTE ÉTAPE ---
 function StepCard({ step, index, total, progress }: { step: any, index: number, total: number, progress: MotionValue<number> }) {
     const isEven = index % 2 === 0;
 
     // --- LOGIQUE D'ILLUMINATION DU NODE ---
-    // On estime à quel moment la ligne touche ce point.
-    // Index 0 ~= 0.1, Index 3 ~= 0.9 (approximatif pour l'effet visuel)
     const threshold = (index + 0.2) / total; 
     
-    // Le contour et le shadow changent quand on atteint le seuil
     const borderColor = useTransform(progress, [threshold - 0.05, threshold], ["rgba(255,255,255,0.2)", "#7c1fac"]);
     const boxShadow = useTransform(progress, [threshold - 0.05, threshold], ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 15px rgba(124,31,172,0.6)"]);
-    const scaleNode = useTransform(progress, [threshold - 0.05, threshold, threshold + 0.05], [1, 1.2, 1]); // Petit "pop"
+    const scaleNode = useTransform(progress, [threshold - 0.05, threshold, threshold + 0.05], [1, 1.2, 1]); 
 
     return (
         <motion.div 
@@ -181,7 +177,6 @@ function StepCard({ step, index, total, progress }: { step: any, index: number, 
         >
             
             {/* 1. NODE (Point d'ancrage) */}
-            {/* POSITION : Absolute Center pour être pile sur la ligne */}
             <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 md:top-1/2 md:-translate-y-1/2 z-20 pointer-events-none">
                 <motion.div 
                     style={{ 
@@ -201,17 +196,12 @@ function StepCard({ step, index, total, progress }: { step: any, index: number, 
             <div className="hidden md:block w-1/2" />
 
             {/* 3. GHOST CARD (Contenu) */}
-            {/* CORRECTION ALIGNEMENT : 
-               - Suppression de `pl-12` sur mobile (le coupable du décalage).
-               - `w-full` sur mobile, `md:w-1/2` sur PC.
-               - `pl-0` sur mobile, padding conditionnel sur PC.
+            {/* CORRECTION PC ICI : 
+               - isEven (Droite) : md:pl-12 (Pousse vers la droite, s'éloigne du centre)
+               - !isEven (Gauche) : md:pr-12 (Pousse vers la gauche, s'éloigne du centre)
             */}
-            <div className={`w-full md:w-1/2 px-0 z-10 ${isEven ? "md:pr-16 md:text-right" : "md:pl-16 md:text-left"}`}>
+            <div className={`w-full md:w-1/2 px-0 z-10 ${isEven ? "md:pl-12 md:text-right" : "md:pr-12 md:text-left"}`}>
                 
-                {/* STYLE GHOST + OPAQUE : 
-                   - `bg-void` (Noir Opaque) pour cacher la ligne derrière.
-                   - On garde toutes les bordures et effets de brillance.
-                */}
                 <div className="group relative p-6 md:p-8 rounded-2xl border border-white/10 bg-void transition-all duration-500 overflow-hidden
                     hover:border-brand hover:shadow-[0_0_20px_rgba(124,31,172,0.3)]
                     active:border-brand active:bg-void active:shadow-[0_0_20px_rgba(124,31,172,0.3)] active:scale-[0.98]">
@@ -219,7 +209,7 @@ function StepCard({ step, index, total, progress }: { step: any, index: number, 
                     {/* SHIMMER EFFECT */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
 
-                    {/* HEADER (Centré sur mobile par défaut via le flex-col parent, ajusté ici) */}
+                    {/* HEADER */}
                     <div className={`relative z-10 flex items-center justify-center md:justify-start gap-4 mb-4 ${isEven ? "md:flex-row-reverse" : "md:flex-row"}`}>
                         <div className="p-2 bg-void/50 border border-white/10 rounded-lg text-white/70 group-hover:text-brand group-hover:border-brand transition-colors duration-300">
                             {React.createElement(step.icon, { size: 20 })}
@@ -229,7 +219,7 @@ function StepCard({ step, index, total, progress }: { step: any, index: number, 
                         </h3>
                     </div>
 
-                    {/* TEXTE (Centré sur mobile) */}
+                    {/* TEXTE */}
                     <div className="relative z-10 text-center md:text-left">
                         <h4 className="text-base text-brand font-medium mb-3">
                             {step.subtitle}

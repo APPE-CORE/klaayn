@@ -91,7 +91,6 @@ export default function Work() {
                 {/* --- BARRE DE NAVIGATION PC --- */}
                 <div className="hidden md:flex flex-col absolute -left-16 top-1/2 -translate-y-1/2 gap-6 z-50">
                     {segments.map((p, i) => (
-                        // AJUSTEMENT ÉPAISSEUR : w-[3px] devient w-[4px]
                         <div key={i} className="w-[4px] h-24 bg-white/5 rounded-full overflow-hidden relative border border-white/5 backdrop-blur-sm">
                             <div className="absolute inset-0 bg-void/50"></div>
                             <motion.div 
@@ -129,7 +128,6 @@ export default function Work() {
                                     initial={{ scale: 1.1, opacity: 0.8, filter: "blur(10px)" }}
                                     animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
                                     exit={{ opacity: 0 }}
-                                    // SYNCHRONISATION : Durée passée de 1.2 à 0.8 pour accélérer l'image et matcher le texte
                                     transition={{ duration: 0.8, ease: "circOut" }}
                                     className="relative w-full h-full"
                                 >
@@ -153,7 +151,6 @@ export default function Work() {
         {/* BARRE PROGRESSION MOBILE */}
         <div className="flex-none md:hidden w-full px-6 py-2 flex gap-2 justify-center z-20">
             {segments.map((p, i) => (
-                // AJUSTEMENT ÉPAISSEUR MOBILE : h-[2px] devient h-[3px]
                 <div key={i} className="h-[3px] w-16 bg-white/5 rounded-full overflow-hidden relative">
                     <div className="absolute inset-0 bg-brand/10"></div>
                     <motion.div 
@@ -176,8 +173,9 @@ export default function Work() {
             ))}
         </div>
 
-        {/* 3. ZONE BASSE : INFOS & CTA */}
-        <div className="flex-none w-full flex justify-center pb-6 md:pb-12 px-6 bg-void z-50">
+        {/* 3. ZONE BASSE : FIX POUR iOS (PADDING BAS AUGMENTÉ) */}
+        {/* On utilise pb-24 sur mobile pour que le bouton soit "au-dessus" de la barre système */}
+        <div className="flex-none w-full flex justify-center pb-24 md:pb-12 px-6 bg-void z-50">
             <div className="w-full max-w-5xl">
                 {/* LA LIGNE FIXE */}
                 <div className="w-full border-t border-[var(--color-border)] mb-4"></div>
@@ -188,7 +186,6 @@ export default function Work() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
-                        // SYNCHRONISATION : Durée passée de 0.6 à 0.8 pour matcher l'image
                         transition={{ duration: 0.8 }}
                         className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-0"
                     >

@@ -46,8 +46,8 @@ export default function Header() {
     const isActive = pathname === href;
     return (
       <Link href={href}>
-        {/* On utilise var(--color-border) pour la bordure subtile */}
-        <div className={`relative px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
+        {/* HARMONISATION : rounded-xl ici aussi */}
+        <div className={`relative px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 border ${
             isActive 
             ? "bg-white/10 border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]" 
             : "border-transparent text-txt-muted hover:text-white hover:bg-white/5 hover:border-[var(--color-border)]"
@@ -71,21 +71,23 @@ export default function Header() {
                     <span className="text-xl font-sans font-bold tracking-tighter text-white">KLAAYN.</span>
                 </Link>
 
-                {/* Menu Desktop */}
-                <div className="hidden md:flex items-center space-x-1 bg-surface/40 backdrop-blur-md p-1.5 rounded-full border border-[var(--color-border)] absolute left-1/2 -translate-x-1/2 shadow-2xl">
+                {/* Menu Desktop - HARMONISATION COMPLETE */}
+                {/* Remplacement de rounded-full par rounded-xl sur le conteneur principal */}
+                <div className="hidden md:flex items-center space-x-1 bg-surface/40 backdrop-blur-md p-1.5 rounded-xl border border-[var(--color-border)] absolute left-1/2 -translate-x-1/2 shadow-2xl">
                     {navLinks.map((link) => (<NavLink key={link.href} {...link} />))}
                 </div>
 
                 <div className="flex items-center gap-3 relative z-50">
                     <Button href="/contact" responsive={true}>Lancer un projet</Button>
                     
-                    {/* Bouton Hamburger Mobile - STYLE UNIFIÉ AVEC LE BOUTON PRINCIPAL */}
-                    {/* J'ai appliqué les classes bg-white/10, border-white/20 et shadow pour qu'il soit identique au bouton Contact */}
+                    {/* Bouton Hamburger Mobile - HARMONISÉ */}
                     <button 
-                        className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 overflow-hidden active:scale-95 bg-white/10 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:bg-white/20" 
+                        className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden active:scale-95 bg-white/10 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] 
+                        hover:bg-white/20 
+                        active:bg-white/20" 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
                         <span className="relative z-10 text-white">{isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</span>
                     </button>
                 </div>

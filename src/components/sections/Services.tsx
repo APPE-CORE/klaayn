@@ -12,15 +12,16 @@ export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} className="relative w-full bg-void py-24 md:py-32 overflow-hidden">
+    // OPTIMISATION 1 : Réduction du padding vertical global (py-20 md:py-24 au lieu de 32) pour que ça rentre mieux dans l'écran
+    <section ref={containerRef} className="relative w-full bg-void py-20 md:py-24 overflow-hidden">
       
-      {/* 1. MARQUEE DE CONFIANCE (Bande passante infinie) */}
-      <div className="relative w-full mb-20 md:mb-32 opacity-40 hover:opacity-100 transition-opacity duration-700">
+      {/* 1. MARQUEE DE CONFIANCE */}
+      {/* OPTIMISATION 2 : Réduction de la marge sous le marquee (mb-16 md:mb-24) */}
+      <div className="relative w-full mb-16 md:mb-24 opacity-40 hover:opacity-100 transition-opacity duration-700">
         <div className="absolute left-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-r from-void to-transparent"></div>
         <div className="absolute right-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-l from-void to-transparent"></div>
         
         <div className="flex overflow-hidden gap-16 select-none">
-          {/* Animation infinie conservée car c'est un défilement continu */}
           <motion.div 
             initial={{ x: 0 }} 
             animate={{ x: "-50%" }} 
@@ -39,26 +40,26 @@ export default function Services() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
         {/* 2. EN-TÊTE STRATÉGIQUE */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-8 md:gap-10">
+        {/* OPTIMISATION 3 : Réduction drastique de la marge sous le titre (mb-10 md:mb-12) pour le "rabaisser" vers les cartes */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-8 md:gap-10">
             <div className="max-w-3xl">
-                <div className="flex items-center gap-3 mb-6">
-                    {/* CORRECTION COULEUR : Orange -> Brand (Violet) */}
+                <div className="flex items-center gap-3 mb-4 md:mb-6">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
                     <span className="text-label-tech text-brand">Systèmes Opérationnels</span>
                 </div>
                 
-                <h2 className="text-display text-4xl md:text-7xl text-white mb-6">
+                <h2 className="text-display text-4xl md:text-7xl text-white mb-4 md:mb-6">
                     Au-delà du code.<br />
                     <span className="text-txt-muted">Une infrastructure.</span>
                 </h2>
             </div>
 
-            <p className="text-body-large max-w-md text-left">
+            <p className="text-body-large max-w-md text-left pb-2">
                 Nous ne vendons pas des pages web. Nous déployons des écosystèmes digitaux conçus pour la domination de marché.
             </p>
         </div>
 
-        {/* 3. GRILLE BENTO (Affichage statique immédiat) */}
+        {/* 3. GRILLE BENTO */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* MODULE 1 */}
@@ -102,33 +103,32 @@ function ServiceCard({ title, subtitle, icon, desc, features, href }: any) {
     return (
         <Link href={href} className="block h-full">
             <div 
-                className="card-monolith group relative h-full p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_80px_rgba(124,31,172,0.15)] hover:border-brand"
+                className="card-monolith group relative h-full p-8 md:p-10 flex flex-col justify-between transition-all duration-500 
+                hover:-translate-y-2 hover:shadow-[0_0_80px_rgba(124,31,172,0.15)] hover:border-brand
+                active:scale-[0.98] active:border-brand active:shadow-[0_0_40px_rgba(124,31,172,0.3)]"
             >
                 {/* EFFET GLOW INTERNE */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                 <div>
                     {/* EN-TÊTE CARTE */}
                     <div className="flex justify-between items-start mb-8">
-                        <div className="p-4 rounded-2xl border border-[var(--color-border)] bg-white/5 text-white transition-colors duration-500 group-hover:bg-brand group-hover:border-brand">
+                        <div className="p-4 rounded-2xl border border-[var(--color-border)] bg-white/5 text-white transition-colors duration-500 group-hover:bg-brand group-hover:border-brand group-active:bg-brand group-active:border-brand">
                             {icon}
                         </div>
                         
-                        {/* CORRECTION FLÈCHE : 
-                            - Repos : rotate-0 (Horizontale)
-                            - Hover : -rotate-45 (Haut-Droit)
-                        */}
-                        <ArrowRight className="text-txt-dim rotate-0 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
+                        {/* FLÈCHE */}
+                        <ArrowRight className="text-txt-dim rotate-0 group-hover:text-white group-hover:-rotate-45 group-active:text-white group-active:-rotate-45 transition-all duration-500" />
                     </div>
 
                     {/* TITRES */}
                     <span className="text-label-tech text-brand mb-2 block">{subtitle}</span>
-                    <h3 className="text-display text-4xl text-white mb-6 group-hover:translate-x-1 transition-transform duration-300">
+                    <h3 className="text-display text-4xl text-white mb-6 group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300">
                         {title}
                     </h3>
                     
                     {/* DESCRIPTION */}
-                    <p className="text-body text-sm mb-8 border-l border-[var(--color-border)] pl-4 group-hover:border-brand transition-colors duration-500">
+                    <p className="text-body text-sm mb-8 border-l border-[var(--color-border)] pl-4 group-hover:border-brand group-active:border-brand transition-colors duration-500">
                         {desc}
                     </p>
                 </div>
@@ -136,8 +136,8 @@ function ServiceCard({ title, subtitle, icon, desc, features, href }: any) {
                 {/* FEATURES */}
                 <div className="space-y-3">
                     {features.map((feat: string, i: number) => (
-                        <div key={i} className="flex items-center gap-3 text-sm text-txt-muted group-hover:text-white transition-colors duration-300">
-                            <CheckCircle2 size={14} className="text-brand opacity-50 group-hover:opacity-100" />
+                        <div key={i} className="flex items-center gap-3 text-sm text-txt-muted group-hover:text-white group-active:text-white transition-colors duration-300">
+                            <CheckCircle2 size={14} className="text-brand opacity-50 group-hover:opacity-100 group-active:opacity-100" />
                             <span className="font-mono tracking-tight">{feat}</span>
                         </div>
                     ))}
