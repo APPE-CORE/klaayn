@@ -15,23 +15,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full bg-void border-t border-[var(--color-border)] pt-20 pb-10 overflow-hidden font-sans">
+    // MODIFICATION ICI : Passage de pt-20 à pt-10 pour réduire l'espace supérieur
+    <footer className="relative w-full bg-void border-t border-[var(--color-border)] pt-10 pb-10 overflow-hidden font-sans">
       
       {/* Texture */}
       <div className="absolute inset-0 z-0 opacity-[0.015]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col">
         
-        {/* TITRE */}
-        <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-display text-5xl md:text-7xl mb-4 text-white">
-                Ingénierie <br className="md:hidden" />
-                <span className="text-brand">souveraine.</span>
-            </h2>
-            <p className="text-body-large italic">
-                Standard technologique pour leaders exigeants.
-            </p>
-        </div>
+        {/* TITRE SUPPRIMÉ */}
 
         {/* BENTO INTERACTIF */}
         <div className="group/bento grid grid-cols-1 lg:grid-cols-3 gap-4 relative">

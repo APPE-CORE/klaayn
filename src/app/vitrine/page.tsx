@@ -1,9 +1,15 @@
-export default function Page() {
+import VitrineAnatomy from "@/components/sections/vitrine/VitrineAnatomy";
+import VitrineHero from "@/components/sections/vitrine/VitrineHero";
+import VitrineProblem from "@/components/sections/vitrine/VitrineProbleme";
+import VitrineProcess from "@/components/sections/vitrine/VitrineProcess";
+
+export default function VitrinePage() {
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-background pt-20">
-      <h1 className="text-4xl font-bold uppercase text-foreground">
-        PAGE Site vitrine
-      </h1>
+    <main className="bg-void w-full min-h-screen relative overflow-x-hidden">  
+      <VitrineHero />
+      <VitrineProblem />
+      <VitrineAnatomy />
+      <VitrineProcess />
     </main>
   );
 }

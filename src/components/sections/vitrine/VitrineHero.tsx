@@ -1,0 +1,171 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Rocket, Code2, Cpu, Zap, Layers, BarChart3, Palette, ShieldCheck } from "lucide-react";
+
+import Button from "@/components/ui/Button"; 
+import SecondaryButton from "@/components/ui/SecondaryButton";
+
+export default function VitrineHero() {
+
+  const cardStyle = "relative w-full aspect-square sm:w-64 sm:h-64 rounded-2xl border p-4 sm:p-6 flex flex-col justify-between backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.02]";
+  const highlightStyle = "absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-70";
+
+  return (
+    <section className="relative w-full min-h-[90vh] md:min-h-screen bg-[#020202] text-white overflow-hidden border-b border-white/5 flex flex-col justify-center">
+      
+      {/* 1. BACKGROUND */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay"></div>
+          <div className="absolute top-1/2 right-0 md:right-20 w-[60vw] h-[60vw] bg-brand/5 blur-[150px] rounded-full mix-blend-screen opacity-30"></div>
+      </div>
+
+      {/* 2. CONTENEUR PRINCIPAL */}
+      {/* MODIFICATION ICI : 'px-6' fixe (retrait du md:px-12) pour s'aligner parfaitement avec le Footer/Header */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-center">
+          
+          <div className="contents lg:flex lg:flex-col lg:items-start lg:justify-center lg:gap-10 text-center lg:text-left">
+              
+              {/* --- BLOC 1 : TEXTE (Order 1 sur Mobile) --- */}
+              <div className="order-1 w-full flex flex-col items-center lg:items-start">
+                  
+                  {/* Badge */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex items-center gap-2 mb-6 bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md"
+                  >
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></div>
+                      <span className="text-[10px] md:text-xs font-mono text-white/70 uppercase tracking-widest">
+                          L'agence des leaders exigeants
+                      </span>
+                  </motion.div>
+
+                  {/* TITRE */}
+                  <motion.h1 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-display font-bold leading-[0.95] tracking-tight mb-8"
+                  >
+                      Votre Image, <br/>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-orange-400 to-white/50">
+                          Autorité Totale.
+                      </span>
+                  </motion.h1>
+
+                  {/* SOUS-TITRE */}
+                  <motion.p 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-md"
+                  >
+                      Ne subissez plus la concurrence. Nous transformons votre identité en une infrastructure digitale intouchable.
+                  </motion.p>
+              </div>
+
+              {/* --- BLOC 2 : ACTION & TECH (Order 3 sur Mobile) --- */}
+              <div className="order-3 w-full flex flex-col items-center lg:items-start gap-10">
+                  
+                  {/* BOUTONS DRY */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center lg:items-start"
+                  >
+                      {/* Utilisation du composant Button existant */}
+                      <div className="w-full sm:w-auto">
+                        <Button 
+                          href="/audit" 
+                          icon={Rocket} 
+                        >
+                          Lancer l'Audit
+                        </Button>
+                      </div>
+
+                      {/* Utilisation du composant SecondaryButton existant */}
+                      <div className="w-full sm:w-auto">
+                        <SecondaryButton 
+                          href="/methode"
+                        >
+                          Méthode
+                        </SecondaryButton>
+                      </div>
+                  </motion.div>
+
+                  {/* STACK TECHNIQUE */}
+                  <motion.div 
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     transition={{ duration: 0.5, delay: 0.4 }}
+                     className="flex flex-col items-center lg:items-start gap-3 w-full"
+                  >
+                      <div className="h-[1px] w-12 bg-white/10 mb-1"></div>
+                      <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Arsenal Technique</span>
+                      <div className="flex flex-wrap justify-center lg:justify-start gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                          <div className="flex items-center gap-1.5" title="Next.js"><Code2 size={14}/> <span className="font-bold text-xs">Next.js</span></div>
+                          <div className="flex items-center gap-1.5" title="TypeScript"><Cpu size={14}/> <span className="font-bold text-xs">TypeScript</span></div>
+                          <div className="flex items-center gap-1.5" title="Vercel Edge"><Zap size={14}/> <span className="font-bold text-xs">Edge</span></div>
+                          <div className="flex items-center gap-1.5" title="Framer Motion"><Layers size={14}/> <span className="font-bold text-xs">Motion</span></div>
+                      </div>
+                  </motion.div>
+              </div>
+
+          </div>
+
+          {/* --- DROITE : LE "MONOLITHE GRID" (Order 2 sur Mobile) --- */}
+          <div className="order-2 lg:order-none relative h-full w-full flex items-center justify-center lg:justify-end my-10 lg:my-0">
+              
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 w-full sm:w-auto">
+
+                  {/* 1. VIOLET */}
+                  <div className={`${cardStyle} bg-purple-900/10 border-purple-500/20 hover:border-purple-500/40 shadow-purple-500/5`}>
+                      <div className={highlightStyle}></div>
+                      <Palette size={28} className="text-white relative z-10" />
+                      <div className="relative z-10">
+                          <span className="font-mono text-[9px] text-purple-200 uppercase tracking-widest mb-1 block">Design</span>
+                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Esthétique <br/> Radicale</span>
+                      </div>
+                  </div>
+
+                  {/* 2. BLEU */}
+                  <div className={`${cardStyle} bg-blue-900/10 border-blue-500/20 hover:border-blue-500/40 shadow-blue-500/5`}>
+                       <div className={highlightStyle}></div>
+                      <Cpu size={28} className="text-white relative z-10" />
+                      <div className="relative z-10">
+                          <span className="font-mono text-[9px] text-blue-200 uppercase tracking-widest mb-1 block">Tech</span>
+                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Vitesse <br/> Absolue</span>
+                      </div>
+                  </div>
+
+                   {/* 3. ORANGE */}
+                   <div className={`${cardStyle} bg-orange-900/10 border-orange-500/20 hover:border-orange-500/40 shadow-brand/5`}>
+                       <div className={highlightStyle}></div>
+                      <BarChart3 size={28} className="text-white relative z-10" />
+                      <div className="relative z-10">
+                          <span className="font-mono text-[9px] text-orange-200 uppercase tracking-widest mb-1 block">Impact</span>
+                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Business <br/> Growth</span>
+                      </div>
+                  </div>
+
+                  {/* 4. VERT */}
+                  <div className={`${cardStyle} bg-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/40 shadow-emerald-500/5`}>
+                       <div className={highlightStyle}></div>
+                      <ShieldCheck size={28} className="text-white relative z-10" />
+                      <div className="relative z-10">
+                          <span className="font-mono text-[9px] text-emerald-200 uppercase tracking-widest mb-1 block">Sécurité</span>
+                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Sérénité <br/> Totale</span>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+      </div>
+    </section>
+  );
+}
