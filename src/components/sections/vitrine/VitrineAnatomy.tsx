@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button"; 
@@ -110,24 +109,22 @@ export default function VitrineAnatomy() {
                     </div>
                 </div>
 
-                {/* 3. LE GRAPHIQUE VISUEL */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {/* 3. LE GRAPHIQUE VISUEL (STRUCTURE REOPTIMISÉE) */}
+                {/* MODIFICATION : gap-y-6 pour resserrer verticalement */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-6 lg:gap-16 items-center">
                     
-                    {/* TEXTE & CTA : (Placé en premier dans le DOM -> Top sur mobile, Gauche sur Desktop) */}
-                    <div>
+                    {/* A. TEXTE (Mobile: Pos 1 / Desktop: Col 1) */}
+                    <div className="order-1 lg:col-start-1">
                         <h4 className="text-2xl font-display font-bold text-white mb-2">Google Lighthouse Score</h4>
-                        <p className="text-white/50 text-sm leading-relaxed mb-8">
+                        {/* MODIFICATION : mb-2 pour resserrer le texte vers le graphique */}
+                        <p className="text-white/50 text-sm leading-relaxed mb-2">
                             Google mesure la qualité de votre site sur 100. <br/>
                             Ce score détermine votre coût d'acquisition publicitaire (CPC) et votre classement naturel (SEO).
                         </p>
-                        
-                        <Button href="/contact" icon={ArrowRight}>
-                            Obtenir cette performance
-                        </Button>
                     </div>
 
-                    {/* HUD Graphique : (Placé en second -> Bas sur mobile, Droite sur Desktop) */}
-                    <div className="p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
+                    {/* B. HUD Graphique (Mobile: Pos 2 / Desktop: Col 2) */}
+                    <div className="order-2 lg:col-start-2 lg:row-span-2 p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
                         
                         {/* Décoration Technique */}
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
@@ -182,7 +179,13 @@ export default function VitrineAnatomy() {
                                 ))}
                             </div>
                         </div>
+                    </div>
 
+                    {/* C. CTA (Mobile: Pos 3 / Desktop: Col 1) */}
+                    <div className="order-3 lg:col-start-1 lg:mt-[-1rem]">
+                        <Button href="/contact" icon={ArrowRight}>
+                            Obtenir cette performance
+                        </Button>
                     </div>
 
                 </div>

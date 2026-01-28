@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
 import { Zap, Crown, Terminal, BarChart3, Lock, DraftingCompass } from "lucide-react";
 
 export default function AgenceImpact() {
     return (
-        <section className="relative w-full bg-void py-24 border-t border-white/5">
+        <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
             {/* Titre de Section */}
             <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-16">

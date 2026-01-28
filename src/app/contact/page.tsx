@@ -34,7 +34,7 @@ const OPTIONS = [
   { id: "maintenance", title: "Souveraineté", icon: ShieldCheck, desc: "Maintenance & Sécu." },
 ];
 
-const BUDGETS = ["5k - 10k", "10k - 20k", "20k - 50k", "+50k"];
+const BUDGETS = ["< de 5k", "5k - 10k", "10k - 20k", "+ de 20k"];
 const TIMELINES = ["Urgent (< 1 mois)", "Normal (1-2 mois)", "Confortable (3+ mois)"];
 
 export default function Contact() {
@@ -240,7 +240,7 @@ export default function Contact() {
                     <Input name="company" label="Société" placeholder="MetaCortex Inc." fullWidth value={formData.company} onChange={handleInputChange} />
                     
                     <div className="md:col-span-2">
-                        <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-center md:text-left">
+                        <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-left">
                             Transmission (Message Personnel)
                             {formErrors.message && <span className="text-red-500 ml-2 animate-pulse">* Requis</span>}
                         </label>
@@ -249,7 +249,7 @@ export default function Contact() {
                             value={formData.message}
                             onChange={handleInputChange}
                             rows={5}
-                            className={`w-full bg-white/5 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all resize-none text-center md:text-left
+                            className={`w-full bg-white/5 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all resize-none text-left
                             ${formErrors.message 
                                 ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
                                 : "border border-white/10 focus:border-brand focus:ring-brand"
@@ -261,7 +261,6 @@ export default function Contact() {
             </section>
 
             {/* SUBMIT SECTION (MOBILE SEULEMENT) */}
-            {/* MODIFICATION : Ajout de lg:hidden pour cacher cette partie sur Desktop */}
             <div className="pt-6 pb-12 space-y-10 lg:hidden">
                 {/* Mobile Summary */}
                 <div>
@@ -298,7 +297,6 @@ export default function Contact() {
                               <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
                                   Action
                               </span>
-                              {/* Modifs : Plus de Majuscule, Whitespace-nowrap */}
                               <span className="text-lg md:text-xl font-bold font-sans text-white tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
                                   Lancer le protocole
                               </span>
@@ -325,7 +323,8 @@ export default function Contact() {
 
         {/* --- COLONNE DROITE : LE RÉCAPITULATIF (PC ONLY - STICKY) --- */}
         <div className="hidden lg:block lg:col-span-4 relative h-full">
-            <div className="sticky top-40 w-full space-y-6">
+            {/* MODIFICATION : -mt-[20px] pour rehausser de 10px supplémentaires */}
+            <div className="sticky top-36 w-full space-y-6 -mt-[20px]">
                 
                 {/* 1. LA CARTE RECAP */}
                 <SummaryCard 
@@ -335,7 +334,7 @@ export default function Contact() {
                     timeline={timeline} 
                 />
 
-                {/* 2. LE BOUTON D'ENVOI (PC SEULEMENT) - MODIFICATION : Ajouté ici avec width full et texte centré */}
+                {/* 2. LE BOUTON D'ENVOI (PC SEULEMENT) */}
                 <div className="flex flex-col items-center w-full">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
@@ -419,7 +418,7 @@ interface InputProps {
 function Input({ label, placeholder, type = "text", fullWidth = false, name, value, onChange, error }: InputProps) {
     return (
         <div className={fullWidth ? "md:col-span-2" : ""}>
-            <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-center md:text-left">
+            <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-left">
                 {label}
                 {error && <span className="text-red-500 ml-2 animate-pulse">* {error}</span>}
             </label>
@@ -429,7 +428,7 @@ function Input({ label, placeholder, type = "text", fullWidth = false, name, val
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={`w-full bg-white/5 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all text-center md:text-left
+                className={`w-full bg-white/5 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all text-left
                 ${error 
                     ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
                     : "border border-white/10 focus:border-brand focus:ring-brand"
@@ -439,17 +438,17 @@ function Input({ label, placeholder, type = "text", fullWidth = false, name, val
     );
 }
 
-// --- SUMMARY CARD COMPONENT (REUSABLE PC/MOBILE) ---
+// --- SUMMARY CARD COMPONENT (MODIFIÉ : SANS GRAIN) ---
 function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any) {
     const currentServiceObject = SERVICES.find(s => s.id === selectedService);
 
     return (
         <motion.div 
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#030303] shadow-2xl"
+            className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#101010] shadow-2xl"
         >
-            {/* TEXTURE & GLOW OVERLAYS */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+            {/* TEXTURE REMOVED (Grain removed as requested) */}
+            {/* Seul le Glow est conservé pour la profondeur, mais sans le bruit */}
             <div className="absolute -top-20 -right-20 w-60 h-60 bg-brand/10 blur-[80px] rounded-full pointer-events-none"></div>
             
             {/* HEADER */}

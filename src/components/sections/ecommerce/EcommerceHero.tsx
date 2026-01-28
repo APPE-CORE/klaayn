@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { ShoppingBag, Zap, BarChart3, Lock, Code2, Database, Palette, RefreshCw } from "lucide-react";
 

@@ -7,7 +7,7 @@ import { Check, X, Minus, AlertCircle, ArrowRight } from "lucide-react";
 export default function AgenceCompare() {
     return (
         // CORRECTION : Suppression du 'px-6 md:px-12' sur la section
-        <section className="relative w-full bg-void py-24 border-t border-white/5">
+        <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
             {/* 1. Header de Section */}
             {/* CORRECTION : Ajout du 'px-6' sur le conteneur */}

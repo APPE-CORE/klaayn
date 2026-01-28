@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 export default function EcommerceAnatomy() {
 
     return (
+        // MODIFICATION ICI : Passage à --color-contrast
         <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -110,23 +111,19 @@ export default function EcommerceAnatomy() {
                     </div>
                 </div>
 
-                {/* GRAPHIQUE VISUEL */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {/* 3. LE GRAPHIQUE VISUEL (STRUCTURE REOPTIMISÉE) */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-6 lg:gap-16 items-center">
                     
-                    {/* TEXTE & CTA : (Maintenant en premier dans le DOM sans classe 'order', donc en haut sur mobile) */}
-                    <div>
+                    {/* A. TEXTE (Mobile: Pos 1 / Desktop: Col 1) */}
+                    <div className="order-1 lg:col-start-1">
                         <h4 className="text-2xl font-display font-bold text-white mb-2">Google PageSpeed Mobile</h4>
-                        <p className="text-white/50 text-sm leading-relaxed mb-8">
+                        <p className="text-white/50 text-sm leading-relaxed mb-2">
                             Sur Shopify, le mobile est roi. Un score faible ruine vos campagnes Facebook/TikTok Ads car l'algorithme vous fait payer le clic plus cher.
                         </p>
-                        
-                        <Button href="/contact" icon={ArrowRight}>
-                            Auditer mon score
-                        </Button>
                     </div>
 
-                    {/* GRAPHIQUE : (Maintenant en second dans le DOM sans classe 'order', donc en bas sur mobile) */}
-                    <div className="p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
+                    {/* B. HUD Graphique (Mobile: Pos 2 / Desktop: Col 2) */}
+                    <div className="order-2 lg:col-start-2 lg:row-span-2 p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
                         
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                         <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-white/10 to-transparent"></div>
@@ -181,6 +178,13 @@ export default function EcommerceAnatomy() {
                             </div>
                         </div>
 
+                    </div>
+
+                    {/* C. CTA (Mobile: Pos 3 / Desktop: Col 1) */}
+                    <div className="order-3 lg:col-start-1 lg:mt-[-1rem]">
+                        <Button href="/contact" icon={ArrowRight}>
+                            Auditer mon score
+                        </Button>
                     </div>
 
                 </div>
