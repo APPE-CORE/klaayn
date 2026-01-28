@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
-import Link from "next/link"; // AJOUT : Import indispensable pour la navigation interne
+import Link from "next/link";
 import { Check, X, Minus, AlertCircle, ArrowRight } from "lucide-react";
 
 export default function AgenceCompare() {
     return (
-        <section className="relative w-full bg-void py-24 px-6 md:px-12 border-t border-white/5">
+        // CORRECTION : Suppression du 'px-6 md:px-12' sur la section
+        <section className="relative w-full bg-void py-24 border-t border-white/5">
             
             {/* 1. Header de Section */}
-            <div className="max-w-7xl mx-auto mb-20 text-center md:text-left">
+            {/* CORRECTION : Ajout du 'px-6' sur le conteneur */}
+            <div className="max-w-7xl mx-auto px-6 mb-20 text-center md:text-left">
                 <span className="text-brand font-mono text-xs uppercase tracking-widest mb-4 block">
                     // Benchmark
                 </span>
@@ -23,7 +25,8 @@ export default function AgenceCompare() {
             </div>
 
             {/* 2. LE TABLEAU COMPARATIF */}
-            <div className="max-w-7xl mx-auto">
+            {/* CORRECTION : Ajout du 'px-6' sur le conteneur */}
+            <div className="max-w-7xl mx-auto px-6">
                 
                 {/* En-têtes de colonnes (Desktop uniquement) */}
                 <div className="hidden md:grid grid-cols-12 gap-8 pb-6 border-b border-white/10 text-xs font-mono uppercase tracking-widest text-white/40">

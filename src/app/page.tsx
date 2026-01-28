@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="bg-void w-full min-h-screen">
       <Hero />
-      <Philosophy />
+      
       <Services />
       <Process/>
       <Work  />

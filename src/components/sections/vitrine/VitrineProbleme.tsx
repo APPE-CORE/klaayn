@@ -60,6 +60,7 @@ export default function VitrineProblem() {
                             </span>
                         </motion.div>
                         
+                        {/* H2 : Titre principal de la section */}
                         <h2 className="text-3xl md:text-5xl lg:text-5xl font-display font-medium text-white leading-[1.05] tracking-tight">
                             L'amateurisme est <br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-orange-400 to-white/50">
@@ -105,9 +106,11 @@ export default function VitrineProblem() {
                                         {stat.value}
                                     </div>
                                     
-                                    <h4 className="text-base font-bold text-white mb-2">
+                                    {/* CORRECTION SÉMANTIQUE ICI : Remplacement de h4 par h3 */}
+                                    {/* Cela respecte l'ordre : h2 (titre section) -> h3 (sous-titres) */}
+                                    <h3 className="text-base font-bold text-white mb-2">
                                         {stat.label}
-                                    </h4>
+                                    </h3>
                                     
                                     <p className="text-xs text-white/50 leading-relaxed max-w-xs mb-4">
                                         {stat.description}

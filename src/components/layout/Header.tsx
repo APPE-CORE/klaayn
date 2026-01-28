@@ -45,8 +45,7 @@ export default function Header() {
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = pathname === href;
     return (
-      <Link href={href}>
-        {/* HARMONISATION : rounded-xl ici aussi */}
+      <Link href={href} aria-label={`Aller vers la page ${label}`}>
         <div className={`relative px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 border ${
             isActive 
             ? "bg-white/10 border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]" 
@@ -64,28 +63,35 @@ export default function Header() {
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled ? "bg-void/80 backdrop-blur-md border-b border-[var(--color-border)] py-4 shadow-2xl" : "bg-transparent py-6 border-b border-transparent"}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 
-                <Link href="/" className="flex items-center gap-2 group z-50">
+                <Link href="/" className="flex items-center gap-2 group z-50" aria-label="Retour à l'accueil Klaayn">
                     <div className="text-white group-hover:text-action transition-colors duration-300">
                         <Terminal size={22} strokeWidth={2.5}/>
                     </div>
                     <span className="text-xl font-sans font-bold tracking-tighter text-white">KLAAYN.</span>
                 </Link>
 
-                {/* Menu Desktop - HARMONISATION COMPLETE */}
-                {/* Remplacement de rounded-full par rounded-xl sur le conteneur principal */}
+                {/* Menu Desktop */}
                 <div className="hidden md:flex items-center space-x-1 bg-surface/40 backdrop-blur-md p-1.5 rounded-xl border border-[var(--color-border)] absolute left-1/2 -translate-x-1/2 shadow-2xl">
                     {navLinks.map((link) => (<NavLink key={link.href} {...link} />))}
                 </div>
 
                 <div className="flex items-center gap-3 relative z-50">
-                    <Button href="/contact" responsive={true}>Lancer un projet</Button>
+                    <Button 
+                        href="/contact" 
+                        responsive={true}
+                        // CORRECTION ICI : Ajout de l'événement onClick pour fermer le menu si ouvert
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        Lancer un projet
+                    </Button>
                     
-                    {/* Bouton Hamburger Mobile - HARMONISÉ */}
+                    {/* Bouton Hamburger Mobile */}
                     <button 
                         className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden active:scale-95 bg-white/10 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] 
                         hover:bg-white/20 
                         active:bg-white/20" 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
                         <span className="relative z-10 text-white">{isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</span>

@@ -30,10 +30,10 @@ export default function AgenceValues() {
     ];
 
     return (
-        <section className="relative w-full bg-void py-24 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+        <section className="relative w-full bg-void py-24 border-t border-white/5 overflow-hidden">
             
             {/* Header */}
-            <div className="max-w-7xl mx-auto mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/[0.05] pb-6">
+            <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/[0.05] pb-6">
                 <div>
                     <span className="text-brand font-mono text-xs uppercase tracking-widest mb-2 block">
                         // Dogme
@@ -45,30 +45,27 @@ export default function AgenceValues() {
                 </div>
             </div>
 
-            {/* La Stack (Espacement optimisé) */}
-            <div className="max-w-7xl mx-auto flex flex-col">
+            {/* La Stack */}
+            <div className="max-w-7xl mx-auto px-6 flex flex-col">
                 
                 {values.map((item, index) => (
                     <div 
                         key={index} 
-                        // MODIFICATION 1 : Espacement intermédiaire parfait (py-10 / py-14)
                         className="group relative w-full border-b border-white/[0.03] py-10 md:py-14 transition-all duration-500 hover:bg-white/[0.02]"
                     >
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                             
-                            {/* GAUCHE : TITRE MASSIF AVEC NOUVEL EFFET HOVER */}
-                            <div className="lg:col-span-6 relative">
-                                <span className="font-mono text-xs text-brand/40 mb-2 block transition-all group-hover:text-brand">
-                                    {item.id}
-                                </span>
-                                {/* MODIFICATION 2 : Nouvel effet hover "Glow & Slide" */}
-                                {/* Le texte reste blanc, mais gagne un drop-shadow violet intense et se déplace */}
-                                <h3 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white transition-all duration-500 group-hover:translate-x-4 group-hover:drop-shadow-[0_0_25px_rgba(124,31,172,0.6)] break-words leading-[0.9]">
+                            {/* GAUCHE : TITRE */}
+                            <div className="lg:col-span-6 relative overflow-hidden lg:overflow-visible">
+                                
+                                {/* MODIFICATION ICI : Ajout de 'pb-2' (Padding Bottom) et 'relative z-10' */}
+                                {/* Le pb-2 empêche les lettres 'p' et 'g' d'être coupées par l'overflow */}
+                                <h3 className="text-5xl md:text-7xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-display font-bold text-white transition-all duration-500 group-hover:translate-x-4 group-hover:drop-shadow-[0_0_25px_rgba(124,31,172,0.6)] whitespace-nowrap leading-[0.9] pb-2 relative z-10">
                                     {item.title}
                                 </h3>
                             </div>
 
-                            {/* DROITE : CONTENU TECHNIQUE (Hover inchangé car validé) */}
+                            {/* DROITE : CONTENU TECHNIQUE */}
                             <div className="lg:col-span-6 pl-0 lg:pl-12 lg:border-l lg:border-white/[0.03] lg:group-hover:border-brand/20 transition-colors duration-500 py-2">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex items-center gap-3">

@@ -6,7 +6,8 @@ import Accordion from "@/components/ui/Accordion";
 
 export default function AgenceFAQ() {
     
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    // MODIFICATION ICI : Initialisation à 'null' au lieu de '0' pour tout fermer par défaut
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const faqs = [
         {
@@ -32,8 +33,11 @@ export default function AgenceFAQ() {
     ];
 
     return (
-        <section className="relative w-full bg-void py-24 px-6 md:px-12 border-t border-white/5">
-            <div className="max-w-4xl mx-auto">
+        // CORRECTION MARGES : Suppression de 'px-6 md:px-12' sur la section
+        <section className="relative w-full bg-void py-24 border-t border-white/5">
+            
+            {/* CORRECTION MARGES : Ajout de 'px-6' sur le conteneur */}
+            <div className="max-w-4xl mx-auto px-6">
                 
                 {/* Header */}
                 <div className="text-center mb-16 md:mb-20">

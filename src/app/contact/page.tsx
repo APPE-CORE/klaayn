@@ -87,10 +87,10 @@ export default function Contact() {
   };
 
   return (
-    <main className="bg-void min-h-screen pt-32 pb-32 md:pt-40 md:pb-40 px-6">
+    <main className="bg-void min-h-screen pt-32 pb-32 md:pt-40 md:pb-40">
       
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto mb-16 md:mb-24 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 text-center md:text-left">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="flex items-center justify-center md:justify-start gap-3 mb-6"
@@ -108,7 +108,7 @@ export default function Contact() {
           </motion.h1>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-24 relative">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-24 relative">
         
         {/* --- COLONNE GAUCHE : LE CONFIGURATEUR --- */}
         <div className="lg:col-span-8 flex flex-col gap-24 md:gap-32">
@@ -260,10 +260,11 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* SUBMIT SECTION (MOBILE: SUMMARY + CUSTOM BUTTON) */}
-            <div className="pt-6 pb-12 space-y-10">
+            {/* SUBMIT SECTION (MOBILE SEULEMENT) */}
+            {/* MODIFICATION : Ajout de lg:hidden pour cacher cette partie sur Desktop */}
+            <div className="pt-6 pb-12 space-y-10 lg:hidden">
                 {/* Mobile Summary */}
-                <div className="lg:hidden">
+                <div>
                     <SummaryCard 
                         selectedService={selectedService} 
                         selectedOptions={selectedOptions} 
@@ -324,13 +325,62 @@ export default function Contact() {
 
         {/* --- COLONNE DROITE : LE RÉCAPITULATIF (PC ONLY - STICKY) --- */}
         <div className="hidden lg:block lg:col-span-4 relative h-full">
-            <div className="sticky top-40 w-full">
+            <div className="sticky top-40 w-full space-y-6">
+                
+                {/* 1. LA CARTE RECAP */}
                 <SummaryCard 
                     selectedService={selectedService} 
                     selectedOptions={selectedOptions} 
                     budget={budget} 
                     timeline={timeline} 
                 />
+
+                {/* 2. LE BOUTON D'ENVOI (PC SEULEMENT) - MODIFICATION : Ajouté ici avec width full et texte centré */}
+                <div className="flex flex-col items-center w-full">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleSubmit}
+                      className="group relative w-full flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-xl transition-all duration-300 overflow-hidden
+                        border border-white/10 bg-white/5 
+                        
+                        /* --- ÉTAT HOVER (PC) - ORANGE --- */
+                        hover:border-orange-500 hover:bg-orange-500/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                        
+                        /* --- ÉTAT ACTIVE (MOBILE TOUCH) - ORANGE --- */
+                        active:border-orange-500 active:bg-orange-500/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                      "
+                    >
+                          {/* Effet Shimmer */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+
+                          {/* Contenu */}
+                          <div className="flex flex-col items-start relative z-10 overflow-hidden">
+                              <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
+                                  Action
+                              </span>
+                              <span className="text-lg md:text-xl font-bold font-sans text-white tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
+                                  Lancer le protocole
+                              </span>
+                          </div>
+
+                          {/* Icône ArrowRight */}
+                          <div className="relative z-10 shrink-0">
+                              <ArrowRight 
+                                size={28} 
+                                className="text-white/70 group-hover:text-white transition-all duration-500 ease-out 
+                                group-hover:-rotate-45" 
+                              />
+                          </div>
+
+                    </motion.button>
+
+                    {/* Texte de réassurance centré */}
+                    <p className="mt-4 text-xs text-txt-muted text-center flex items-center justify-center gap-2 w-full">
+                        <Zap size={12} className="text-brand"/> Réponse sous 24h ouvrées. Confidentialité garantie.
+                    </p>
+                </div>
+
             </div>
         </div>
 
