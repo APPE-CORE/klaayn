@@ -91,6 +91,8 @@ export default function Footer() {
                             <Link 
                                 key={name} 
                                 href="#" 
+                                // AJOUT ICI : L'attribut aria-label résout le problème d'accessibilité (lien sans nom visible)
+                                aria-label={`Suivez-nous sur ${name}`}
                                 className="flex items-center gap-3 transition-all duration-300 text-txt-muted hover:text-brand active:text-brand group active:scale-90"
                             >
                                 <span className="transform transition-transform duration-300 group-hover:scale-125 group-active:scale-125 group-hover:text-brand group-active:text-brand">
