@@ -8,8 +8,6 @@ import Button from "@/components/ui/Button";
 export default function EcommerceAnatomy() {
 
     return (
-        // CORRECTION MAJEURE : Utilisation de 'bg-[var(--color-contrast)]'
-        // Cela connecte directement cette div à la variable --color-contrast de ton CSS.
         <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -40,37 +38,13 @@ export default function EcommerceAnatomy() {
                         <div className="col-span-4 text-left pl-4 text-lime-400">Klaayn E-com</div>
                     </div>
 
-                    {/* --- 1. CORE WEB VITALS (VITESSE) --- */}
-                    <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
-                        <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
-                            <h3 className="text-xl font-display font-medium text-white">Vitesse Mobile</h3>
-                            <p className="text-xs text-white/40 mt-1">Impact direct sur le CPC</p>
-                        </div>
-                        {/* Standard */}
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-white/5 md:bg-transparent rounded-lg md:rounded-none md:pl-4 opacity-80 md:opacity-50 transition-opacity duration-500 group-hover:opacity-100">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-white/30 mb-1">Standard</span>
-                            <div className="text-sm text-white/80">
-                                <span className="block font-medium">LCP &gt; 3.5s</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Score Mobile &lt; 40</span>
-                            </div>
-                        </div>
-                        {/* Klaayn */}
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-lime-900/10 md:bg-transparent border border-lime-500/20 md:border-none rounded-lg md:rounded-none md:pl-4 relative transform-gpu">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-lime-400 mb-1">Klaayn</span>
-                             <div className="absolute left-0 md:left-auto md:inset-0 bg-lime-500/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
-                            <div className="text-sm text-white relative z-10">
-                                <span className="block font-medium text-lime-400">LCP &lt; 1.2s</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Score Mobile 90+</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* --- 2. ARCHITECTURE CODE --- */}
+                    {/* --- 1. ARCHITECTURE CODE --- */}
                     <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
                         <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
                             <h3 className="text-xl font-display font-medium text-white">Code & Dépendances</h3>
                             <p className="text-xs text-white/40 mt-1">Stabilité technique</p>
                         </div>
+                        {/* Standard */}
                         <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-white/5 md:bg-transparent rounded-lg md:rounded-none md:pl-4 opacity-80 md:opacity-50 transition-opacity duration-500 group-hover:opacity-100">
                             <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-white/30 mb-1">Standard</span>
                             <div className="text-sm text-white/80">
@@ -78,6 +52,7 @@ export default function EcommerceAnatomy() {
                                 <span className="text-[10px] uppercase tracking-wide opacity-60">Scripts JS bloquants</span>
                             </div>
                         </div>
+                        {/* Klaayn */}
                         <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-lime-900/10 md:bg-transparent border border-lime-500/20 md:border-none rounded-lg md:rounded-none md:pl-4 relative transform-gpu">
                             <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-lime-400 mb-1">Klaayn</span>
                              <div className="absolute left-0 md:left-auto md:inset-0 bg-lime-500/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
@@ -88,7 +63,7 @@ export default function EcommerceAnatomy() {
                         </div>
                     </div>
 
-                    {/* --- 3. CONVERSION (UX) --- */}
+                    {/* --- 2. CONVERSION (UX) --- */}
                     <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
                         <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
                             <h3 className="text-xl font-display font-medium text-white">Tunnel d'Achat</h3>
@@ -111,7 +86,7 @@ export default function EcommerceAnatomy() {
                         </div>
                     </div>
 
-                    {/* --- 4. DESIGN --- */}
+                    {/* --- 3. DESIGN --- */}
                     <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
                         <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
                             <h3 className="text-xl font-display font-medium text-white">Identité Visuelle</h3>
@@ -138,18 +113,20 @@ export default function EcommerceAnatomy() {
                 {/* GRAPHIQUE VISUEL */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     
-                    <div className="order-2 lg:order-1">
+                    {/* TEXTE & CTA : (Maintenant en premier dans le DOM sans classe 'order', donc en haut sur mobile) */}
+                    <div>
                         <h4 className="text-2xl font-display font-bold text-white mb-2">Google PageSpeed Mobile</h4>
                         <p className="text-white/50 text-sm leading-relaxed mb-8">
                             Sur Shopify, le mobile est roi. Un score faible ruine vos campagnes Facebook/TikTok Ads car l'algorithme vous fait payer le clic plus cher.
                         </p>
                         
-                        <Button href="/shopify-audit" icon={ArrowRight}>
+                        <Button href="/contact" icon={ArrowRight}>
                             Auditer mon score
                         </Button>
                     </div>
 
-                    <div className="order-1 lg:order-2 p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
+                    {/* GRAPHIQUE : (Maintenant en second dans le DOM sans classe 'order', donc en bas sur mobile) */}
+                    <div className="p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
                         
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                         <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-white/10 to-transparent"></div>

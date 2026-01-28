@@ -8,11 +8,8 @@ import Button from "@/components/ui/Button";
 export default function VitrineAnatomy() {
 
     return (
-        // MODIFICATION ICI : Fond gris anthracite via la variable CSS
         <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
-            {/* Suppression du div BACKGROUND (Noise) pour le rendu Flat */}
-
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 
                 {/* 1. HEADER */}
@@ -31,7 +28,7 @@ export default function VitrineAnatomy() {
                     </p>
                 </div>
 
-                {/* 2. LE TABLEAU COMPARATIF (5 Critères Sélectionnés) */}
+                {/* 2. LE TABLEAU COMPARATIF (Top 3 Critères) */}
                 <div className="max-w-7xl mx-auto mb-24 border-t border-white/5">
                     
                     {/* En-têtes (Desktop) */}
@@ -89,53 +86,7 @@ export default function VitrineAnatomy() {
                         </div>
                     </div>
 
-                    {/* --- 3. MOBILE --- */}
-                    <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
-                        <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
-                            <h3 className="text-xl font-display font-medium text-white">Expérience Mobile</h3>
-                            <p className="text-xs text-white/40 mt-1">Qualité de navigation</p>
-                        </div>
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-white/5 md:bg-transparent rounded-lg md:rounded-none md:pl-4 opacity-80 md:opacity-50 transition-opacity duration-500 group-hover:opacity-100">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-white/30 mb-1">Standard</span>
-                            <div className="text-sm text-white/80">
-                                <span className="block font-medium">Responsive Basique</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Adaptation forcée du Desktop</span>
-                            </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-brand/5 md:bg-transparent border border-brand/20 md:border-none rounded-lg md:rounded-none md:pl-4 relative transform-gpu">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-brand mb-1">Klaayn</span>
-                             <div className="absolute left-0 md:left-auto md:inset-0 bg-brand/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
-                            <div className="text-sm text-white relative z-10">
-                                <span className="block font-medium text-brand">Mobile Native Feel</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Gestes fluides comme une app</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* --- 4. MAINTENANCE --- */}
-                    <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
-                        <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
-                            <h3 className="text-xl font-display font-medium text-white">Maintenance</h3>
-                            <p className="text-xs text-white/40 mt-1">Coûts cachés</p>
-                        </div>
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-white/5 md:bg-transparent rounded-lg md:rounded-none md:pl-4 opacity-80 md:opacity-50 transition-opacity duration-500 group-hover:opacity-100">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-white/30 mb-1">Standard</span>
-                            <div className="text-sm text-white/80">
-                                <span className="block font-medium">Mises à jour Manuelles</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Risque de bugs et failles</span>
-                            </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-4 flex flex-col md:flex-row items-start md:items-center gap-3 px-4 py-4 md:p-0 bg-brand/5 md:bg-transparent border border-brand/20 md:border-none rounded-lg md:rounded-none md:pl-4 relative transform-gpu">
-                            <span className="md:hidden text-[10px] font-mono uppercase tracking-widest text-brand mb-1">Klaayn</span>
-                             <div className="absolute left-0 md:left-auto md:inset-0 bg-brand/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
-                            <div className="text-sm text-white relative z-10">
-                                <span className="block font-medium text-brand">Zéro Maintenance</span>
-                                <span className="text-[10px] uppercase tracking-wide opacity-60">Infrastructure autonome</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* --- 5. SÉCURITÉ --- */}
+                    {/* --- 3. SÉCURITÉ --- */}
                     <div className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 py-8 border-b border-white/5 items-start md:items-center hover:bg-white/[0.02] transition-colors duration-300">
                         <div className="col-span-12 md:col-span-4 px-0 md:px-6 mb-2 md:mb-0">
                             <h3 className="text-xl font-display font-medium text-white">Cybersécurité</h3>
@@ -159,11 +110,11 @@ export default function VitrineAnatomy() {
                     </div>
                 </div>
 
-                {/* 3. LE GRAPHIQUE VISUEL (Design "Precision HUD") */}
+                {/* 3. LE GRAPHIQUE VISUEL */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     
-                    {/* Explication */}
-                    <div className="order-2 lg:order-1">
+                    {/* TEXTE & CTA : (Placé en premier dans le DOM -> Top sur mobile, Gauche sur Desktop) */}
+                    <div>
                         <h4 className="text-2xl font-display font-bold text-white mb-2">Google Lighthouse Score</h4>
                         <p className="text-white/50 text-sm leading-relaxed mb-8">
                             Google mesure la qualité de votre site sur 100. <br/>
@@ -175,8 +126,8 @@ export default function VitrineAnatomy() {
                         </Button>
                     </div>
 
-                    {/* HUD Graphique Optimisé */}
-                    <div className="order-1 lg:order-2 p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
+                    {/* HUD Graphique : (Placé en second -> Bas sur mobile, Droite sur Desktop) */}
+                    <div className="p-8 rounded-2xl border border-white/10 bg-[#050505] relative overflow-hidden">
                         
                         {/* Décoration Technique */}
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
@@ -188,7 +139,6 @@ export default function VitrineAnatomy() {
                                 <span className="text-[10px] font-mono uppercase tracking-widest text-white/60">Moyenne Industrie</span>
                                 <span className="text-xl font-display font-bold text-white/60">45<span className="text-sm opacity-50">/100</span></span>
                             </div>
-                            {/* Track Fine & Precise */}
                             <div className="w-full h-[2px] bg-white/10">
                                 <motion.div 
                                     initial={{ width: 0 }}
@@ -209,12 +159,9 @@ export default function VitrineAnatomy() {
                                 <span className="text-4xl font-display font-bold text-white">99<span className="text-lg text-brand opacity-80">/100</span></span>
                             </div>
                             
-                            {/* Track HUD Neon */}
                             <div className="w-full h-1 bg-white/5 relative">
-                                {/* Grille de fond subtile */}
                                 <div className="absolute inset-0 w-full h-full opacity-30 bg-[repeating-linear-gradient(90deg,transparent,transparent_4px,white_4px,white_5px)]"></div>
                                 
-                                {/* Active Bar */}
                                 <motion.div 
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "99%" }}
@@ -222,12 +169,10 @@ export default function VitrineAnatomy() {
                                     transition={{ duration: 1.5, delay: 0.2, ease: "circOut" }}
                                     className="h-full bg-brand relative z-10 shadow-[0_0_20px_rgba(255,107,0,0.5)]"
                                 >
-                                    {/* Curseur brillant */}
                                     <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[2px] h-6 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
                                 </motion.div>
                             </div>
 
-                            {/* Graduation Précise */}
                             <div className="flex justify-between mt-3">
                                 {[0, 20, 40, 60, 80, 100].map((tick) => (
                                     <div key={tick} className="flex flex-col items-center gap-2">

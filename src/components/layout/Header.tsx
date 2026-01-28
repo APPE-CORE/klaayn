@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Terminal, ArrowUpRight, MapPin } from "lucide-react";
+import { Menu, X, Terminal, ArrowRight, MapPin } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Button from "@/components/ui/Button";
 
@@ -37,7 +37,7 @@ export default function Header() {
   const navLinks = [
     { href: "/vitrine", label: "Vitrine" },
     { href: "/ecommerce", label: "E-commerce" },
-    { href: "/outils-ia", label: "Outils IA" },
+    // { href: "/outils-ia", label: "Outils IA" },
     { href: "/agence", label: "Agence" },
   ];
 
@@ -79,7 +79,6 @@ export default function Header() {
                     <Button 
                         href="/contact" 
                         responsive={true}
-                        // CORRECTION ICI : Ajout de l'événement onClick pour fermer le menu si ouvert
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Lancer un projet
@@ -103,28 +102,38 @@ export default function Header() {
         {/* Menu Mobile Plein Écran */}
         <AnimatePresence>
             {isMobileMenuOpen && (
-                <motion.div variants={menuVariants} initial="hidden" animate="visible" exit="exit" className="fixed inset-0 z-[40] bg-void/90 backdrop-blur-3xl flex flex-col md:hidden">
-                    <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+                <motion.div 
+                    variants={menuVariants} 
+                    initial="hidden" 
+                    animate="visible" 
+                    exit="exit" 
+                    // MODIFICATION ICI : Opacité réduite à 40% (bg-void/40) pour plus de transparence
+                    className="fixed inset-0 z-[40] bg-void/40 backdrop-blur-3xl flex flex-col md:hidden"
+                >
                     <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-action/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
-                    <div className="flex-1 flex flex-col justify-center px-8 pt-20 relative z-10">
-                        <div className="flex flex-col gap-6">
+                    <div className="flex-1 flex flex-col justify-center px-6 pt-16 relative z-10">
+                        <div className="flex flex-col">
                             {navLinks.map((link, index) => (
                                 <motion.div key={link.href} variants={itemVariants}>
-                                    <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="group flex items-center justify-between border-b border-[var(--color-border)] pb-6">
+                                    <Link 
+                                        href={link.href} 
+                                        onClick={() => setIsMobileMenuOpen(false)} 
+                                        className="group relative flex items-center justify-between border-b border-[var(--color-border)] py-8 px-2 transition-all duration-300 hover:bg-white/5 active:bg-white/10 active:border-white/20"
+                                    >
                                         <div className="flex items-baseline gap-4">
-                                            <span className="text-label-tech text-action">0{index + 1}</span>
-                                            <span className="text-h3 text-white group-hover:text-action transition-colors duration-300">
+                                            <span className="text-label-tech text-action/70 group-hover:text-action">0{index + 1}</span>
+                                            <span className="text-3xl sm:text-4xl font-display font-bold text-white group-hover:text-action transition-colors duration-300">
                                                 {link.label}
                                             </span>
                                         </div>
-                                        <ArrowUpRight className="text-txt-muted group-hover:text-action group-hover:rotate-45 transition-all duration-500" size={28} />
+                                        <ArrowRight className="text-txt-muted group-hover:text-action group-hover:-rotate-45 transition-all duration-500" size={32} />
                                     </Link>
                                 </motion.div>
                             ))}
                         </div>
-                        <motion.div variants={itemVariants} className="mt-10">
-                            <Button href="/contact" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>DÉMARRER UN PROJET</Button>
+                        <motion.div variants={itemVariants} className="mt-12 px-2">
+                            <Button href="/contact" className="w-full h-14 text-lg" onClick={() => setIsMobileMenuOpen(false)}>DÉMARRER UN PROJET</Button>
                         </motion.div>
                     </div>
 
@@ -132,9 +141,9 @@ export default function Header() {
                         <div className="flex justify-between items-center">
                              <div className="flex flex-col gap-1">
                                 <span className="text-label-tech text-white/30">Contact</span>
-                                <a href="mailto:contact@klaayn.com" className="text-sm font-bold font-sans text-white hover:text-action transition-colors">contact@klaayn.com</a>
+                                <a href="mailto:contact@klaayn.com" className="text-base font-bold font-sans text-white hover:text-action transition-colors">contact@klaayn.com</a>
                              </div>
-                             <div className="flex gap-4"><div className="p-3 rounded-full bg-white/5 border border-[var(--color-border)]"><MapPin size={18} className="text-txt-muted"/></div></div>
+                             <div className="flex gap-4"><div className="p-3 rounded-full bg-white/5 border border-[var(--color-border)]"><MapPin size={20} className="text-txt-muted"/></div></div>
                         </div>
                     </motion.div>
                 </motion.div>

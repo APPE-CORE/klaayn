@@ -41,7 +41,7 @@ export default function Button({
   // 2. Définition du style commun (Bouton Orange / Shimmer)
   const commonStyles = `relative group w-full flex items-center justify-center gap-2 ${sizeClasses} ${radiusClasses} font-extrabold transition-all duration-500 border border-white/20 bg-white/10 text-white 
   hover:bg-[#cc5500] active:bg-[#cc5500] 
-  hover:border-[#ff6b00] active:border-[#ff6b00] 
+  hover:border-[#ff6b00] active:border-[#ff6b00]  
   hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] active:shadow-[0_0_25px_rgba(255,107,0,0.5)] 
   overflow-hidden cursor-pointer`;
 
