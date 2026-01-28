@@ -3,7 +3,8 @@
 
 @theme {
   /* --- 1. COULEURS (L'Atmosphère) --- */
-  --color-void: #020003;        /* Noir Profond */
+  --color-void: #050505;        /* Noir Profond (Main) */
+  --color-contrast: #090909;    /* Gris Anthracite (Pour alterner les sections) */
   --color-surface: #050505;     /* Noir Carte */
   
   --color-brand: #7c1fac;       /* Violet */
@@ -17,7 +18,7 @@
   --color-txt-muted: rgba(255, 255, 255, 0.5); /* Texte secondaire (50%) */
   --color-txt-dim: rgba(255, 255, 255, 0.25);  /* Texte tertiaire (25%) */
   
-  /* RÉGLAGE PRÉCIS : Bordure à 8% d'opacité (Invisible tant qu'on ne cherche pas) */
+  /* RÉGLAGE PRÉCIS : Bordure à 8% d'opacité */
   --color-border: rgba(255, 255, 255, 0.08);
 
   /* --- 2. POLICES --- */
@@ -78,7 +79,7 @@ body {
     color: var(--color-txt-muted);
   }
 
-  /* Labels Techniques (Architectes, Secteur...) */
+  /* Labels Techniques */
   .text-label-tech {
     font-family: var(--font-mono);
     text-transform: uppercase;
@@ -86,7 +87,7 @@ body {
     font-size: 0.75rem;
   }
   
-  /* Labels Gras (Domination) */
+  /* Labels Gras */
   .text-label-bold {
     font-family: var(--font-mono);
     font-weight: 700;
@@ -97,27 +98,21 @@ body {
 
   /* === STRUCTURES === */
 
-  /* La Carte Monolithe (Hero / Footer) */
-  /* C'est elle qui donne l'aspect "Obsidienne" */
+  /* La Carte Monolithe */
   .card-monolith {
     background-color: rgba(5, 5, 5, 0.6);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
-    
-    /* Utilise la bordure subtile (8%) */
     border: 1px solid var(--color-border);
-    
-    /* Le haut reste un peu plus clair pour la lumière (15%) */
     border-top-color: rgba(255, 255, 255, 0.15);
-    
     border-radius: var(--radius-card);
     overflow: hidden;
   }
 
-  /* Le Badge Pilule (Header / Hero) */
+  /* Le Badge Pilule */
   .badge-pill {
     background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--color-border); /* 8% aussi */
+    border: 1px solid var(--color-border);
     backdrop-filter: blur(12px);
     border-radius: 9999px;
   }

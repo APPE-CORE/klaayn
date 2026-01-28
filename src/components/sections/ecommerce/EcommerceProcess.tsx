@@ -1,36 +1,36 @@
 "use client";
 
 import React from "react";
-import { ScanSearch, Palette, Cpu, Rocket } from "lucide-react";
+import { ScanSearch, Smartphone, Code2, Rocket } from "lucide-react";
 
-export default function VitrineProcess() {
+export default function EcommerceProcess() {
     
     const steps = [
         {
             number: "01",
-            title: "Immersion",
-            desc: "Analyse du marché et définition de la stratégie. On pose les bases avant de créer.",
+            title: "Audit Data",
+            desc: "Analyse de vos KPIs actuels, heatmaps et concurrents. On identifie les frictions avant de designer.",
             icon: <ScanSearch size={18} />
         },
         {
             number: "02",
-            title: "Design",
-            desc: "Création des maquettes haute-fidélité. Validation de l'expérience visuelle et UX.",
-            icon: <Palette size={18} />
+            title: "UX Mobile First",
+            desc: "Conception de l'interface en priorité pour le mobile. Optimisation du tunnel d'achat et du CRO.",
+            icon: <Smartphone size={18} />
         },
         {
             number: "03",
-            title: "Développement",
-            desc: "Codage sur-mesure en Next.js. Intégration des animations et optimisation SEO.",
-            icon: <Cpu size={18} />
+            title: "Dev Liquid",
+            desc: "Développement natif Shopify (Liquid). Code propre, sans apps inutiles, optimisé pour la vitesse.",
+            icon: <Code2 size={18} />
         },
         {
             number: "04",
-            title: "Lancement",
+            title: "Go Live",
             desc: (
                 <>
-                    Mise en ligne, tests de charge et remise des accès.{" "}
-                    <span className="text-white font-medium">Vous êtes propriétaire.</span>
+                    Migration SEO safe, configuration des paiements et formation.{" "}
+                    <span className="text-white font-medium">Prêt à scaler.</span>
                 </>
             ),
             icon: <Rocket size={18} />
@@ -45,14 +45,14 @@ export default function VitrineProcess() {
                 
                 {/* 1. HEADER */}
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-brand mb-4 block">
-                        // Execution Pipeline
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-lime-400 mb-4 block">
+                        // Shopify Pipeline
                     </span>
                     <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-tight">
                         Le Protocole.
                     </h2>
                     <p className="text-white/50 font-light text-lg">
-                        Un processus linéaire, sans friction, conçu pour la vélocité.
+                        Un processus linéaire, sans friction, conçu pour la conversion.
                     </p>
                 </div>
 
@@ -67,18 +67,19 @@ export default function VitrineProcess() {
                                 
                                 {/* A. LA LIGNE DE TEMPS (Timeline) */}
                                 {/* Desktop : Ligne horizontale en haut */}
-                                <div className="hidden md:block w-full h-[1px] bg-white/10 group-hover:bg-brand transition-colors duration-300 relative">
+                                <div className="hidden md:block w-full h-[1px] bg-white/10 group-hover:bg-lime-500 transition-colors duration-300 relative">
                                     {/* Le Point d'ancrage */}
-                                    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-2 h-2 rounded-full bg-[#020202] border border-white/20 group-hover:border-brand group-hover:bg-brand transition-all duration-300"></div>
+                                    {/* Note : J'ai aussi passé le fond du point en var(--color-void) */}
+                                    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--color-void)] border border-white/20 group-hover:border-lime-500 group-hover:bg-lime-500 transition-all duration-300"></div>
                                 </div>
 
                                 {/* Mobile : Ligne verticale à gauche */}
                                 <div className="md:hidden absolute left-[9px] top-0 bottom-0 w-[1px] bg-white/10">
-                                    {/* Masquer la ligne pour le dernier élément sur mobile pour faire propre */}
-                                    {index === steps.length - 1 && <div className="absolute top-8 bottom-0 w-full bg-[#020202]"></div>}
+                                    {/* Masque pour le dernier élément : Fond adapté aussi */}
+                                    {index === steps.length - 1 && <div className="absolute top-8 bottom-0 w-full bg-[var(--color-void)]"></div>}
                                 </div>
                                 {/* Mobile : Point d'ancrage */}
-                                <div className="md:hidden shrink-0 w-5 h-5 rounded-full bg-[#020202] border border-white/20 group-hover:border-brand group-hover:bg-brand transition-all duration-300 z-10 mt-1"></div>
+                                <div className="md:hidden shrink-0 w-5 h-5 rounded-full bg-[var(--color-void)] border border-white/20 group-hover:border-lime-500 group-hover:bg-lime-500 transition-all duration-300 z-10 mt-1"></div>
 
 
                                 {/* B. LE CONTENU */}
@@ -86,7 +87,7 @@ export default function VitrineProcess() {
                                     
                                     {/* En-tête : Numéro & Icône */}
                                     <div className="flex items-center justify-between mb-4">
-                                        <span className="font-mono text-xs text-brand font-bold">
+                                        <span className="font-mono text-xs text-lime-400 font-bold">
                                             {step.number}
                                         </span>
                                         <div className="text-white/20 group-hover:text-white transition-colors duration-300">
@@ -95,7 +96,7 @@ export default function VitrineProcess() {
                                     </div>
 
                                     {/* Titre */}
-                                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-brand transition-colors duration-300">
+                                    <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-lime-400 transition-colors duration-300">
                                         {step.title}
                                     </h3>
 

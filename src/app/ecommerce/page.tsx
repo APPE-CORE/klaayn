@@ -1,9 +1,15 @@
-export default function Page() {
+import EcommerceAnatomy from "@/components/sections/ecommerce/EcommerceAnatomy";
+import EcommerceHero from "@/components/sections/ecommerce/EcommerceHero";
+import EcommerceProblem from "@/components/sections/ecommerce/EcommerceProbleme";
+import EcommerceProcess from "@/components/sections/ecommerce/EcommerceProcess";
+
+export default function EcommercePage() {
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-background pt-20">
-      <h1 className="text-4xl font-bold uppercase text-foreground">
-        PAGE e-commerce
-      </h1>
+    <main className="bg-[#020202] min-h-screen">
+      <EcommerceHero />
+      <EcommerceProblem />
+      <EcommerceAnatomy />
+      <EcommerceProcess />
     </main>
   );
 }

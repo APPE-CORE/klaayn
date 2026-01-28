@@ -8,15 +8,11 @@ import Button from "@/components/ui/Button";
 export default function VitrineAnatomy() {
 
     return (
-        // CORRECTION : Suppression du 'px-6 md:px-12' sur la section
-        <section className="relative w-full bg-[#020202] py-24 border-b border-white/5">
+        // MODIFICATION ICI : Fond gris anthracite via la variable CSS
+        <section className="relative w-full bg-[var(--color-contrast)] py-24 border-b border-white/5">
             
-            {/* BACKGROUND */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay"></div>
-            </div>
+            {/* Suppression du div BACKGROUND (Noise) pour le rendu Flat */}
 
-            {/* CORRECTION : Ajout du 'px-6' sur le conteneur pour l'alignement strict */}
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 
                 {/* 1. HEADER */}
@@ -25,7 +21,6 @@ export default function VitrineAnatomy() {
                         // Benchmark Technique
                     </span>
                     
-                    {/* MODIFICATION ICI : Interlignage serré sur mobile (leading-[0.95]) + Saut de ligne */}
                     <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-[0.95] md:leading-tight">
                         Standard vs. <br className="md:hidden" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-brand">Sur-Mesure.</span>
