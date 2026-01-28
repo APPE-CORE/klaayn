@@ -5,7 +5,7 @@ import VitrineProcess from "@/components/sections/vitrine/VitrineProcess";
 
 export default function VitrinePage() {
   return (
-    <main className="bg-void w-full min-h-screen relative overflow-x-hidden">  
+    <main className="bg--color-void: min-h-screen">  
       <VitrineHero />
       <VitrineProblem />
       <VitrineAnatomy />

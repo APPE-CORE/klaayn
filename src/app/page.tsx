@@ -6,7 +6,7 @@ import Process from "@/components/sections/Process"; // <--- IMPORT
 
 export default function Home() {
   return (
-    <main className="bg-void w-full min-h-screen">
+    <main className="bg--color-void: min-h-screen">
       <Hero />
       
       <Services />

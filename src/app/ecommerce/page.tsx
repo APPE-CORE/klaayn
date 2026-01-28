@@ -5,7 +5,7 @@ import EcommerceProcess from "@/components/sections/ecommerce/EcommerceProcess";
 
 export default function EcommercePage() {
   return (
-    <main className="bg-[#020202] min-h-screen">
+    <main className="bg--color-void: min-h-screen">
       <EcommerceHero />
       <EcommerceProblem />
       <EcommerceAnatomy />

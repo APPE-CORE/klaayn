@@ -6,7 +6,7 @@ import AgenceValues from "@/components/sections/agence/AgenceValues";
 
 export default function AgencyPage() {
   return (
-    <main className="bg-void w-full min-h-screen relative overflow-x-hidden">
+    <main className="bg--color-void: min-h-screen">
       <AgenceHero />
       <AgenceImpact />
       <AgenceValues />
