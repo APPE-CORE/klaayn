@@ -1,16 +1,14 @@
-import React from "react";
-import HeroBackground from "./HeroBackground"; // Import du fichier étape 1
-import HeroFeatures from "./HeroFeatures";     // Import du fichier étape 2
+import HeroBackground from "./HeroBackground";
+import HeroFeatures from "./HeroFeatures";
 
 export default function AgenceHero() {
   return (
     <section className="relative min-h-[85vh] w-full flex flex-col items-center justify-center overflow-hidden bg-void text-white selection:bg-brand pt-32 pb-16 md:pb-20">
       
-      {/* 1. Le fond se charge indépendamment */}
+      {/* 1. LAYER INTERACTIF (Client) - Fond Souris & Grain */}
       <HeroBackground />
 
-      {/* 2. LE TEXTE CRITIQUE (Server Side) */}
-      {/* Ce bloc s'affiche INSTANTANÉMENT car il n'attend pas le JS */}
+      {/* 2. CONTENU CRITIQUE (Server) - LCP IMMÉDIAT */}
       <div className="relative z-20 flex flex-col items-center text-center max-w-6xl px-6 mb-16 md:mb-20">
           
           <div className="badge-pill mb-6 md:mb-8 flex items-center gap-3 px-3 py-1.5 w-fit border border-white/10 bg-black/20 backdrop-blur-md rounded-full">
@@ -22,14 +20,15 @@ export default function AgenceHero() {
             Design <br className="md:hidden" /> Radical.
           </h1>
           
-          <p className="text-sm md:text-xl lg:text-2xl font-light text-white/60 leading-relaxed max-w-[42rem]">
+          {/* L'animation CSS 'animate-fade-up' remplace JS ici pour la performance */}
+          <p className="animate-fade-up delay-200 text-sm md:text-xl lg:text-2xl font-light text-white/60 leading-relaxed max-w-[42rem]">
               Un collectif d'ingénieurs et de créatifs unis par une obsession : <br className="hidden md:block" />
               refuser le template pour bâtir des écosystèmes digitaux uniques.
           </p>
           
       </div>
 
-      {/* 3. Les features se chargent indépendamment */}
+      {/* 3. CARTES ANIMÉES (Client) - Chargement différé */}
       <HeroFeatures />
 
     </section>
