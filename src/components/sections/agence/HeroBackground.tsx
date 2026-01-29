@@ -27,14 +27,14 @@ export default function HeroBackground() {
         onMouseMove={handleMouseMove}
         className="absolute inset-0 z-0 w-full h-full"
     >
-        {/* FOND GRAPHIQUE */}
+        {/* FOND GRAPHIQUE (Sans Noise) */}
         <div className="absolute inset-0 z-0 bg-void">
             <div className="absolute inset-0 opacity-[0.08]" 
                 style={{ 
                     backgroundImage: `repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 24px)`
                 }}>
             </div>
-            <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+            {/* Ligne Noise supprimée pour la performance pure */}
         </div>
         
         {/* LUMIÈRE SPOTLIGHT */}
