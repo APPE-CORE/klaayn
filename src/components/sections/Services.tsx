@@ -1,148 +1,156 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion } from "framer-motion"; 
-import { Monitor, ShoppingBag, Cpu, CheckCircle2, ArrowRight } from "lucide-react";
+import React from "react";
 import Link from "next/link";
-
-// LOGIQUE MARQUEE
-const LOGOS = ["Google", "Vercel", "Stripe", "Linear", "Shopify", "Nvidia", "Adobe", "Framer"];
+import { ArrowRight, Monitor, ShoppingBag, Cpu } from "lucide-react";
 
 export default function Services() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const services = [
+    {
+      id: "vitrine",
+      title: "Site Vitrine",
+      subtitle: "Identité & Impact",
+      description: "Ne soyez pas juste présents. Soyez inoubliables. Une architecture visuelle conçue pour capturer l'attention et imposer votre autorité.",
+      href: "/vitrine",
+      icon: <Monitor size={40} strokeWidth={1.5} />,
+      features: ["Design Immersif", "Motion & 3D", "Storytelling"],
+      // Style basé sur VitrineHero : Brand (Orange/Purple) -> Orange -> White
+      hoverStyle: "hover:border-[var(--color-brand)]/50 hover:bg-[var(--color-brand)]/5 active:border-[var(--color-brand)]/50 active:bg-[var(--color-brand)]/5",
+      titleGradient: "from-[var(--color-brand)] via-orange-400 to-white/50",
+      iconColor: "text-white/40 group-hover:text-[var(--color-brand)] group-active:text-[var(--color-brand)]"
+    },
+    {
+      id: "ecommerce",
+      title: "E-commerce",
+      subtitle: "Performance & Scale",
+      description: "Transformez vos visiteurs en revenus. Des tunnels de vente optimisés, ultra-rapides et conçus pour la conversion maximale.",
+      href: "/ecommerce",
+      icon: <ShoppingBag size={40} strokeWidth={1.5} />,
+      features: ["Conversion Rate Opt.", "Paiement Rapide", "Scalabilité"],
+      // Style basé sur EcommerceHero : Lime -> Emerald -> White
+      hoverStyle: "hover:border-lime-500/50 hover:bg-lime-500/5 active:border-lime-500/50 active:bg-lime-500/5",
+      titleGradient: "from-lime-400 via-emerald-400 to-white/50",
+      iconColor: "text-white/40 group-hover:text-lime-400 group-active:text-lime-400"
+    },
+    {
+      id: "ia",
+      title: "Solutions IA",
+      subtitle: "Automation & Vitesse",
+      description: "L'avantage injuste. Intégrez des modules intelligents et des SaaS sur-mesure pour automatiser ce qui doit l'être.",
+      href: "/outils-ia",
+      icon: <Cpu size={40} strokeWidth={1.5} />,
+      features: ["Chatbots IA", "Automatisation", "Data Analysis"],
+      // Style Création IA : Yellow -> Amber -> White
+      hoverStyle: "hover:border-yellow-400/50 hover:bg-yellow-400/5 active:border-yellow-400/50 active:bg-yellow-400/5",
+      titleGradient: "from-yellow-400 via-amber-500 to-white/50",
+      iconColor: "text-white/40 group-hover:text-yellow-400 group-active:text-yellow-400"
+    }
+  ];
 
   return (
-    // OPTIMISATION 1 : Réduction du padding vertical global (py-20 md:py-24 au lieu de 32) pour que ça rentre mieux dans l'écran
-    <section ref={containerRef} className="relative w-full bg-void py-20 md:py-24 overflow-hidden">
+    <section className="relative w-full py-24 bg-[#090909] text-white overflow-hidden">
       
-      {/* 1. MARQUEE DE CONFIANCE */}
-      {/* OPTIMISATION 2 : Réduction de la marge sous le marquee (mb-16 md:mb-24) */}
-      <div className="relative w-full mb-16 md:mb-24 opacity-40 hover:opacity-100 transition-opacity duration-700">
-        <div className="absolute left-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-r from-void to-transparent"></div>
-        <div className="absolute right-0 top-0 w-16 md:w-32 h-full z-10 bg-gradient-to-l from-void to-transparent"></div>
-        
-        <div className="flex overflow-hidden gap-16 select-none">
-          <motion.div 
-            initial={{ x: 0 }} 
-            animate={{ x: "-50%" }} 
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex gap-16 items-center whitespace-nowrap"
-          >
-            {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
-              <span key={i} className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 uppercase font-sans tracking-tighter">
-                {logo}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+      {/* Background Noise & Glow */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      
+      {/* Glow central subtil */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none opacity-20"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
-        {/* 2. EN-TÊTE STRATÉGIQUE */}
-        {/* OPTIMISATION 3 : Réduction drastique de la marge sous le titre (mb-10 md:mb-12) pour le "rabaisser" vers les cartes */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-8 md:gap-10">
-            <div className="max-w-3xl">
-                <div className="flex items-center gap-3 mb-4 md:mb-6">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
-                    <span className="text-label-tech text-brand">Systèmes Opérationnels</span>
-                </div>
-                
-                <h2 className="text-display text-4xl md:text-7xl text-white mb-4 md:mb-6">
-                    Au-delà du code.<br />
-                    <span className="text-txt-muted">Une infrastructure.</span>
-                </h2>
-            </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-            <p className="text-body-large max-w-md text-left pb-2">
-                Nous ne vendons pas des pages web. Nous déployons des écosystèmes digitaux conçus pour la domination de marché.
+        {/* 1. HEADER DE SECTION */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-display text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
+              Choisissez votre <br />
+              <span className="text-white/40">Vecteur de Croissance.</span>
+            </h2>
+            <p className="text-body text-white/60 text-lg">
+              Nous ne vendons pas de code. Nous vendons des résultats. <br className="hidden md:block"/>
+              Sélectionnez l'infrastructure adaptée à votre ambition.
             </p>
+          </div>
+          
+          {/* Indicateur visuel */}
+          <div className="hidden md:block pb-2">
+            <span className="font-mono text-xs uppercase tracking-widest text-white/30">
+              01 — Solutions
+            </span>
+          </div>
         </div>
 
-        {/* 3. GRILLE BENTO */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            {/* MODULE 1 */}
-            <ServiceCard 
-                href="/vitrine"
-                title="Vitrine" 
-                subtitle="Brand Authority"
-                icon={<Monitor size={32} />}
-                desc="Expériences immersives (WebGL/3D) qui fixent votre standard visuel et écrasent la concurrence."
-                features={["Design System Avancé", "Animations Framer", "SEO Sémantique"]}
-            />
+        {/* 2. GRILLE "TRIAD" (Interaction Massage) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 group/grid">
+          
+          {services.map((service) => (
+            <Link 
+              key={service.id}
+              href={service.href}
+              className={`
+                group relative flex flex-col justify-between p-8 md:p-10 rounded-[2rem] border border-white/5 bg-white/[0.02] 
+                transition-all duration-500 ease-out min-h-[400px] overflow-hidden
+                
+                /* EFFET MASSAGE (Focus PC) */
+                lg:group-hover/grid:blur-[2px] lg:group-hover/grid:opacity-40
+                lg:hover:!blur-none lg:hover:!opacity-100 lg:hover:!scale-[1.02] lg:hover:z-10
+                
+                /* COULEURS DYNAMIQUES (Hover & Active/Touch) */
+                ${service.hoverStyle} hover:shadow-2xl active:scale-[0.98] lg:active:scale-[1.02]
+              `}
+            >
+              
+              {/* Contenu Haut */}
+              <div>
+                {/* En-tête Carte : Icône Nue + Flèche */}
+                <div className="flex justify-between items-start mb-10">
+                  
+                  {/* Icône Service (Brute, sans cercle) */}
+                  <div className={`transition-colors duration-500 ${service.iconColor}`}>
+                    {service.icon}
+                  </div>
+                  
+                  {/* Flèche "Nue" (Horizontale -> Diagonale Haut) */}
+                  <ArrowRight 
+                    size={28} 
+                    strokeWidth={1.5}
+                    className={`text-white/20 transition-all duration-500 
+                    group-hover:text-white group-hover:-rotate-45 
+                    group-active:text-white group-active:-rotate-45`} 
+                   />
+                </div>
 
-            {/* MODULE 2 */}
-            <ServiceCard 
-                href="/ecommerce"
-                title="E-commerce" 
-                subtitle="Revenue Engine"
-                icon={<ShoppingBag size={32} />}
-                desc="Architectures de vente haute performance. Optimisées pour la conversion brute et la rapidité."
-                features={["Shopify / Next.js", "Paiement Unifié", "CRO & Analytics"]}
-            />
+                {/* Titres avec Dégradé au Survol (BgClip) */}
+                <h3 className={`text-display text-3xl font-bold mb-2 tracking-tight transition-all duration-300 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-active:text-transparent group-active:bg-clip-text group-active:bg-gradient-to-r ${service.titleGradient}`}>
+                    {service.title}
+                </h3>
+                
+                <span className={`font-mono text-xs uppercase tracking-widest opacity-60 transition-colors duration-300 ${service.iconColor}`}>
+                  {service.subtitle}
+                </span>
 
-            {/* MODULE 3 */}
-            <ServiceCard 
-                href="/outils-ia"
-                title="Intelligence" 
-                subtitle="Automation"
-                icon={<Cpu size={32} />}
-                desc="Intégration d'agents IA et automatisation de workflows pour démultiplier votre force de frappe."
-                features={["Agents LLM Custom", "RAG & Data", "Workflows n8n"]}
-            />
+                <p className="mt-6 text-body text-white/50 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Contenu Bas (Features) */}
+              <div className="mt-8 pt-8 border-t border-white/5">
+                <ul className="space-y-3">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm text-white/40 group-hover:text-white/80 group-active:text-white/80 transition-colors duration-300">
+                      {/* Petit point coloré qui s'active aussi */}
+                      <div className={`w-1.5 h-1.5 rounded-full bg-white/20 transition-colors duration-300 ${service.iconColor.replace('text-', 'bg-').replace('group-hover:', 'group-hover:bg-').replace('group-active:', 'group-active:bg-')}`}></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </Link>
+          ))}
 
         </div>
       </div>
     </section>
   );
-}
-
-// --- SOUS-COMPOSANT CARTE ---
-function ServiceCard({ title, subtitle, icon, desc, features, href }: any) {
-    return (
-        <Link href={href} className="block h-full">
-            <div 
-                className="card-monolith group relative h-full p-8 md:p-10 flex flex-col justify-between transition-all duration-500 
-                hover:-translate-y-2 hover:shadow-[0_0_80px_rgba(124,31,172,0.15)] hover:border-brand
-                active:scale-[0.98] active:border-brand active:shadow-[0_0_40px_rgba(124,31,172,0.3)]"
-            >
-                {/* EFFET GLOW INTERNE */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-                <div>
-                    {/* EN-TÊTE CARTE */}
-                    <div className="flex justify-between items-start mb-8">
-                        <div className="p-4 rounded-2xl border border-[var(--color-border)] bg-white/5 text-white transition-colors duration-500 group-hover:bg-brand group-hover:border-brand group-active:bg-brand group-active:border-brand">
-                            {icon}
-                        </div>
-                        
-                        {/* FLÈCHE */}
-                        <ArrowRight className="text-txt-dim rotate-0 group-hover:text-white group-hover:-rotate-45 group-active:text-white group-active:-rotate-45 transition-all duration-500" />
-                    </div>
-
-                    {/* TITRES */}
-                    <span className="text-label-tech text-brand mb-2 block">{subtitle}</span>
-                    <h3 className="text-display text-4xl text-white mb-6 group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300">
-                        {title}
-                    </h3>
-                    
-                    {/* DESCRIPTION */}
-                    <p className="text-body text-sm mb-8 border-l border-[var(--color-border)] pl-4 group-hover:border-brand group-active:border-brand transition-colors duration-500">
-                        {desc}
-                    </p>
-                </div>
-
-                {/* FEATURES */}
-                <div className="space-y-3">
-                    {features.map((feat: string, i: number) => (
-                        <div key={i} className="flex items-center gap-3 text-sm text-txt-muted group-hover:text-white group-active:text-white transition-colors duration-300">
-                            <CheckCircle2 size={14} className="text-brand opacity-50 group-hover:opacity-100 group-active:opacity-100" />
-                            <span className="font-mono tracking-tight">{feat}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </Link>
-    )
 }

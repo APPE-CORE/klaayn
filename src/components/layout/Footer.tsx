@@ -1,131 +1,186 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
-import { ArrowRight, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Twitter, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const navLinks = [
-    { href: "/vitrine", label: "Vitrine" },
-    { href: "/ecommerce", label: "E-commerce" },
-    { href: "/outils-ia", label: "Outils IA" },
-    { href: "/agence", label: "Agence" },
-    { href: "/contact", label: "Contact" },
+
+  const serviceLinks = [
+    { name: "Site Vitrine", href: "/vitrine" },
+    { name: "E-commerce", href: "/ecommerce" },
+    { name: "Outils IA", href: "/outils-ia" },
+  ];
+
+  const agencyLinks = [
+    { name: "L'Agence", href: "/agence" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const legalLinks = [
+    { name: "Mentions Légales", href: "/legal" },
+    { name: "CGV", href: "/cgv" },
+    { name: "Confidentialité", href: "/confidentialite" },
+  ];
+
+  const socialLinks = [
+    { name: "LinkedIn", href: "https://linkedin.com", icon: <Linkedin size={16} /> },
+    { name: "Twitter", href: "https://twitter.com", icon: <Twitter size={16} /> },
   ];
 
   return (
-    // MODIFICATION ICI : Passage de pt-20 à pt-10 pour réduire l'espace supérieur
-    <footer className="relative w-full bg-void border-t border-[var(--color-border)] pt-10 pb-10 overflow-hidden font-sans">
+    <footer className="relative w-full bg-[#090909] text-white overflow-hidden py-10 border-t border-white/5">
       
-      {/* Texture */}
-      <div className="absolute inset-0 z-0 opacity-[0.015]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
+      {/* Background Noise Global */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col">
-        
-        {/* TITRE SUPPRIMÉ */}
+      {/* CONTENEUR PRINCIPAL : Flex column avec gap-4 pour espacer uniformément Navigation du reste */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col gap-4">
 
-        {/* BENTO INTERACTIF */}
-        <div className="group/bento grid grid-cols-1 lg:grid-cols-3 gap-4 relative">
+        {/* =============================================
+           1. GRILLE SUPÉRIEURE (Vision & Impact)
+           =============================================
+        */}
+        {/* Grid avec gap-4 pour espacer Vision et Impact de la même manière */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          {/* --- BLOC 1 : VISION --- */}
+          {/* Arrondi complet [2rem] et bordures standard */}
+          <div className="flex flex-col justify-center p-8 md:p-10 bg-white/[0.02] border border-white/[0.03] rounded-[2rem] min-h-[240px]">
+            <h2 className="text-display text-3xl md:text-5xl font-bold tracking-tight text-white leading-[1] mb-4">
+              Votre <br />
+              <span className="text-white/40">Vision.</span>
+            </h2>
+            <p className="text-body text-white/50 text-sm md:text-base max-w-sm leading-relaxed">
+              Ne laissez pas la technique limiter vos ambitions. Construisons l'infrastructure de votre domination.
+            </p>
+          </div>
+          
+          {/* --- BLOC 2 : IMPACT (CTA) --- */}
+          {/* Arrondi complet [2rem], bordures standard, effet hover orange */}
+          <Link 
+            href="/contact" 
+            className="group relative flex flex-row items-center justify-between p-8 md:p-10 bg-white/[0.02] border border-white/[0.03] rounded-[2rem] min-h-[240px] transition-all duration-500 hover:bg-action overflow-hidden"
+          >
+             <div className="relative z-10 flex flex-col justify-center h-full">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#ff6b00] group-hover:text-black/60 mb-2 transition-colors duration-300">
+                    Action
+                </span>
+                <h2 className="text-display text-3xl md:text-5xl font-bold tracking-tight text-white group-hover:text-black transition-colors duration-500 leading-[1]">
+                    Notre <br/> Impact.
+                </h2>
+             </div>
+
+             <div className="relative z-10">
+                <ArrowRight 
+                    size={40} 
+                    className="text-white group-hover:text-black transition-transform duration-500 group-hover:-rotate-45" 
+                />
+             </div>
+          </Link>
+
+        </div>
+
+        {/* =============================================
+           2. BLOC INFÉRIEUR : NAVIGATION
+           =============================================
+        */}
+        {/* Arrondi complet [2rem] */}
+        <div className="w-full bg-white/[0.02] border border-white/[0.03] rounded-[2rem] p-8 md:p-10">
             
-            {/* 1. MASTER CTA (ACTIF : Grossit et prend le dessus) */}
-            <Link 
-                href="/contact"
-                className="card-monolith order-1 lg:order-2 lg:col-span-2 relative peer p-10 md:p-12 flex flex-col justify-center lg:justify-between items-center lg:items-start min-h-[450px] lg:min-h-0 group transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] 
-                /* HOVER PC */
-                hover:scale-[1.04] hover:border-brand hover:shadow-[0_0_150px_rgba(124,31,172,0.5)] hover:z-30
-                /* ACTIVE MOBILE (Touch) */
-                active:scale-[0.98] active:border-brand active:shadow-[0_0_80px_rgba(124,31,172,0.6)]"
-            >
-                <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:items-start relative z-10 text-center lg:text-left gap-10">
-                    <h3 className="text-display text-4xl md:text-6xl text-white italic leading-[0.9]">
-                        Forge le <br /> Standard.
-                    </h3>
-                    
-                    <div className="relative w-24 h-24 rounded-2xl border border-[var(--color-border)] bg-white/5 flex items-center justify-center overflow-hidden transition-all duration-500 
-                        /* HOVER & ACTIVE */
-                        group-hover:bg-brand group-hover:border-brand group-hover:shadow-[0_0_50px_rgba(124,31,172,0.7)] 
-                        group-active:bg-brand group-active:border-brand group-active:scale-90 shadow-2xl">
-                        
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
-                        <ArrowRight size={40} className="relative z-10 text-white transition-transform duration-500 group-hover:-rotate-45 group-active:-rotate-45" />
-                    </div>
-                </div>
-
-                <p className="mt-12 lg:mt-8 text-body-large text-base italic relative z-10 text-center lg:text-left transition-colors duration-500 group-hover:text-white/90 group-active:text-white">
-                    Activez votre unité opérationnelle.
-                </p>
-            </Link>
-
-            {/* 2. NAVIGATION (PASSIF : S'efface sans bouger) */}
-            <div className="card-monolith order-2 lg:order-1 lg:col-span-1 p-8 md:p-10 flex flex-col justify-between transition-all duration-500 lg:peer-hover:opacity-20 lg:peer-hover:blur-[3px] z-0">
-                <h3 className="text-label-bold text-brand mb-10">Exploration</h3>
-                <nav className="flex flex-col gap-6">
-                    {navLinks.map((link) => (
-                        <Link 
-                            key={link.href} 
-                            href={link.href} 
-                            className="group/link flex items-center justify-between text-[17px] md:text-base font-medium text-txt-muted transition-all tracking-tight cursor-pointer
-                            /* INTERACTION */
-                            hover:text-white active:text-white active:scale-95 origin-left"
-                        >
-                            <span className="relative overflow-hidden">
-                                {link.label}
-                                <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white translate-x-[-100%] group-hover/link:translate-x-0 group-active/link:translate-x-0 transition-transform duration-300"></span>
-                            </span>
-                            <ArrowRight size={18} className="opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 group-hover/link:-rotate-45 group-active/link:opacity-100 group-active/link:translate-x-0 group-active/link:-rotate-45 transition-all duration-300 text-brand" />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-10">
+            
+                <div className="md:col-span-4 flex flex-col justify-between h-full">
+                    <div>
+                        <Link href="/" className="block mb-4 active:scale-95 transition-transform duration-200">
+                        <span className="text-2xl font-display font-bold tracking-tighter">KLAAYN.</span>
                         </Link>
-                    ))}
-                </nav>
-            </div>
+                        <p className="font-mono text-xs text-white/40 uppercase tracking-widest">
+                        Architectes de l'Invisible.
+                        </p>
+                    </div>
+                </div>
 
-            {/* 3. SOCIAL (PASSIF : S'efface sans bouger) */}
-            <div className="card-monolith order-3 lg:col-span-3 p-8 md:px-10 md:py-6 mt-2 transition-all duration-500 lg:peer-hover:opacity-20 lg:peer-hover:blur-[3px] z-0">
-                <div className="flex flex-row flex-wrap justify-center md:justify-between items-center gap-12 md:gap-8">
-                    <div className="flex flex-row items-center justify-center gap-12 md:gap-16 w-full md:w-auto">
-                        {[
-                            { name: "LinkedIn", Icon: Linkedin },
-                            { name: "Instagram", Icon: Instagram },
-                            { name: "Twitter", Icon: Twitter }
-                        ].map(({ name, Icon }) => (
+                <div className="md:col-span-3 flex flex-col justify-start">
+                    <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest mb-6">Solutions</span>
+                    <ul className="space-y-3">
+                        {serviceLinks.map((link) => (
+                        <li key={link.name}>
                             <Link 
-                                key={name} 
-                                href="#" 
-                                // AJOUT ICI : L'attribut aria-label résout le problème d'accessibilité (lien sans nom visible)
-                                aria-label={`Suivez-nous sur ${name}`}
-                                className="flex items-center gap-3 transition-all duration-300 text-txt-muted hover:text-brand active:text-brand group active:scale-90"
+                            href={link.href} 
+                            className="group flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors duration-200"
                             >
-                                <span className="transform transition-transform duration-300 group-hover:scale-125 group-active:scale-125 group-hover:text-brand group-active:text-brand">
-                                    <Icon size={24} />
-                                </span>
-                                <span className="hidden md:inline text-[16px] font-medium tracking-tight">{name}</span>
+                            <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 text-[#ff6b00] opacity-0 group-hover:opacity-100 font-mono text-xs flex items-center">
+                                —
+                            </span>
+                            {link.name}
                             </Link>
+                        </li>
                         ))}
-                    </div>
-                    <div className="hidden md:flex items-center gap-3">
-                        <span className="text-label-bold text-brand">Social Hub Active</span>
+                    </ul>
+                </div>
+
+                <div className="md:col-span-2 flex flex-col justify-start">
+                    <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest mb-6">Studio</span>
+                    <ul className="space-y-3">
+                        {agencyLinks.map((link) => (
+                        <li key={link.name}>
+                            <Link 
+                            href={link.href} 
+                            className="group flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors duration-200"
+                            >
+                            <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 text-[#ff6b00] opacity-0 group-hover:opacity-100 font-mono text-xs flex items-center">
+                                —
+                            </span>
+                            {link.name}
+                            </Link>
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="md:col-span-3 flex flex-col justify-start md:items-end">
+                    <div className="flex flex-col md:items-end">
+                        <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest mb-6 text-left md:text-right">Réseaux</span>
+                        <div className="flex gap-3">
+                        {socialLinks.map((social) => (
+                            <a 
+                            key={social.name} 
+                            href={social.href} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="p-3 border border-white/10 rounded-xl bg-white/5 text-white/50 hover:text-white hover:bg-white/10 active:scale-95 transition-all duration-200"
+                            >
+                            {social.icon}
+                            </a>
+                        ))}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {/* BOTTOM BAR */}
-        <div className="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-[700] relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 order-1">
-                <p className="text-txt-muted tracking-tight">© {currentYear} Klaayn Unit</p>
-                <nav className="flex gap-8 items-center text-center">
-                    <Link href="/legal" className="text-white/50 hover:text-white active:text-white transition-colors tracking-tight">Mentions légales</Link>
-                    <Link href="/confidentialite" className="text-white/50 hover:text-white active:text-white transition-colors tracking-tight">Confidentialité</Link>
-                </nav>
-            </div>
-
-            <div className="flex items-center gap-3 order-2">
-                <div className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand"></span>
+            <div className="flex flex-col-reverse md:flex-row justify-between items-center pt-8 border-t border-white/5 text-[10px] text-white/30 font-mono">
+                <div className="flex items-center gap-4 mt-4 md:mt-0">
+                <span>© {currentYear} KLAAYN.</span>
+                <span className="hidden md:inline text-white/10">|</span>
+                <span>All Systems Operational</span>
                 </div>
-                <span className="text-label-tech text-[10px] text-white/20 italic">Node Active — Protocol v4.0.2</span>
+                <div className="flex gap-6">
+                {legalLinks.map((link) => (
+                    <Link 
+                        key={link.name} 
+                        href={link.href}
+                        className="hover:text-white transition-colors"
+                    >
+                        {link.name}
+                    </Link>
+                ))}
+                </div>
             </div>
+
         </div>
+
       </div>
     </footer>
   );
