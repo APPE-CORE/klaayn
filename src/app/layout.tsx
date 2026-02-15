@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
-import { Oswald, JetBrains_Mono } from "next/font/google";
+// 1. IMPORT DES 3 POLICES : Outfit (Titres), Inter (Corps), JetBrains (Labels)
+import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Imports
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer"; 
-import SmoothScroll from "@/components/ui/smooth-scroll"; // Ton fichier restauré
+import SmoothScroll from "@/components/ui/smooth-scroll";
 import CustomCursor from "@/components/ui/CustomCursor";
 
-// Configuration Polices (Variable = Poids auto)
-const oswald = Oswald({
+// 2. CONFIGURATION OUTFIT (Pour les TITRES)
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-oswald",
+  variable: "--font-outfit",
   display: "swap",
 });
 
+// 3. CONFIGURATION INTER (Pour le TEXTE courant)
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+// 4. CONFIGURATION JETBRAINS MONO (Pour les LABELS techniques)
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
@@ -22,7 +30,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Klaayn | Vous méritez mieux qu'un site moyen...",
+  title: "Klaayn | Architecture Digitale",
   description: "High-performance web agency.",
 };
 
@@ -34,11 +42,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${oswald.variable} ${jetbrains.variable} bg-void text-white antialiased selection:bg-brand selection:text-white`}
+        // 5. INJECTION DES 3 VARIABLES DANS LE BODY
+        // RETRAIT de 'font-sans' pour laisser globals.css appliquer Inter par défaut
+        className={`${outfit.variable} ${inter.variable} ${jetbrains.variable} bg-void text-white antialiased selection:bg-brand selection:text-white`}
       >
         <Header />
 
-        {/* Le moteur SmoothScroll englobe tout sauf le Header (qui est fixed) et le Cursor */}
+        {/* Le SmoothScroll englobe le contenu principal et le footer */}
         <SmoothScroll>
           <main className="relative z-10 min-h-screen">
             {children}

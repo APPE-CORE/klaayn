@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-// Import du nouveau composant UI (ajuste le chemin selon ta structure)
+// Import du composant UI (assure-toi que ce composant est bien stylisé avec tes variables globales aussi)
 import Accordion from "@/components/ui/Accordion"; 
 
 export default function AgenceFAQ() {
     
-    // MODIFICATION ICI : Initialisation à 'null' au lieu de '0' pour tout fermer par défaut
+    // Initialisation à 'null' pour tout fermer par défaut
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const faqs = [
@@ -33,21 +33,19 @@ export default function AgenceFAQ() {
     ];
 
     return (
-        // CORRECTION MARGES : Suppression de 'px-6 md:px-12' sur la section
-        <section className="relative w-full bg-void py-24 border-t border-white/5">
+        <section className="relative w-full bg-[var(--color-void)] py-24 border-t border-[var(--color-border)]">
             
-            {/* CORRECTION MARGES : Ajout de 'px-6' sur le conteneur */}
             <div className="max-w-4xl mx-auto px-6">
                 
                 {/* Header */}
                 <div className="text-center mb-16 md:mb-20">
-                    <span className="text-brand font-mono text-xs uppercase tracking-widest mb-4 block">
+                    <span className="text-label-tech text-[var(--color-brand)] mb-4 block">
                         // La Vérité
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                        Questions <span className="text-white/40">Gênantes.</span>
+                    <h2 className="text-h2 text-[var(--color-txt-main)] mb-6">
+                        Questions <span className="text-[var(--color-txt-dim)]">Gênantes.</span>
                     </h2>
-                    <p className="text-white/60 text-lg font-light max-w-xl mx-auto">
+                    <p className="text-body-large max-w-xl mx-auto">
                         Pas de zones d'ombre. Nous abordons les sujets qui fâchent avant même de signer.
                     </p>
                 </div>
@@ -68,8 +66,8 @@ export default function AgenceFAQ() {
 
                 {/* Footer Link */}
                 <div className="mt-16 text-center">
-                    <p className="text-white/40 text-sm mb-4">Une autre question ?</p>
-                    <a href="mailto:contact@klaayn.com" className="inline-flex items-center gap-2 text-white border-b border-brand/50 pb-0.5 hover:text-brand hover:border-brand transition-all">
+                    <p className="text-body-sm text-[var(--color-txt-muted)] mb-4">Une autre question ?</p>
+                    <a href="mailto:contact@klaayn.com" className="inline-flex items-center gap-2 text-[var(--color-txt-main)] border-b border-[var(--color-brand)]/50 pb-0.5 hover:text-[var(--color-brand)] hover:border-[var(--color-brand)] transition-all">
                         Envoyer un mail direct
                     </a>
                 </div>

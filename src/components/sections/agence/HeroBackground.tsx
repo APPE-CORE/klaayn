@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-mot
 export default function HeroBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // --- LOGIQUE DESKTOP UNIQUEMENT ---
   const mouseX = useMotionValue(0); 
   const mouseY = useMotionValue(0);
   const lightX = useSpring(mouseX, { stiffness: 150, damping: 20 });
@@ -25,28 +26,50 @@ export default function HeroBackground() {
     <div 
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        className="absolute inset-0 z-0 w-full h-full"
+        className="absolute inset-0 z-0 w-full h-full overflow-hidden bg-[var(--color-void)]"
     >
-        {/* FOND GRAPHIQUE (Sans Noise) */}
-        <div className="absolute inset-0 z-0 bg-void">
-            <div className="absolute inset-0 opacity-[0.08]" 
+        {/* 1. FOND GRAPHIQUE DE BASE (Statique) */}
+        <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 opacity-[0.05]" 
                 style={{ 
-                    backgroundImage: `repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 24px)`
+                    // Utilisation de --color-txt-main (Blanc) pour les lignes de base
+                    backgroundImage: `repeating-linear-gradient(45deg, var(--color-txt-main) 0px, var(--color-txt-main) 1px, transparent 1px, transparent 24px)`
                 }}>
             </div>
-            {/* Ligne Noise supprimée pour la performance pure */}
         </div>
         
-        {/* LUMIÈRE SPOTLIGHT */}
-        <motion.div className="absolute inset-0 z-1 pointer-events-none bg-void" style={{ maskImage, WebkitMaskImage: maskImage }}>
-            <div className="absolute inset-0" 
+        {/* 2. LUMIÈRE MOBILE (Statique & Optimisée) */}
+        <div className="md:hidden absolute inset-0 z-1 pointer-events-none">
+             <div className="absolute inset-0" 
                 style={{ 
                     backgroundImage: `repeating-linear-gradient(45deg, var(--color-brand) 0px, var(--color-brand) 1px, transparent 1px, transparent 24px)`, 
-                    opacity: 0.4, 
+                    opacity: 0.3, 
+                    maskImage: 'radial-gradient(500px circle at center, black, transparent 80%)',
+                    WebkitMaskImage: 'radial-gradient(500px circle at center, black, transparent 80%)'
+                }}>
+            </div>
+            {/* Glow central statique */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[var(--color-brand)] rounded-full blur-[100px] opacity-20 mix-blend-screen" />
+        </div>
+
+        {/* 3. LUMIÈRE SPOTLIGHT DESKTOP (Interactive) */}
+        <motion.div 
+            className="hidden md:block absolute inset-0 z-1 pointer-events-none" 
+            style={{ maskImage, WebkitMaskImage: maskImage }}
+        >
+            <div className="absolute inset-0" 
+                style={{ 
+                    // Pattern Violet (Brand) qui se révèle au survol
+                    backgroundImage: `repeating-linear-gradient(45deg, var(--color-brand) 0px, var(--color-brand) 1px, transparent 1px, transparent 24px)`, 
+                    opacity: 0.5, 
                     filter: 'drop-shadow(0 0 2px var(--color-brand))' 
                 }}>
             </div>
-            <motion.div style={{ x: lightX, y: lightY, translateX: "-50%", translateY: "-50%" }} className="absolute top-0 left-0 w-[800px] h-[800px] bg-brand rounded-full blur-[120px] opacity-40 mix-blend-screen" />
+            {/* Curseur lumineux suiveur */}
+            <motion.div 
+                style={{ x: lightX, y: lightY, translateX: "-50%", translateY: "-50%" }} 
+                className="absolute top-0 left-0 w-[800px] h-[800px] bg-[var(--color-brand)] rounded-full blur-[120px] opacity-40 mix-blend-screen" 
+            />
         </motion.div>
     </div>
   );

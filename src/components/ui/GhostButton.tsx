@@ -26,38 +26,53 @@ export default function GhostButton({
       className={`block w-full md:w-auto ${className}`}
     >
       <Link href={href} onClick={onClick} className="block w-full">
+        {/* MISE À JOUR CSS :
+           - Structure (padding, flex, gap) : IDENTIQUE.
+           - Couleurs : Connectées aux variables CSS.
+             * border-white/10 -> border-[var(--color-border)]
+             * bg-white/5 -> bg-[var(--color-btn-sec-bg)]
+             * hover:border-brand -> hover:border-[var(--color-brand)]
+             * hover:bg-brand/10 -> hover:bg-[color-mix(in_srgb,var(--color-brand),transparent_90%)]
+             * hover:shadow -> hover:shadow-[0_0_20px_var(--color-brand-glow)]
+        */}
         <button className="group relative w-full flex items-center justify-between gap-6 pl-6 pr-4 py-4 rounded-xl transition-all duration-300 overflow-hidden
-          border border-white/10 bg-white/5 
+          border border-[var(--color-border)] bg-[var(--color-btn-sec-bg)] 
           
           /* --- ÉTAT HOVER (PC) --- */
-          hover:border-brand hover:bg-brand/10 hover:shadow-[0_0_20px_rgba(124,31,172,0.4)]
+          hover:border-[var(--color-brand)] 
+          hover:bg-[color-mix(in_srgb,var(--color-brand),transparent_90%)] 
+          hover:shadow-[0_0_20px_var(--color-brand-glow)]
           
-          /* --- ÉTAT ACTIVE (MOBILE TOUCH) - IDENTIQUE AU HOVER --- */
-          active:border-brand active:bg-brand/10 active:shadow-[0_0_20px_rgba(124,31,172,0.4)]
+          /* --- ÉTAT ACTIVE (MOBILE) --- */
+          active:border-[var(--color-brand)] 
+          active:bg-[color-mix(in_srgb,var(--color-brand),transparent_90%)] 
+          active:shadow-[0_0_20px_var(--color-brand-glow)]
         ">
             
-            {/* Effet Shimmer */}
+            {/* Effet Shimmer (conservé tel quel pour l'effet lumière blanche neutre) */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
 
-            {/* Contenu */}
+            {/* Contenu Texte */}
             <div className="flex flex-col items-start relative z-10">
-                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest group-hover:text-brand group-active:text-brand transition-colors duration-300">
+                {/* Font Mono pour "ACTION" */}
+                <span className="text-[10px] font-[family-name:var(--font-jetbrains)] text-[var(--color-txt-muted)] uppercase tracking-widest group-hover:text-[var(--color-brand)] group-active:text-[var(--color-brand)] transition-colors duration-300">
                     Action
                 </span>
-                <span className="text-base font-bold font-sans text-white uppercase tracking-wide group-hover:text-white group-active:text-white transition-colors duration-300">
+                {/* Font Sans pour le Label */}
+                <span className="text-base font-bold font-[family-name:var(--font-btn)] text-[var(--color-txt-main)] uppercase tracking-wide group-hover:text-[var(--color-txt-main)] group-active:text-[var(--color-txt-main)] transition-colors duration-300">
                     {children}
                 </span>
             </div>
 
             {/* Icône Cercle */}
-            <div className="relative z-10 shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-void/50 
-              group-hover:border-brand group-hover:bg-brand group-hover:text-white 
-              group-active:border-brand group-active:bg-brand group-active:text-white
+            <div className="relative z-10 shrink-0 w-10 h-10 rounded-full border border-[var(--color-border)] flex items-center justify-center bg-[var(--color-void)] 
+              group-hover:border-[var(--color-brand)] group-hover:bg-[var(--color-brand)] group-hover:text-[var(--color-txt-main)] 
+              group-active:border-[var(--color-brand)] group-active:bg-[var(--color-brand)] group-active:text-[var(--color-txt-main)]
               transition-all duration-300"
             >
                 <Icon 
                   size={18} 
-                  className="text-white/70 group-hover:text-white group-active:text-white transition-transform duration-500 ease-out 
+                  className="text-[var(--color-txt-muted)] group-hover:text-[var(--color-txt-main)] group-active:text-[var(--color-txt-main)] transition-transform duration-500 ease-out 
                   group-hover:-rotate-45 group-active:-rotate-45" 
                 />
             </div>

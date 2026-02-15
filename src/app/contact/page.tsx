@@ -21,8 +21,8 @@ interface Service {
 }
 
 const SERVICES: Service[] = [
-  { id: "vitrine", title: "Site Vitrine / Brand", icon: Monitor, desc: "Identité forte, WebGL, Animations." },
-  { id: "ecommerce", title: "E-commerce", icon: ShoppingBag, desc: "Shopify/Next.js, Conversion, Performance." },
+  { id: "vitrine", title: "Site Vitrine / Brand", icon: Monitor, desc: "Identité forte, React, Next.js, Branding" },
+  { id: "ecommerce", title: "E-commerce", icon: ShoppingBag, desc: "Shopify, Conversion, ROI, Performance." },
   { id: "saas", title: "App / SaaS", icon: Terminal, desc: "Dashboard, Outils Métier, Logiciel." },
 ];
 
@@ -87,7 +87,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="bg-void min-h-screen pt-32 pb-32 md:pt-40 md:pb-40">
+    <main className="bg-[var(--color-void)] min-h-screen pt-32 pb-32 md:pt-40 md:pb-40 text-[var(--color-txt-main)]">
       
       {/* HEADER */}
       <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 text-center md:text-left">
@@ -95,16 +95,16 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="flex items-center justify-center md:justify-start gap-3 mb-6"
           >
-              <span className="w-2 h-2 rounded-full bg-brand animate-pulse shadow-[0_0_15px_var(--color-brand)]"></span>
-              <span className="text-label-tech text-brand">INITIALISATION DU PROJET</span>
+              <span className="w-2 h-2 rounded-full bg-[var(--color-brand)] animate-pulse shadow-[0_0_15px_var(--color-brand)]"></span>
+              <span className="text-label-tech text-[var(--color-brand)]">INITIALISATION DU PROJET</span>
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-display text-5xl md:text-7xl text-white mb-6"
+            className="text-display text-[var(--color-txt-main)] mb-6"
           >
-              Configurons votre <br />
-              <span className="text-txt-muted">Avantage Déloyal.</span>
+              Configurons<br />
+              <span className="text-[var(--color-txt-dim)]">votre projet !</span>
           </motion.h1>
       </div>
 
@@ -124,22 +124,22 @@ export default function Contact() {
                                 setSelectedService(service.id);
                                 if(formErrors.service) setFormErrors({...formErrors, service: null});
                             }}
-                            className={`group cursor-pointer relative p-6 rounded-xl border transition-all duration-300 overflow-hidden flex flex-col items-center text-center md:items-start md:text-left
+                            className={`group cursor-pointer relative p-6 rounded-[var(--radius-card)] border transition-all duration-300 overflow-hidden flex flex-col items-center text-center md:items-start md:text-left
                             ${selectedService === service.id 
-                                ? "border-brand bg-brand/5 shadow-[0_0_30px_rgba(124,31,172,0.15)]" 
+                                ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5 shadow-[0_0_30px_rgba(124,31,172,0.15)]" 
                                 : formErrors.service 
                                     ? "border-red-500/50 bg-red-500/5"
-                                    : "border-white/10 bg-white/5 hover:border-brand/50 hover:bg-white/10"
+                                    : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-brand)]/50 hover:bg-[var(--color-txt-main)]/[0.03]"
                             }`}
                         >
                             <div className="w-full flex justify-between items-start mb-4">
-                                <service.icon className={`transition-colors ${selectedService === service.id ? "text-brand" : "text-txt-muted group-hover:text-white"}`} size={24} />
-                                <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${selectedService === service.id ? "border-brand bg-brand" : "border-white/20"}`}>
+                                <service.icon className={`transition-colors ${selectedService === service.id ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)]"}`} size={24} />
+                                <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${selectedService === service.id ? "border-[var(--color-brand)] bg-[var(--color-brand)]" : "border-[var(--color-border)]"}`}>
                                     {selectedService === service.id && <CheckCircle2 size={12} className="text-white" />}
                                 </div>
                             </div>
-                            <h3 className="text-xl font-display text-white mb-2">{service.title}</h3>
-                            <p className="text-sm text-txt-muted leading-tight">{service.desc}</p>
+                            <h3 className="text-h4 font-bold text-[var(--color-txt-main)] mb-2">{service.title}</h3>
+                            <p className="text-body-sm text-[var(--color-txt-muted)] leading-tight">{service.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -153,19 +153,19 @@ export default function Contact() {
                         <div 
                             key={opt.id}
                             onClick={() => toggleOption(opt.id)}
-                            className={`cursor-pointer relative p-5 md:p-6 rounded-xl border transition-all duration-300 flex flex-col items-center text-center md:items-start md:text-left gap-3
+                            className={`cursor-pointer relative p-5 md:p-6 rounded-[var(--radius-card)] border transition-all duration-300 flex flex-col items-center text-center md:items-start md:text-left gap-3
                             ${selectedOptions.includes(opt.id)
-                                ? "border-brand bg-brand/5" 
-                                : "border-white/10 bg-white/5 hover:bg-white/10"
+                                ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5" 
+                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-txt-main)]/[0.03]"
                             }`}
                         >
                             <div className="w-full flex justify-between items-center">
-                                <opt.icon size={20} className={selectedOptions.includes(opt.id) ? "text-brand" : "text-txt-muted"} />
-                                {selectedOptions.includes(opt.id) && <motion.div initial={{scale:0}} animate={{scale:1}}><Sparkles size={14} className="text-brand"/></motion.div>}
+                                <opt.icon size={20} className={selectedOptions.includes(opt.id) ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)]"} />
+                                {selectedOptions.includes(opt.id) && <motion.div initial={{scale:0}} animate={{scale:1}}><Sparkles size={14} className="text-[var(--color-brand)]"/></motion.div>}
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-white">{opt.title}</h4>
-                                <p className="text-sm text-txt-muted mt-1 leading-tight">{opt.desc}</p>
+                                <h4 className="text-sm font-bold text-[var(--color-txt-main)]">{opt.title}</h4>
+                                <p className="text-body-sm text-[var(--color-txt-muted)] mt-1 leading-tight">{opt.desc}</p>
                             </div>
                         </div>
                     ))}
@@ -179,16 +179,16 @@ export default function Contact() {
                 <div className="mt-8 md:mt-10 space-y-10">
                     {/* Budget */}
                     <div>
-                        <label className="text-xs font-mono text-brand uppercase mb-4 block text-center md:text-left">Investissement Prévu</label>
+                        <label className="text-label-tech text-[var(--color-brand)] mb-4 block text-center md:text-left">Investissement Prévu</label>
                         <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                             {BUDGETS.map((b) => (
                                 <button 
                                     key={b}
                                     onClick={() => setBudget(b)}
-                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-bold border transition-all duration-300
+                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-[var(--radius-card)] text-sm font-bold border transition-all duration-300
                                     ${budget === b 
-                                        ? "border-brand bg-brand text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
-                                        : "border-white/10 bg-white/5 text-txt-muted hover:text-white hover:border-white/30"
+                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
+                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)]"
                                     }`}
                                 >
                                     {b}
@@ -199,16 +199,16 @@ export default function Contact() {
 
                     {/* Timeline */}
                     <div>
-                        <label className="text-xs font-mono text-brand uppercase mb-4 block text-center md:text-left">Horizon Temporel</label>
+                        <label className="text-label-tech text-[var(--color-brand)] mb-4 block text-center md:text-left">Horizon Temporel</label>
                         <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                             {TIMELINES.map((t) => (
                                 <button 
                                     key={t}
                                     onClick={() => setTimeline(t)}
-                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-bold border transition-all duration-300
+                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-[var(--radius-card)] text-sm font-bold border transition-all duration-300
                                     ${timeline === t 
-                                        ? "border-brand bg-brand text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
-                                        : "border-white/10 bg-white/5 text-txt-muted hover:text-white hover:border-white/30"
+                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
+                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)]"
                                     }`}
                                 >
                                     {t}
@@ -237,10 +237,10 @@ export default function Contact() {
                         error={formErrors.email || undefined}
                     />
                     
-                    <Input name="company" label="Société" placeholder="MetaCortex Inc." fullWidth value={formData.company} onChange={handleInputChange} />
+                    <Input name="company" label="Société" placeholder="Fibbert corp." fullWidth value={formData.company} onChange={handleInputChange} />
                     
                     <div className="md:col-span-2">
-                        <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-left">
+                        <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block ml-1 text-left">
                             Transmission (Message Personnel)
                             {formErrors.message && <span className="text-red-500 ml-2 animate-pulse">* Requis</span>}
                         </label>
@@ -249,10 +249,10 @@ export default function Contact() {
                             value={formData.message}
                             onChange={handleInputChange}
                             rows={5}
-                            className={`w-full bg-white/5 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all resize-none text-left
+                            className={`w-full bg-[var(--color-surface)] rounded-[var(--radius-card)] p-4 text-[var(--color-txt-main)] placeholder-white/20 focus:outline-none focus:ring-1 transition-all resize-none text-left
                             ${formErrors.message 
                                 ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
-                                : "border border-white/10 focus:border-brand focus:ring-brand"
+                                : "border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-[var(--color-brand)]"
                             }`}
                             placeholder="Détaillez votre vision, vos cibles, vos ambitions..."
                         />
@@ -262,7 +262,6 @@ export default function Contact() {
 
             {/* SUBMIT SECTION (MOBILE SEULEMENT) */}
             <div className="pt-6 pb-12 space-y-10 lg:hidden">
-                {/* Mobile Summary */}
                 <div>
                     <SummaryCard 
                         selectedService={selectedService} 
@@ -274,47 +273,38 @@ export default function Contact() {
 
                 <div className="flex flex-col items-center md:items-start w-full">
                     
-                    {/* LE CTA FINAL - Design Orange & Non-Uppercase */}
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleSubmit}
-                      className="group relative w-full md:w-auto flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-xl transition-all duration-300 overflow-hidden
-                        border border-white/10 bg-white/5 
-                        
-                        /* --- ÉTAT HOVER (PC) - ORANGE --- */
-                        hover:border-orange-500 hover:bg-orange-500/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                        
-                        /* --- ÉTAT ACTIVE (MOBILE TOUCH) - ORANGE --- */
-                        active:border-orange-500 active:bg-orange-500/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                      className="group relative w-full md:w-auto flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-[var(--radius-card)] transition-all duration-300 overflow-hidden
+                        border border-[var(--color-border)] bg-[var(--color-surface)] 
+                        hover:border-[var(--color-action)] hover:bg-[var(--color-action)]/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                        active:border-[var(--color-action)] active:bg-[var(--color-action)]/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
                       "
                     >
-                          {/* Effet Shimmer */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
 
-                          {/* Contenu */}
                           <div className="flex flex-col items-start relative z-10 overflow-hidden">
-                              <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
+                              <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                                   Action
                               </span>
-                              <span className="text-lg md:text-xl font-bold font-sans text-white tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
+                              <span className="text-lg md:text-xl font-bold text-[var(--color-txt-main)] tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
                                   Lancer le protocole
                               </span>
                           </div>
 
-                          {/* Icône ArrowRight (Rotation pure) */}
                           <div className="relative z-10 shrink-0">
                               <ArrowRight 
                                 size={28} 
-                                className="text-white/70 group-hover:text-white transition-all duration-500 ease-out 
+                                className="text-[var(--color-txt-muted)] group-hover:text-white transition-all duration-500 ease-out 
                                 group-hover:-rotate-45" 
                               />
                           </div>
-
                     </motion.button>
 
-                    <p className="mt-6 text-xs text-txt-muted text-center md:text-left flex items-center justify-center md:justify-start gap-2 w-full">
-                        <Zap size={12} className="text-brand"/> Réponse sous 24h ouvrées. Confidentialité garantie.
+                    <p className="mt-6 text-body-sm text-[var(--color-txt-dim)] text-center md:text-left flex items-center justify-center md:justify-start gap-2 w-full">
+                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées.<br/>Confidentialité garantie.
                     </p>
                 </div>
             </div>
@@ -323,10 +313,8 @@ export default function Contact() {
 
         {/* --- COLONNE DROITE : LE RÉCAPITULATIF (PC ONLY - STICKY) --- */}
         <div className="hidden lg:block lg:col-span-4 relative h-full">
-            {/* MODIFICATION : -mt-[20px] pour rehausser de 10px supplémentaires */}
             <div className="sticky top-36 w-full space-y-6 -mt-[20px]">
                 
-                {/* 1. LA CARTE RECAP */}
                 <SummaryCard 
                     selectedService={selectedService} 
                     selectedOptions={selectedOptions} 
@@ -334,49 +322,39 @@ export default function Contact() {
                     timeline={timeline} 
                 />
 
-                {/* 2. LE BOUTON D'ENVOI (PC SEULEMENT) */}
                 <div className="flex flex-col items-center w-full">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleSubmit}
-                      className="group relative w-full flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-xl transition-all duration-300 overflow-hidden
-                        border border-white/10 bg-white/5 
-                        
-                        /* --- ÉTAT HOVER (PC) - ORANGE --- */
-                        hover:border-orange-500 hover:bg-orange-500/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                        
-                        /* --- ÉTAT ACTIVE (MOBILE TOUCH) - ORANGE --- */
-                        active:border-orange-500 active:bg-orange-500/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                      className="group relative w-full flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-[var(--radius-card)] transition-all duration-300 overflow-hidden
+                        border border-[var(--color-border)] bg-[var(--color-surface)] 
+                        hover:border-[var(--color-action)] hover:bg-[var(--color-action)]/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
+                        active:border-[var(--color-action)] active:bg-[var(--color-action)]/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
                       "
                     >
-                          {/* Effet Shimmer */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
 
-                          {/* Contenu */}
                           <div className="flex flex-col items-start relative z-10 overflow-hidden">
-                              <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
+                              <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                                   Action
                               </span>
-                              <span className="text-lg md:text-xl font-bold font-sans text-white tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
+                              <span className="text-lg md:text-xl font-bold text-[var(--color-txt-main)] tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
                                   Lancer le protocole
                               </span>
                           </div>
 
-                          {/* Icône ArrowRight */}
                           <div className="relative z-10 shrink-0">
                               <ArrowRight 
                                 size={28} 
-                                className="text-white/70 group-hover:text-white transition-all duration-500 ease-out 
+                                className="text-[var(--color-txt-muted)] group-hover:text-white transition-all duration-500 ease-out 
                                 group-hover:-rotate-45" 
                               />
                           </div>
-
                     </motion.button>
 
-                    {/* Texte de réassurance centré */}
-                    <p className="mt-4 text-xs text-txt-muted text-center flex items-center justify-center gap-2 w-full">
-                        <Zap size={12} className="text-brand"/> Réponse sous 24h ouvrées. Confidentialité garantie.
+                    <p className="mt-4 text-body-sm text-[var(--color-txt-dim)] text-center flex items-center justify-center gap-2 w-full">
+                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées.<br/>Confidentialité garantie.
                     </p>
                 </div>
 
@@ -393,12 +371,12 @@ export default function Contact() {
 function NumberTitle({ number, title, subtitle, error }: { number: string, title: string, subtitle: string, error?: string }) {
     return (
         <div className="flex flex-col items-center text-center md:flex-row md:items-start md:text-left gap-2 md:gap-4">
-            <span className={`text-sm font-mono pt-1 opacity-60 ${error ? "text-red-500" : "text-brand"}`}>/{number}</span>
+            <span className={`text-label-tech pt-1 opacity-60 ${error ? "text-red-500" : "text-[var(--color-brand)]"}`}>/{number}</span>
             <div>
-                <h2 className={`text-2xl md:text-3xl font-display ${error ? "text-red-500" : "text-white"}`}>
+                <h2 className={`text-h2 font-medium ${error ? "text-red-500" : "text-[var(--color-txt-main)]"}`}>
                     {title} {error && <span className="text-sm font-mono ml-2 text-red-500 animate-pulse">! {error}</span>}
                 </h2>
-                <p className="text-txt-muted text-sm mt-1 leading-relaxed max-w-md">{subtitle}</p>
+                <p className="text-body text-[var(--color-txt-muted)] text-sm mt-1 leading-relaxed max-w-md">{subtitle}</p>
             </div>
         </div>
     );
@@ -418,7 +396,7 @@ interface InputProps {
 function Input({ label, placeholder, type = "text", fullWidth = false, name, value, onChange, error }: InputProps) {
     return (
         <div className={fullWidth ? "md:col-span-2" : ""}>
-            <label className="text-xs font-mono text-txt-muted uppercase mb-2 block ml-1 text-left">
+            <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block ml-1 text-left">
                 {label}
                 {error && <span className="text-red-500 ml-2 animate-pulse">* {error}</span>}
             </label>
@@ -428,34 +406,30 @@ function Input({ label, placeholder, type = "text", fullWidth = false, name, val
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={`w-full bg-white/5 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:ring-1 transition-all text-left
+                className={`w-full bg-[var(--color-surface)] rounded-[var(--radius-card)] px-4 py-4 text-[var(--color-txt-main)] placeholder-white/20 focus:outline-none focus:ring-1 transition-all text-left
                 ${error 
                     ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
-                    : "border border-white/10 focus:border-brand focus:ring-brand"
+                    : "border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-[var(--color-brand)]"
                 }`}
             />
         </div>
     );
 }
 
-// --- SUMMARY CARD COMPONENT (MODIFIÉ : SANS GRAIN) ---
 function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any) {
     const currentServiceObject = SERVICES.find(s => s.id === selectedService);
 
     return (
         <motion.div 
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#101010] shadow-2xl"
+            className="relative w-full overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-contrast)] shadow-2xl"
         >
-            {/* TEXTURE REMOVED (Grain removed as requested) */}
-            {/* Seul le Glow est conservé pour la profondeur, mais sans le bruit */}
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-brand/10 blur-[80px] rounded-full pointer-events-none"></div>
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--color-brand)]/10 blur-[80px] rounded-full pointer-events-none"></div>
             
-            {/* HEADER */}
-            <div className="relative border-b border-white/5 px-6 py-5 flex items-center justify-between bg-white/[0.02]">
+            <div className="relative border-b border-[var(--color-border)] px-6 py-5 flex items-center justify-between bg-white/[0.02]">
                  <div className="flex items-center gap-3">
-                    <Activity size={16} className="text-brand animate-pulse" />
-                    <span className="text-xs font-mono font-bold text-white tracking-widest uppercase">
+                    <Activity size={16} className="text-[var(--color-brand)] animate-pulse" />
+                    <span className="text-label-tech text-[var(--color-txt-main)] font-bold">
                         PROJECT_SCOPE
                     </span>
                  </div>
@@ -466,12 +440,10 @@ function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any
                  </div>
             </div>
 
-            {/* CORPS */}
             <div className="relative p-6 space-y-8">
                 
-                {/* 1: ARCHITECTURE */}
                 <div className="space-y-3">
-                    <span className="text-[10px] font-mono text-txt-muted uppercase flex items-center gap-2">
+                    <span className="text-label-tech text-[var(--color-txt-dim)] flex items-center gap-2">
                         <Layers size={10} /> Architecture Core
                     </span>
                     
@@ -480,30 +452,29 @@ function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any
                             initial={{ opacity: 0, y: 5 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             key={selectedService || "empty"}
-                            className="p-4 rounded-lg bg-white/5 border border-white/10 flex items-center gap-4"
+                            className="p-4 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center gap-4"
                         >
-                            <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center border border-brand/20 shrink-0">
-                                <currentServiceObject.icon size={20} className="text-brand" />
+                            <div className="w-10 h-10 rounded-full bg-[var(--color-brand)]/10 flex items-center justify-center border border-[var(--color-brand)]/20 shrink-0">
+                                <currentServiceObject.icon size={20} className="text-[var(--color-brand)]" />
                             </div>
                             <div>
-                                <div className="text-base font-bold text-white leading-tight">
+                                <div className="text-base font-bold text-[var(--color-txt-main)] leading-tight">
                                     {currentServiceObject.title}
                                 </div>
-                                <div className="text-[10px] text-txt-muted mt-1 font-mono">
+                                <div className="text-label-tech text-[var(--color-txt-dim)] mt-1">
                                     ID: {currentServiceObject.id.toUpperCase()}
                                 </div>
                             </div>
                         </motion.div>
                     ) : (
-                        <div className="p-4 rounded-lg border border-white/5 border-dashed flex items-center justify-center text-txt-muted text-xs font-mono italic h-[74px]">
+                        <div className="p-4 rounded-lg border border-[var(--color-border)] border-dashed flex items-center justify-center text-[var(--color-txt-dim)] text-xs font-mono italic h-[74px]">
                             // En attente de sélection...
                         </div>
                     )}
                 </div>
 
-                {/* 2: MODULES */}
                 <div className="space-y-3">
-                    <span className="text-[10px] font-mono text-txt-muted uppercase flex items-center gap-2">
+                    <span className="text-label-tech text-[var(--color-txt-dim)] flex items-center gap-2">
                         <Cpu size={10} /> Modules Installés
                     </span>
                     
@@ -516,51 +487,49 @@ function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: 10 }}
-                                        className="flex items-center justify-between text-sm py-1.5 border-b border-white/5 last:border-0"
+                                        className="flex items-center justify-between text-sm py-1.5 border-b border-[var(--color-border)] last:border-0"
                                     >
-                                        <span className="text-white/80 flex items-center gap-2">
-                                            <span className="w-1 h-1 bg-brand rounded-full"></span>
+                                        <span className="text-[var(--color-txt-muted)] flex items-center gap-2">
+                                            <span className="w-1 h-1 bg-[var(--color-brand)] rounded-full"></span>
                                             {OPTIONS.find(o => o.id === optId)?.title}
                                         </span>
                                         <CheckCircle2 size={12} className="text-white/20" />
                                     </motion.div>
                                 ))
                             ) : (
-                                <span className="text-white/20 text-xs font-mono py-2">-- Aucun module additionnel --</span>
+                                <span className="text-[var(--color-txt-dim)] text-xs font-mono py-2">-- Aucun module additionnel --</span>
                             )}
                         </AnimatePresence>
                     </div>
                 </div>
 
-                {/* 3: GRID */}
-                <div className="grid grid-cols-2 gap-px bg-white/10 rounded-lg overflow-hidden border border-white/5">
-                    <div className="bg-[#080808] p-3 flex flex-col gap-1">
-                        <span className="text-[9px] font-mono text-txt-muted uppercase">Investissement</span>
-                        <span className={`text-sm font-bold ${budget ? "text-white" : "text-white/30"}`}>
+                <div className="grid grid-cols-2 gap-px bg-[var(--color-border)] rounded-lg overflow-hidden border border-[var(--color-border)]">
+                    <div className="bg-[var(--color-void)] p-3 flex flex-col gap-1">
+                        <span className="text-label-tech text-[var(--color-txt-dim)] !text-[8px]">Investissement</span>
+                        <span className={`text-sm font-bold ${budget ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)]"}`}>
                             {budget || "---"}
                         </span>
                     </div>
-                    <div className="bg-[#080808] p-3 flex flex-col gap-1">
-                        <span className="text-[9px] font-mono text-txt-muted uppercase">Délai Est.</span>
-                        <span className={`text-sm font-bold ${timeline ? "text-white" : "text-white/30"}`}>
+                    <div className="bg-[var(--color-void)] p-3 flex flex-col gap-1">
+                        <span className="text-label-tech text-[var(--color-txt-dim)] !text-[8px]">Délai Est.</span>
+                        <span className={`text-sm font-bold ${timeline ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)]"}`}>
                             {timeline ? timeline.split('(')[0].trim() : "---"}
                         </span>
                     </div>
                 </div>
 
-                {/* 4: STATUS */}
                 <div className={`mt-2 rounded px-3 py-2 flex items-center justify-between border ${
                     selectedService && budget 
-                    ? "bg-brand/10 border-brand/20" 
-                    : "bg-white/5 border-white/5"
+                    ? "bg-[var(--color-brand)]/10 border-[var(--color-brand)]/20" 
+                    : "bg-[var(--color-surface)] border-[var(--color-border)]"
                 }`}>
                      <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full ${selectedService && budget ? "bg-brand animate-pulse" : "bg-red-500"}`}></div>
-                        <span className={`text-[10px] font-mono uppercase tracking-wider ${selectedService && budget ? "text-brand" : "text-txt-muted"}`}>
+                        <div className={`w-1.5 h-1.5 rounded-full ${selectedService && budget ? "bg-[var(--color-brand)] animate-pulse" : "bg-red-500"}`}></div>
+                        <span className={`text-label-tech ${selectedService && budget ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)]"}`}>
                             {selectedService && budget ? "SYSTEM_READY" : "AWAITING_INPUT"}
                         </span>
                      </div>
-                     {selectedService && budget && <BarChart3 size={12} className="text-brand" />}
+                     {selectedService && budget && <BarChart3 size={12} className="text-[var(--color-brand)]" />}
                 </div>
 
             </div>

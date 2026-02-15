@@ -9,7 +9,10 @@ import Button from "@/components/ui/Button";
 
 const menuVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4, staggerChildren: 0.1 } },
+  visible: { 
+    opacity: 1, 
+    transition: { duration: 0.4, staggerChildren: 0.1 } 
+  },
   exit: { opacity: 0, transition: { duration: 0.3 } }
 };
 
@@ -37,7 +40,6 @@ export default function Header() {
   const navLinks = [
     { href: "/vitrine", label: "Vitrine" },
     { href: "/ecommerce", label: "E-commerce" },
-    // { href: "/outils-ia", label: "Outils IA" },
     { href: "/agence", label: "Agence" },
   ];
 
@@ -48,11 +50,14 @@ export default function Header() {
       <Link href={href} aria-label={`Aller vers la page ${label}`}>
         <div className={`relative px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 border ${
             isActive 
-            ? "bg-white/10 border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]" 
-            : "border-transparent text-txt-muted hover:text-white hover:bg-white/5 hover:border-[var(--color-border)]"
+            /* ACTIF : Fond blanc 10%, Bordure blanche 20%, Texte blanc, Glow blanc */
+            ? "bg-[var(--color-txt-main)]/10 border-[var(--color-txt-main)]/20 text-[var(--color-txt-main)] shadow-[0_0_15px_rgba(255,255,255,0.1)]" 
+            /* INACTIF : Transparent, Texte Muted, Hover blanc */
+            : "border-transparent text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:bg-[var(--color-btn-sec-bg)] hover:border-[var(--color-border)]"
         } group overflow-hidden cursor-pointer`}>
+            {/* Shimmer Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            <span className="relative z-10 font-sans tracking-wide">{label}</span>
+            <span className="relative z-10 font-[family-name:var(--font-inter)] tracking-wide">{label}</span>
         </div>
       </Link>
     );
@@ -60,21 +65,27 @@ export default function Header() {
 
   return (
     <>
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled ? "bg-void/80 backdrop-blur-md border-b border-[var(--color-border)] py-4 shadow-2xl" : "bg-transparent py-6 border-b border-transparent"}`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled 
+            ? "bg-[var(--color-void)]/80 backdrop-blur-md border-b border-[var(--color-border)] py-4 shadow-2xl" 
+            : "bg-transparent py-6 border-b border-transparent"
+        }`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 
+                {/* LOGO */}
                 <Link href="/" className="flex items-center gap-2 group z-50" aria-label="Retour à l'accueil Klaayn">
-                    <div className="text-white group-hover:text-action transition-colors duration-300">
+                    <div className="text-[var(--color-txt-main)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                         <Terminal size={22} strokeWidth={2.5}/>
                     </div>
-                    <span className="text-xl font-sans font-bold tracking-tighter text-white">KLAAYN.</span>
+                    <span className="text-xl font-[family-name:var(--font-outfit)] font-bold tracking-tighter text-[var(--color-txt-main)]">KLAAYN.</span>
                 </Link>
 
-                {/* Menu Desktop */}
-                <div className="hidden md:flex items-center space-x-1 bg-surface/40 backdrop-blur-md p-1.5 rounded-xl border border-[var(--color-border)] absolute left-1/2 -translate-x-1/2 shadow-2xl">
+                {/* MENU DESKTOP (Centré) */}
+                <div className="hidden md:flex items-center space-x-1 bg-[var(--color-surface)]/40 backdrop-blur-md p-1.5 rounded-xl border border-[var(--color-border)] absolute left-1/2 -translate-x-1/2 shadow-2xl">
                     {navLinks.map((link) => (<NavLink key={link.href} {...link} />))}
                 </div>
 
+                {/* ACTION + HAMBURGER */}
                 <div className="flex items-center gap-3 relative z-50">
                     <Button 
                         href="/contact" 
@@ -86,20 +97,22 @@ export default function Header() {
                     
                     {/* Bouton Hamburger Mobile */}
                     <button 
-                        className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden active:scale-95 bg-white/10 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] 
-                        hover:bg-white/20 
-                        active:bg-white/20" 
+                        className="md:hidden relative group flex items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden active:scale-95 
+                        bg-[var(--color-txt-main)]/10 border border-[var(--color-txt-main)]/20 text-[var(--color-txt-main)] shadow-[0_0_15px_rgba(255,255,255,0.1)] 
+                        hover:bg-[var(--color-txt-main)]/20 active:bg-[var(--color-txt-main)]/20" 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
-                        <span className="relative z-10 text-white">{isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</span>
+                        <span className="relative z-10 text-[var(--color-txt-main)]">
+                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </span>
                     </button>
                 </div>
             </div>
         </nav>
 
-        {/* Menu Mobile Plein Écran */}
+        {/* MENU MOBILE (Plein Écran) */}
         <AnimatePresence>
             {isMobileMenuOpen && (
                 <motion.div 
@@ -107,10 +120,11 @@ export default function Header() {
                     initial="hidden" 
                     animate="visible" 
                     exit="exit" 
-                    // MODIFICATION ICI : Opacité réduite à 40% (bg-void/40) pour plus de transparence
-                    className="fixed inset-0 z-[40] bg-void/40 backdrop-blur-3xl flex flex-col md:hidden"
+                    // Fond Void 40% + Backdrop Blur fort
+                    className="fixed inset-0 z-[40] bg-[var(--color-void)]/40 backdrop-blur-3xl flex flex-col md:hidden"
                 >
-                    <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-action/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+                    {/* Effet lumineux Action */}
+                    <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-[var(--color-action)]/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
                     <div className="flex-1 flex flex-col justify-center px-6 pt-16 relative z-10">
                         <div className="flex flex-col">
@@ -119,15 +133,16 @@ export default function Header() {
                                     <Link 
                                         href={link.href} 
                                         onClick={() => setIsMobileMenuOpen(false)} 
-                                        className="group relative flex items-center justify-between border-b border-[var(--color-border)] py-8 px-2 transition-all duration-300 hover:bg-white/5 active:bg-white/10 active:border-white/20"
+                                        className="group relative flex items-center justify-between border-b border-[var(--color-border)] py-8 px-2 transition-all duration-300 hover:bg-[var(--color-txt-main)]/5 active:bg-[var(--color-txt-main)]/10 active:border-[var(--color-txt-main)]/20"
                                     >
                                         <div className="flex items-baseline gap-4">
-                                            <span className="text-label-tech text-action/70 group-hover:text-action">0{index + 1}</span>
-                                            <span className="text-3xl sm:text-4xl font-display font-bold text-white group-hover:text-action transition-colors duration-300">
+                                            <span className="text-label-tech text-[var(--color-action)]/70 group-hover:text-[var(--color-action)]">0{index + 1}</span>
+                                            {/* Titre Menu Mobile : Utilisation de Outfit (Font Display) */}
+                                            <span className="text-3xl sm:text-4xl font-[family-name:var(--font-outfit)] font-bold text-[var(--color-txt-main)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                                                 {link.label}
                                             </span>
                                         </div>
-                                        <ArrowRight className="text-txt-muted group-hover:text-action group-hover:-rotate-45 transition-all duration-500" size={32} />
+                                        <ArrowRight className="text-[var(--color-txt-muted)] group-hover:text-[var(--color-action)] group-hover:-rotate-45 transition-all duration-500" size={32} />
                                     </Link>
                                 </motion.div>
                             ))}
@@ -137,13 +152,18 @@ export default function Header() {
                         </motion.div>
                     </div>
 
-                    <motion.div variants={itemVariants} className="p-8 border-t border-[var(--color-border)] bg-surface/40 relative z-10">
+                    {/* Footer du Menu Mobile */}
+                    <motion.div variants={itemVariants} className="p-8 border-t border-[var(--color-border)] bg-[var(--color-surface)]/40 relative z-10">
                         <div className="flex justify-between items-center">
                              <div className="flex flex-col gap-1">
-                                <span className="text-label-tech text-white/30">Contact</span>
-                                <a href="mailto:contact@klaayn.com" className="text-base font-bold font-sans text-white hover:text-action transition-colors">contact@klaayn.com</a>
+                                <span className="text-label-tech text-[var(--color-txt-dim)]">Contact</span>
+                                <a href="mailto:contact@klaayn.com" className="text-base font-bold font-[family-name:var(--font-inter)] text-[var(--color-txt-main)] hover:text-[var(--color-action)] transition-colors">contact@klaayn.com</a>
                              </div>
-                             <div className="flex gap-4"><div className="p-3 rounded-full bg-white/5 border border-[var(--color-border)]"><MapPin size={20} className="text-txt-muted"/></div></div>
+                             <div className="flex gap-4">
+                                <div className="p-3 rounded-full bg-[var(--color-txt-main)]/5 border border-[var(--color-border)]">
+                                    <MapPin size={20} className="text-[var(--color-txt-muted)]"/>
+                                </div>
+                             </div>
                         </div>
                     </motion.div>
                 </motion.div>

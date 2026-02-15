@@ -22,7 +22,6 @@ export default function CustomCursor() {
       targetPos.current = { x: e.clientX, y: e.clientY };
 
       // CORRECTION 1 : Si le curseur n'était pas visible, on le "téléporte" 
-      // directement à la souris pour éviter le départ depuis (0,0) (le saut).
       if (!isVisible) {
         currentPos.current = { x: e.clientX, y: e.clientY };
         setIsVisible(true);
@@ -76,25 +75,27 @@ export default function CustomCursor() {
 
   return (
     // CORRECTION 2 : Structure Parent/Enfant.
-    // Le parent (cursorRef) gère le déplacement JS sans interférer avec le scale CSS.
     <div 
       ref={cursorRef}
       className={`hidden lg:block fixed top-0 left-0 pointer-events-none z-[9999]`}
       style={{ willChange: 'transform' }}
     >
-      {/* L'enfant gère le style visuel (taille, couleur, scale) et les transitions */}
+      {/* L'enfant gère le style visuel via les variables CSS */}
       <div 
         className={`
           rounded-full border-2 transition-all duration-300 ease-out
           ${isVisible ? 'opacity-100' : 'opacity-0'}
           ${isHovering 
-              ? 'w-14 h-14 -mt-7 -ml-7 border-[#7c1fac] bg-[#7c1fac]/10 shadow-[0_0_20px_rgba(124,31,172,0.4)]' 
-              : 'w-6 h-6 -mt-3 -ml-3 border-white/50 bg-transparent'
+              /* ÉTAT HOVER : Bordure Brand, Fond Brand 10%, Glow Brand */
+              ? 'w-14 h-14 -mt-7 -ml-7 border-[var(--color-brand)] bg-[color-mix(in_srgb,var(--color-brand),transparent_90%)] shadow-[0_0_20px_var(--color-brand-glow)]' 
+              /* ÉTAT DÉFAUT : Bordure Blanche 50% */
+              : 'w-6 h-6 -mt-3 -ml-3 border-[var(--color-txt-main)]/50 bg-transparent'
           }
           ${isClicking ? 'scale-75' : 'scale-100'}
         `}
       >
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${isHovering ? 'opacity-0' : 'opacity-100'}`} />
+        {/* Le point central blanc */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[var(--color-txt-main)] transition-opacity duration-300 ${isHovering ? 'opacity-0' : 'opacity-100'}`} />
       </div>
     </div>
   );

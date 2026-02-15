@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { MessageSquare, LucideIcon } from "lucide-react";
 
 interface ButtonProps {
-  href?: string; // Rendu optionnel pour permettre le mode bouton seul
+  href?: string;
   children: React.ReactNode;
   className?: string;
   icon?: LucideIcon;
   onClick?: () => void;
   size?: "default" | "small";
   responsive?: boolean;
-  ariaLabel?: string; // AJOUT : Pour l'accessibilité explicite
+  ariaLabel?: string;
 }
 
 export default function Button({ 
@@ -26,7 +26,7 @@ export default function Button({
   ariaLabel
 }: ButtonProps) {
   
-  // 1. Gestion des classes de style (identique à ton design)
+  // 1. Gestion des classes de style (Structure)
   const radiusClasses = "rounded-xl"; 
   let sizeClasses = "";
 
@@ -38,37 +38,44 @@ export default function Button({
 
   const iconSize = (size === "small" || responsive) ? 20 : 16;
 
-  // 2. Définition du style commun (Bouton Orange / Shimmer)
-  const commonStyles = `relative group w-full flex items-center justify-center gap-2 ${sizeClasses} ${radiusClasses} font-extrabold transition-all duration-500 border border-white/20 bg-white/10 text-white 
-  hover:bg-[#cc5500] active:bg-[#cc5500] 
-  hover:border-[#ff6b00] active:border-[#ff6b00]  
-  hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] active:shadow-[0_0_25px_rgba(255,107,0,0.5)] 
+  // 2. Définition du style commun
+  // REMPLACEMENT : Les couleurs HEX sont remplacées par les variables CSS (var(--...))
+  // - text-white -> text-[var(--color-txt-main)]
+  // - hover:bg-[#cc5500] -> hover:bg-[var(--color-action-hover)]
+  // - hover:border-[#ff6b00] -> hover:border-[var(--color-action)]
+  // - hover:shadow -> hover:shadow-[0_0_25px_var(--color-action-glow)]
+  // - font-extrabold + font-[family-name:var(--font-btn)] pour contrôler la typo
+  
+  const commonStyles = `relative group w-full flex items-center justify-center gap-2 ${sizeClasses} ${radiusClasses} 
+  font-[family-name:var(--font-btn)] font-extrabold transition-all duration-500 
+  border border-white/20 bg-white/10 text-[var(--color-txt-main)]
+  hover:bg-[var(--color-action-hover)] active:bg-[var(--color-action-hover)] 
+  hover:border-[var(--color-action)] active:border-[var(--color-action)]  
+  hover:shadow-[0_0_25px_var(--color-action-glow)] active:shadow-[0_0_25px_var(--color-action-glow)] 
   overflow-hidden cursor-pointer`;
 
   // 3. Définition du contenu intérieur (Texte + Icône)
   const content = (
     <>
-      {/* Shimmer Orange */}
+      {/* Shimmer Effect (On garde les valeurs white/20 car c'est un effet de lumière neutre) */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
       
       <span className="relative z-10 flex items-center gap-2">
-        {/* Le texte est caché sur mobile si responsive=true, mais reste dans le DOM */}
         <span className={responsive ? "hidden md:inline" : ""}>
           {children}
         </span>
         
-        {/* Icône */}
-        <Icon size={iconSize} strokeWidth={2.5} className="text-white/90 group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"/>
+        {/* L'icône suit aussi la couleur du texte principal */}
+        <Icon size={iconSize} strokeWidth={2.5} className="text-[var(--color-txt-main)] opacity-90 group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"/>
       </span> 
     </>
   );
 
-  // 4. Calcul du label accessible (Priorité : ariaLabel > texte enfants > texte par défaut)
+  // 4. Calcul du label accessible
   const accessibleName = ariaLabel || (typeof children === 'string' ? children : "Bouton d'action");
 
-  // 5. Rendu conditionnel : Soit un Link, soit un Button (Jamais imbriqués)
+  // 5. Rendu conditionnel
   
-  // CAS A : C'est un LIEN (si href existe)
   if (href) {
     return (
       <motion.div
@@ -80,7 +87,7 @@ export default function Button({
             href={href} 
             onClick={onClick} 
             className={commonStyles}
-            aria-label={accessibleName} // Résout "Les liens n'ont pas de nom visible"
+            aria-label={accessibleName}
         >
             {content}
         </Link>
@@ -88,7 +95,6 @@ export default function Button({
     );
   }
 
-  // CAS B : C'est un BOUTON (si pas de href)
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -98,7 +104,7 @@ export default function Button({
         <button 
             onClick={onClick} 
             className={commonStyles}
-            aria-label={accessibleName} // Résout "Les boutons n'ont pas de nom accessible"
+            aria-label={accessibleName}
         >
             {content}
         </button>

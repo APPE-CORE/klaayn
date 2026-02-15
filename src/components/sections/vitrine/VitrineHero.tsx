@@ -8,16 +8,19 @@ import SecondaryButton from "@/components/ui/SecondaryButton";
 
 export default function VitrineHero() {
 
-  const cardStyle = "relative w-full aspect-square sm:w-64 sm:h-64 rounded-2xl border p-4 sm:p-6 flex flex-col justify-between backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.02]";
-  const highlightStyle = "absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-70";
+  // Mise à jour de la forme avec la variable globale --radius-card
+  const cardStyle = "relative w-full aspect-square sm:w-64 sm:h-64 rounded-[var(--radius-card)] border p-4 sm:p-6 flex flex-col justify-between backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.02]";
+  
+  // Highlight connecté au texte principal
+  const highlightStyle = "absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--color-txt-main)]/50 to-transparent opacity-70";
 
   return (
-    <section className="relative w-full min-h-[90vh] md:min-h-screen bg-[#020202] text-white overflow-hidden border-b border-white/5 flex flex-col justify-center">
+    <section className="relative w-full min-h-[90vh] md:min-h-screen bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden border-b border-[var(--color-border)] flex flex-col justify-center">
       
       {/* 1. BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay"></div>
-          <div className="absolute top-1/2 right-0 md:right-20 w-[60vw] h-[60vw] bg-brand/5 blur-[150px] rounded-full mix-blend-screen opacity-30"></div>
+          <div className="absolute top-1/2 right-0 md:right-20 w-[60vw] h-[60vw] bg-[var(--color-brand)]/5 blur-[150px] rounded-full mix-blend-screen opacity-30"></div>
       </div>
 
       {/* 2. CONTENEUR PRINCIPAL */}
@@ -33,35 +36,43 @@ export default function VitrineHero() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 mb-6 bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md"
+                    className="inline-flex items-center gap-2 mb-6 bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 rounded-full backdrop-blur-md"
                   >
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></div>
-                      {/* CORRECTION : Utilisation de --color-txt-muted (Blanc 50%) */}
-                      <span className="text-[10px] md:text-xs font-mono text-[var(--color-txt-muted)] uppercase tracking-widest">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] animate-pulse"></div>
+                      <span className="text-label-tech text-[var(--color-txt-muted)]">
                           L'agence des leaders exigeants
                       </span>
                   </motion.div>
 
-                  {/* TITRE */}
+                  {/* TITRE : Utilisation de .text-display et du Patch Safari */}
                   <motion.h1 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-display font-bold leading-[0.95] tracking-tight mb-8"
+                    className="text-display mb-8 text-[var(--color-txt-main)]"
                   >
                       Votre Image, <br/>
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-orange-400 to-white/50">
+                      {/* SAFARI PATCH : Inline Styles pour le dégradé + pb-1/pr-1 */}
+                      <span 
+                          className="inline-block pb-1 pr-1"
+                          style={{
+                              backgroundImage: 'linear-gradient(to right, var(--color-brand), #fb923c, rgba(255, 255, 255, 0.5))',
+                              WebkitBackgroundClip: 'text',
+                              backgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                              color: 'transparent'
+                          }}
+                      >
                           Autorité Totale.
                       </span>
                   </motion.h1>
 
-                  {/* SOUS-TITRE */}
+                  {/* SOUS-TITRE : Utilisation de .text-body-large */}
                   <motion.p 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    // CORRECTION : Utilisation de --color-txt-muted
-                    className="text-base md:text-lg text-[var(--color-txt-muted)] font-light leading-relaxed max-w-md"
+                    className="text-body-large max-w-md"
                   >
                       Ne subissez plus la concurrence. Nous transformons votre identité en une infrastructure digitale intouchable.
                   </motion.p>
@@ -70,7 +81,7 @@ export default function VitrineHero() {
               {/* --- BLOC 2 : ACTION & TECH (Order 3 sur Mobile) --- */}
               <div className="order-3 w-full flex flex-col items-center lg:items-start gap-10">
                   
-                  {/* BOUTONS DRY */}
+                  {/* BOUTONS */}
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -82,10 +93,9 @@ export default function VitrineHero() {
                       </div>
 
                       <div className="w-full sm:w-auto">
-                        {/* CORRECTION : Couleur CSS stricte sur le bouton secondaire aussi */}
                         <SecondaryButton 
                             href="/methode" 
-                            className="text-[var(--color-txt-muted)] hover:text-white"
+                            className="text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)]"
                         >
                             Méthode
                         </SecondaryButton>
@@ -99,10 +109,9 @@ export default function VitrineHero() {
                      transition={{ duration: 0.5, delay: 0.4 }}
                      className="flex flex-col items-center lg:items-start gap-3 w-full"
                   >
-                      <div className="h-[1px] w-12 bg-white/10 mb-1"></div>
-                      {/* CORRECTION : Utilisation de --color-txt-dim (Blanc 25%) */}
-                      <span className="text-[10px] font-mono text-[var(--color-txt-dim)] uppercase tracking-widest">Arsenal Technique</span>
-                      <div className="flex flex-wrap justify-center lg:justify-start gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                      <div className="h-[1px] w-12 bg-[var(--color-border)] mb-1"></div>
+                      <span className="text-label-tech text-[var(--color-txt-dim)]">Arsenal Technique</span>
+                      <div className="flex flex-wrap justify-center lg:justify-start gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 text-[var(--color-txt-main)]">
                           <div className="flex items-center gap-1.5" title="Next.js"><Code2 size={14}/> <span className="font-bold text-xs">Next.js</span></div>
                           <div className="flex items-center gap-1.5" title="TypeScript"><Cpu size={14}/> <span className="font-bold text-xs">TypeScript</span></div>
                           <div className="flex items-center gap-1.5" title="Vercel Edge"><Zap size={14}/> <span className="font-bold text-xs">Edge</span></div>
@@ -121,40 +130,41 @@ export default function VitrineHero() {
                   {/* 1. VIOLET */}
                   <div className={`${cardStyle} bg-purple-900/10 border-purple-500/20 hover:border-purple-500/40 shadow-purple-500/5`}>
                       <div className={highlightStyle}></div>
-                      <Palette size={28} className="text-white relative z-10" />
+                      <Palette size={28} className="text-[var(--color-txt-main)] relative z-10" />
                       <div className="relative z-10">
-                          <span className="font-mono text-[9px] text-purple-200 uppercase tracking-widest mb-1 block">Design</span>
-                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Esthétique <br/> Radicale</span>
+                          <span className="text-label-tech text-purple-200 mb-1 block">Design</span>
+                          {/* Utilisation de text-h4 (~20px) pour uniformiser les titres de cartes */}
+                          <span className="text-h4 font-bold text-[var(--color-txt-main)] tracking-tight leading-tight">Esthétique <br/> Radicale</span>
                       </div>
                   </div>
 
                   {/* 2. BLEU */}
                   <div className={`${cardStyle} bg-blue-900/10 border-blue-500/20 hover:border-blue-500/40 shadow-blue-500/5`}>
                        <div className={highlightStyle}></div>
-                      <Cpu size={28} className="text-white relative z-10" />
+                      <Cpu size={28} className="text-[var(--color-txt-main)] relative z-10" />
                       <div className="relative z-10">
-                          <span className="font-mono text-[9px] text-blue-200 uppercase tracking-widest mb-1 block">Tech</span>
-                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Vitesse <br/> Absolue</span>
+                          <span className="text-label-tech text-blue-200 mb-1 block">Tech</span>
+                          <span className="text-h4 font-bold text-[var(--color-txt-main)] tracking-tight leading-tight">Vitesse <br/> Absolue</span>
                       </div>
                   </div>
 
                    {/* 3. ORANGE */}
-                   <div className={`${cardStyle} bg-orange-900/10 border-orange-500/20 hover:border-orange-500/40 shadow-brand/5`}>
+                   <div className={`${cardStyle} bg-orange-900/10 border-orange-500/20 hover:border-orange-500/40 shadow-[var(--color-brand)]/5`}>
                        <div className={highlightStyle}></div>
-                      <BarChart3 size={28} className="text-white relative z-10" />
+                      <BarChart3 size={28} className="text-[var(--color-txt-main)] relative z-10" />
                       <div className="relative z-10">
-                          <span className="font-mono text-[9px] text-orange-200 uppercase tracking-widest mb-1 block">Impact</span>
-                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Business <br/> Growth</span>
+                          <span className="text-label-tech text-orange-200 mb-1 block">Impact</span>
+                          <span className="text-h4 font-bold text-[var(--color-txt-main)] tracking-tight leading-tight">Business <br/> Growth</span>
                       </div>
                   </div>
 
                   {/* 4. VERT */}
                   <div className={`${cardStyle} bg-emerald-900/10 border-emerald-500/20 hover:border-emerald-500/40 shadow-emerald-500/5`}>
                        <div className={highlightStyle}></div>
-                      <ShieldCheck size={28} className="text-white relative z-10" />
+                      <ShieldCheck size={28} className="text-[var(--color-txt-main)] relative z-10" />
                       <div className="relative z-10">
-                          <span className="font-mono text-[9px] text-emerald-200 uppercase tracking-widest mb-1 block">Sécurité</span>
-                          <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-tight">Sérénité <br/> Totale</span>
+                          <span className="text-label-tech text-emerald-200 mb-1 block">Sécurité</span>
+                          <span className="text-h4 font-bold text-[var(--color-txt-main)] tracking-tight leading-tight">Sérénité <br/> Totale</span>
                       </div>
                   </div>
 

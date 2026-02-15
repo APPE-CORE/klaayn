@@ -6,8 +6,10 @@ import Button from "@/components/ui/Button";
 
 export default function EcommerceProblem() {
     
-    const verticalDivider = "hidden lg:block w-[1px] bg-white/10 h-full absolute right-0 top-0";
+    // Style des séparateurs verticaux (Connecté à var(--color-border))
+    const verticalDivider = "hidden lg:block w-[1px] bg-[var(--color-border)] h-full absolute right-0 top-0";
     
+    // Données Ecommerce
     const stats = [
         {
             value: "-80%",
@@ -30,10 +32,9 @@ export default function EcommerceProblem() {
     ];
 
     return (
-        // MODIFICATION ICI : Utilisation de bg-[var(--color-void)] pour lier au CSS global
-        <section className="relative w-full bg-[var(--color-void)] py-20 overflow-hidden border-b border-white/5">
+        <section className="relative w-full bg-[var(--color-void)] py-20 overflow-hidden border-b border-[var(--color-border)]">
             
-            {/* 1. BACKGROUND (Vert Lime) */}
+            {/* 1. BACKGROUND (Thème Lime spécifique) */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] mix-blend-overlay"></div>
                 <div className="absolute top-0 right-1/4 w-[60vw] h-[60vw] bg-lime-500/5 blur-[150px] rounded-full mix-blend-screen opacity-20"></div>
@@ -51,23 +52,40 @@ export default function EcommerceProblem() {
                             className="flex items-center gap-4 mb-4"
                         >
                             <div className="h-[1px] w-8 bg-lime-400"></div>
-                            <span className="font-mono text-[10px] uppercase tracking-widest text-lime-400">
+                            {/* Label Lime spécifique */}
+                            <span className="text-label-tech text-lime-400">
                                 Réalité du Marché
                             </span>
                         </motion.div>
                         
-                        <h2 className="text-3xl md:text-5xl lg:text-5xl font-display font-medium text-white leading-[1.05] tracking-tight">
+                        {/* Titre : Utilisation de .text-h2 */}
+                        <h2 className="text-h2 leading-[1.05] tracking-tight text-[var(--color-txt-main)]">
                             L'amateurisme est <br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-400 to-white/50">
+                            {/* SAFARI PATCH (Version Lime/Emerald) :
+                                1. inline-block + pb-1 + pr-1
+                                2. Style inline pour le dégradé Lime -> Emerald -> Blanc
+                                3. Fin en BLANC SOLIDE (#ffffff)
+                            */}
+                            <span 
+                                className="inline-block pb-1 pr-1"
+                                style={{
+                                    backgroundImage: 'linear-gradient(to right, #a3e635, #34d399, #ffffff)', // Lime-400 -> Emerald-400 -> White
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    color: 'transparent'
+                                }}
+                            >
                                 un risque financier.
                             </span>
                         </h2>
                     </div>
 
-                    <div className="lg:pl-12 lg:border-l border-white/10 pb-2">
-                        <p className="text-base text-white/50 font-light leading-relaxed">
+                    <div className="lg:pl-12 lg:border-l border-[var(--color-border)] pb-2">
+                        {/* Texte : Utilisation de .text-body-large */}
+                        <p className="text-body-large leading-relaxed">
                             Vos clients ne vous donnent pas de seconde chance.
-                            <span className="text-white block mt-1">Chaque friction dans le parcours d'achat paye directement la croissance de vos concurrents :</span>
+                            <span className="text-[var(--color-txt-main)] block mt-1">Chaque friction dans le parcours d'achat paye directement la croissance de vos concurrents :</span>
                         </p>
                     </div>
                 </div>
@@ -77,37 +95,39 @@ export default function EcommerceProblem() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="relative w-full border-t border-b border-white/10"
+                    className="relative w-full border-t border-b border-[var(--color-border)]"
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-3">
                         
                         {stats.map((stat, index) => (
-                            <div key={index} className="relative group p-6 lg:p-8 flex flex-col justify-between min-h-[220px] hover:bg-white/[0.02] transition-colors duration-500">
+                            <div key={index} className="relative group p-6 lg:p-8 flex flex-col justify-between min-h-[220px] hover:bg-[var(--color-txt-main)]/[0.02] transition-colors duration-500">
                                 
                                 {index !== 2 && <div className={verticalDivider}></div>}
                                 
                                 <div className="flex justify-between items-start mb-6">
-                                    <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest group-hover:text-lime-400 transition-colors">
+                                    <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-lime-400 transition-colors">
                                         Data_{index + 1}
                                     </span>
-                                    <ArrowUpRight className="text-white/20 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" size={14} />
+                                    <ArrowUpRight className="text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)] transition-colors opacity-0 group-hover:opacity-100" size={14} />
                                 </div>
 
                                 <div>
-                                    <div className="text-5xl md:text-6xl font-display font-bold text-white mb-3 tracking-tighter">
+                                    {/* Chiffre : .text-value-box */}
+                                    <div className="text-value-box mb-3 tracking-tighter">
                                         {stat.value}
                                     </div>
                                     
-                                    <h3 className="text-base font-bold text-white mb-2">
+                                    {/* Label : .text-h4 */}
+                                    <h3 className="text-h4 font-bold text-[var(--color-txt-main)] mb-2">
                                         {stat.label}
                                     </h3>
                                     
-                                    <p className="text-xs text-white/50 leading-relaxed max-w-xs mb-4">
+                                    <p className="text-xs text-[var(--color-txt-muted)] leading-relaxed max-w-xs mb-4">
                                         {stat.description}
                                     </p>
 
-                                    <div className="pt-4 border-t border-white/5">
-                                        <p className="font-mono text-[8px] text-white/20 italic">
+                                    <div className="pt-4 border-t border-[var(--color-border)]">
+                                        <p className="font-[family-name:var(--font-jetbrains)] text-[8px] text-[var(--color-txt-dim)] italic">
                                             {stat.source}
                                         </p>
                                     </div>
@@ -121,8 +141,8 @@ export default function EcommerceProblem() {
                 {/* 4. FOOTER */}
                 <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col gap-1">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Conclusion</span>
-                        <span className="text-sm text-white font-medium">Arrêtez de perdre des ventes bêtement.</span>
+                        <span className="text-label-tech text-[var(--color-txt-dim)]">Conclusion</span>
+                        <span className="text-sm text-[var(--color-txt-main)] font-medium">Arrêtez de perdre des ventes bêtement.</span>
                     </div>
 
                     <div className="w-full md:w-auto">

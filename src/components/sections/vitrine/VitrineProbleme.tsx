@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { MessageSquare, ArrowUpRight } from "lucide-react";
 import Button from "@/components/ui/Button"; 
 
-export default function VitrineProblem() {
+export default function VitrineProbleme() {
     
     // Style des séparateurs verticaux
-    const verticalDivider = "hidden lg:block w-[1px] bg-white/10 h-full absolute right-0 top-0";
+    const verticalDivider = "hidden lg:block w-[1px] bg-[var(--color-border)] h-full absolute right-0 top-0";
     
     // Données Vitrine
     const stats = [
@@ -32,13 +32,12 @@ export default function VitrineProblem() {
     ];
 
     return (
-        // MODIFICATION ICI : Utilisation de bg-[var(--color-void)]
-        <section className="relative w-full bg-[var(--color-void)] py-20 overflow-hidden border-b border-white/5">
+        <section className="relative w-full bg-[var(--color-void)] py-20 overflow-hidden border-b border-[var(--color-border)]">
             
             {/* 1. BACKGROUND */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] mix-blend-overlay"></div>
-                <div className="absolute top-0 right-1/4 w-[60vw] h-[60vw] bg-brand/5 blur-[150px] rounded-full mix-blend-screen opacity-20"></div>
+                <div className="absolute top-0 right-1/4 w-[60vw] h-[60vw] bg-[var(--color-brand)]/5 blur-[150px] rounded-full mix-blend-screen opacity-20"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -52,24 +51,37 @@ export default function VitrineProblem() {
                             viewport={{ once: true }}
                             className="flex items-center gap-4 mb-4"
                         >
-                            <div className="h-[1px] w-8 bg-brand"></div>
-                            <span className="font-mono text-[10px] uppercase tracking-widest text-brand">
+                            <div className="h-[1px] w-8 bg-[var(--color-brand)]"></div>
+                            <span className="text-label-tech text-[var(--color-brand)]">
                                 Réalité du Marché
                             </span>
                         </motion.div>
                         
-                        <h2 className="text-3xl md:text-5xl lg:text-5xl font-display font-medium text-white leading-[1.05] tracking-tight">
+                        <h2 className="text-h2 leading-[1.05] tracking-tight text-[var(--color-txt-main)]">
                             L'amateurisme est <br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand via-orange-400 to-white/50">
+                            {/* MISE À JOUR : Réintégration de l'opacité 50%.
+                                On utilise 'rgba(255, 255, 255, 0.5)' au lieu de 'white/50'.
+                                Cela force Safari à interpoler vers du BLANC transparent, et non du NOIR transparent.
+                            */}
+                            <span 
+                                className="inline-block pb-1 pr-1"
+                                style={{
+                                    backgroundImage: 'linear-gradient(to right, var(--color-brand), #fb923c, rgba(255, 255, 255, 0.5))',
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    color: 'transparent'
+                                }}
+                            >
                                 un risque financier.
                             </span>
                         </h2>
                     </div>
 
-                    <div className="lg:pl-12 lg:border-l border-white/10 pb-2">
-                        <p className="text-base text-white/50 font-light leading-relaxed">
+                    <div className="lg:pl-12 lg:border-l border-[var(--color-border)] pb-2">
+                        <p className="text-body-large leading-relaxed">
                             Vos clients jugent votre entreprise en une fraction de seconde sur l'apparence de votre site. 
-                            <span className="text-white block mt-1">C'est injuste, mais c'est la réalité des chiffres :</span>
+                            <span className="text-[var(--color-txt-main)] block mt-1">C'est injuste, mais c'est la réalité des chiffres :</span>
                         </p>
                     </div>
                 </div>
@@ -79,37 +91,37 @@ export default function VitrineProblem() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="relative w-full border-t border-b border-white/10"
+                    className="relative w-full border-t border-b border-[var(--color-border)]"
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-3">
                         
                         {stats.map((stat, index) => (
-                            <div key={index} className="relative group p-6 lg:p-8 flex flex-col justify-between min-h-[220px] hover:bg-white/[0.02] transition-colors duration-500">
+                            <div key={index} className="relative group p-6 lg:p-8 flex flex-col justify-between min-h-[220px] hover:bg-[var(--color-txt-main)]/[0.02] transition-colors duration-500">
                                 
                                 {index !== 2 && <div className={verticalDivider}></div>}
                                 
                                 <div className="flex justify-between items-start mb-6">
-                                    <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest group-hover:text-brand transition-colors">
+                                    <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-[var(--color-brand)] transition-colors">
                                         Fact_{index + 1}
                                     </span>
-                                    <ArrowUpRight className="text-white/20 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" size={14} />
+                                    <ArrowUpRight className="text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)] transition-colors opacity-0 group-hover:opacity-100" size={14} />
                                 </div>
 
                                 <div>
-                                    <div className="text-5xl md:text-6xl font-display font-bold text-white mb-3 tracking-tighter">
+                                    <div className="text-value-box mb-3 tracking-tighter">
                                         {stat.value}
                                     </div>
                                     
-                                    <h3 className="text-base font-bold text-white mb-2">
+                                    <h3 className="text-h4 font-bold text-[var(--color-txt-main)] mb-2">
                                         {stat.label}
                                     </h3>
                                     
-                                    <p className="text-xs text-white/50 leading-relaxed max-w-xs mb-4">
+                                    <p className="text-xs text-[var(--color-txt-muted)] leading-relaxed max-w-xs mb-4">
                                         {stat.description}
                                     </p>
 
-                                    <div className="pt-4 border-t border-white/5">
-                                        <p className="font-mono text-[8px] text-white/20 italic">
+                                    <div className="pt-4 border-t border-[var(--color-border)]">
+                                        <p className="font-[family-name:var(--font-jetbrains)] text-[8px] text-[var(--color-txt-dim)] italic">
                                             {stat.source}
                                         </p>
                                     </div>
@@ -123,8 +135,8 @@ export default function VitrineProblem() {
                 {/* 4. FOOTER / CALL TO ACTION */}
                 <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col gap-1">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Conclusion</span>
-                        <span className="text-sm text-white font-medium">Ne laissez pas les statistiques jouer contre vous.</span>
+                        <span className="text-label-tech text-[var(--color-txt-dim)]">Conclusion</span>
+                        <span className="text-sm text-[var(--color-txt-main)] font-medium">Ne laissez pas les statistiques jouer contre vous.</span>
                     </div>
 
                     <div className="w-full md:w-auto">
