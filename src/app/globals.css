@@ -15,8 +15,8 @@
   --color-action-glow: rgba(255, 107, 0, 0.5); /* Lueur Orange */
 
   --color-txt-main: #ffffff;    /* Texte principal (Blanc pur) */
-  --color-txt-muted: rgba(255, 255, 255, 0.7); /* Texte secondaire (Grisé 70%) */
-  --color-txt-dim: rgba(255, 255, 255, 0.4);  /* Texte discret (Grisé 40%) */
+  --color-txt-muted: rgba(255, 255, 255, 0.75); /* Texte secondaire (Grisé 70%) */
+  --color-txt-dim: rgba(255, 255, 255, 0.55);  /* Texte discret (Grisé 40%) */
 
   --color-main-ecom: #a3e635; /*Couleur principal du ecommerce*/
   --color-accent-ecom: #34d399; /*Couleur secondaire du ecommerce*/
