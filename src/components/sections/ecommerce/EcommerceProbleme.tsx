@@ -63,7 +63,7 @@ export default function EcommerceProblem() {
                             <span 
                                 className="inline-block pb-1 pr-1"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)',
+                                    backgroundImage: 'linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom))',
                                     WebkitBackgroundClip: 'text',
                                     backgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',

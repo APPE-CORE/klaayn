@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { ArrowRight, Monitor, ShoppingBag, Cpu } from "lucide-react";
 
@@ -15,7 +14,7 @@ export default function Services() {
       icon: <Monitor size={40} strokeWidth={1.5} />,
       features: ["Design Immersif", "Motion & 3D", "Storytelling"],
       hoverStyle: "hover:border-[var(--color-brand)]/50 hover:bg-[var(--color-brand)]/5 active:border-[var(--color-brand)]/50 active:bg-[var(--color-brand)]/5",
-      gradient: "linear-gradient(to right, var(--color-brand), var(--color-action)",
+      gradient: "linear-gradient(to right, var(--color-brand), var(--color-action))",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-[var(--color-brand)] group-active:text-[var(--color-brand)]"
     },
     {
@@ -27,7 +26,7 @@ export default function Services() {
       icon: <ShoppingBag size={40} strokeWidth={1.5} />,
       features: ["Conversion Rate Opt.", "Paiement Rapide", "Scalabilité"],
       hoverStyle: "hover:border-lime-500/50 hover:bg-lime-500/5 active:border-lime-500/50 active:bg-lime-500/5",
-      gradient: "linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)",
+      gradient: "linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom))",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-lime-400 group-active:text-lime-400"
     },
     {
@@ -39,7 +38,7 @@ export default function Services() {
       icon: <Cpu size={40} strokeWidth={1.5} />,
       features: ["Chatbots IA", "Automatisation", "Data Analysis"],
       hoverStyle: "hover:border-yellow-400/50 hover:bg-yellow-400/5 active:border-yellow-400/50 active:bg-yellow-400/5",
-      gradient: "linear-gradient(to right, var(--color-main-ia), var(--color-accent-ia)",
+      gradient: "linear-gradient(to right, var(--color-main-ia), var(--color-accent-ia))",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-yellow-400 group-active:text-yellow-400"
     }
   ];
@@ -60,7 +59,7 @@ export default function Services() {
               Vecteurs de <span 
                 className="inline-block pb-1 pr-1"
                 style={{
-                    backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action)',
+                    backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',

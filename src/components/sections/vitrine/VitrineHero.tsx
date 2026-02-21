@@ -56,7 +56,7 @@ export default function VitrineHero() {
                       <span 
                           className="inline-block pb-1 pr-1"
                           style={{
-                              backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action)',
+                              backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
                               WebkitBackgroundClip: 'text',
                               backgroundClip: 'text',
                               WebkitTextFillColor: 'transparent',
