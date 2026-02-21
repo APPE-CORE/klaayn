@@ -74,10 +74,32 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-h2 text-[var(--color-txt-main)] mb-6"
+            className="text-h2 text-[var(--color-txt-main)] mb-6 whitespace-nowrap"
           >
-              Mécanique <span className="text-[var(--color-txt-dim)]">de Précision.</span>
+              Mécanique <span 
+                  className="inline-block pb-1 pr-1"
+                  style={{
+                      backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action), rgba(255, 255, 255, 0.5))',
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      color: 'transparent'
+                  }}
+              >
+                  de Précision.
+              </span>
           </motion.h2>
+
+          {/* AJOUT DU PARAGRAPHE ICI */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-body-large max-w-2xl text-[var(--color-txt-dim)]"
+          >
+              Nous ne laissons aucune place au hasard. Notre méthodologie est un protocole strict, conçu pour transformer votre vision en une infrastructure digitale dominante, étape par étape.
+          </motion.p>
       </div>
 
       {/* --- 2. LA TIMELINE --- */}

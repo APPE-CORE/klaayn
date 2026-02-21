@@ -36,7 +36,6 @@ export default function EcommerceProblem() {
             
             {/* 1. BACKGROUND (Thème Lime spécifique) */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] mix-blend-overlay"></div>
                 <div className="absolute top-0 right-1/4 w-[60vw] h-[60vw] bg-lime-500/5 blur-[150px] rounded-full mix-blend-screen opacity-20"></div>
             </div>
 
@@ -61,15 +60,10 @@ export default function EcommerceProblem() {
                         {/* Titre : Utilisation de .text-h2 */}
                         <h2 className="text-h2 leading-[1.05] tracking-tight text-[var(--color-txt-main)]">
                             L'amateurisme est <br/>
-                            {/* SAFARI PATCH (Version Lime/Emerald) :
-                                1. inline-block + pb-1 + pr-1
-                                2. Style inline pour le dégradé Lime -> Emerald -> Blanc
-                                3. Fin en BLANC SOLIDE (#ffffff)
-                            */}
                             <span 
                                 className="inline-block pb-1 pr-1"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, #a3e635, #34d399, #ffffff)', // Lime-400 -> Emerald-400 -> White
+                                    backgroundImage: 'linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)',
                                     WebkitBackgroundClip: 'text',
                                     backgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',

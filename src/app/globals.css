@@ -15,9 +15,15 @@
   --color-action-glow: rgba(255, 107, 0, 0.5); /* Lueur Orange */
 
   --color-txt-main: #ffffff;    /* Texte principal (Blanc pur) */
-  --color-txt-muted: rgba(255, 255, 255, 0.5); /* Texte secondaire (Grisé 50%) */
-  --color-txt-dim: rgba(255, 255, 255, 0.25);  /* Texte discret (Grisé 25%) */
-  
+  --color-txt-muted: rgba(255, 255, 255, 0.7); /* Texte secondaire (Grisé 70%) */
+  --color-txt-dim: rgba(255, 255, 255, 0.4);  /* Texte discret (Grisé 40%) */
+
+  --color-main-ecom: #a3e635; /*Couleur principal du ecommerce*/
+  --color-accent-ecom: #34d399; /*Couleur secondaire du ecommerce*/
+
+  --color-main-ia: #facc15; /*Couleur principal du ia*/
+  --color-accent-ia: #f59e0b; /*Couleur secondaire du ia*/
+
   --color-border: rgba(255, 255, 255, 0.08);   /* Bordures fines (8% d'opacité) */
 
   /* --- 2. FORMES --- */
@@ -60,7 +66,7 @@ body {
     font-weight: 500; 
     letter-spacing: -0.05em;
     line-height: 1;
-    /* Fluid Typography: 56px (Mobile) -> 112px (Desktop) */
+    /* Fluid Typography: 56x (Mobile) -> 112px (Desktop) */
     font-size: clamp(3rem, 8vw, 6rem); 
   }
 

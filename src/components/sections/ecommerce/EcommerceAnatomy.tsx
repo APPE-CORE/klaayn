@@ -19,11 +19,10 @@ export default function EcommerceAnatomy() {
                     
                     <h2 className="text-h2 mb-6 text-[var(--color-txt-main)]">
                         Thème Public vs. <br className="md:hidden" />
-                        {/* SAFARI PATCH : Inline Styles pour le dégradé Lime -> Emerald -> Blanc */}
                         <span 
                             className="inline-block pb-1 pr-1"
                             style={{
-                                backgroundImage: 'linear-gradient(to right, #a3e635, #10b981, #ffffff)', // Lime-400 -> Emerald-500 -> White
+                                backgroundImage: 'linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)',
                                 WebkitBackgroundClip: 'text',
                                 backgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',

@@ -75,19 +75,30 @@ export default function RoiSimulator() {
   );
 
   return (
-    <section className="relative w-full py-24 bg-[var(--color-void)] border-b border-[var(--color-border)] overflow-hidden">
+    <section className="relative w-full py-24 bg-[var(--color-contrast)]">
       
       {/* Fond Technique */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[size:24px_24px] opacity-20 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* HEADER SECTION */}
-        <div className="text-center pt-10 mb-8 max-w-2xl mx-auto">
-            <h2 className="text-display !text-[clamp(2.5rem,5vw,4rem)] mb-4 text-[var(--color-txt-main)]">
-                Simulateur de <span className="text-[var(--color-brand)]">Performance</span>
+        <div className="text-center pt-10 mb-8 max-w-2xl mx-auto flex flex-col items-center">
+            <h2 className="text-display font-medium !text-[clamp(1.5rem,4.5vw,4rem)] mb-4 text-[var(--color-txt-main)] whitespace-nowrap tracking-tight">
+                Simulateur de <span 
+                    className="inline-block pb-1 pr-1"
+                    style={{
+                        backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action)',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        color: 'transparent'
+                    }}
+                >
+                    Performance
+                </span>
             </h2>
-            <p className="text-body-large text-sm md:text-base">
+            <p className="text-body-large text-sm md:text-base text-[var(--color-txt-muted)]">
                 Impact financier estimé après optimisation de l'infrastructure & UX.
             </p>
         </div>
@@ -178,8 +189,8 @@ export default function RoiSimulator() {
                 <div className="flex-1 p-6 md:p-12 flex flex-col justify-center">
 
                     <div className="w-full mb-10">
-                        {/* En-têtes */}
-                        <div className="grid grid-cols-4 pb-4 border-b border-[var(--color-border)] text-[var(--color-txt-dim)]">
+                        {/* En-têtes : Optimisation grid mobile pour laisser plus de place au Label (1.4fr) */}
+                        <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-4 pb-4 border-b border-[var(--color-border)] text-[var(--color-txt-dim)] text-[10px] md:text-xs">
                             <div className="col-span-1 text-label-tech">KPI</div>
                             <div className="col-span-1 text-right text-label-tech">Actuel</div>
                             <div className="col-span-1 text-right text-label-tech text-[var(--color-txt-main)]">Cible</div>
@@ -187,16 +198,16 @@ export default function RoiSimulator() {
                         </div>
 
                         {/* Ligne 1 : Conversion */}
-                        <div className="grid grid-cols-4 py-4 border-b border-[var(--color-border)]/50 items-center text-sm">
-                            <div className="col-span-1 font-medium text-[var(--color-txt-muted)]">Taux Conversion</div>
+                        <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-4 py-4 border-b border-[var(--color-border)]/50 items-center text-[11px] md:text-sm">
+                            <div className="col-span-1 font-medium text-[var(--color-txt-muted)] truncate pr-2">Taux Conversion</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-muted)]">{conversion}%</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-main)]">{stats.newConversion.toFixed(1)}%</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-brand)]">+35%</div>
                         </div>
 
                         {/* Ligne 2 : Revenu Mensuel */}
-                        <div className="grid grid-cols-4 py-4 border-b border-[var(--color-border)]/50 items-center text-sm">
-                            <div className="col-span-1 font-medium text-[var(--color-txt-main)]">CA Mensuel</div>
+                        <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-4 py-4 border-b border-[var(--color-border)]/50 items-center text-[11px] md:text-sm">
+                            <div className="col-span-1 font-medium text-[var(--color-txt-main)] truncate pr-2">CA Mensuel</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-muted)]">
                                 <Money value={stats.currentMonthly} />
                             </div>
@@ -209,9 +220,9 @@ export default function RoiSimulator() {
                         </div>
 
                         {/* Ligne 3 : CA Annuel */}
-                        <div className="relative grid grid-cols-4 py-4 items-center text-sm bg-[var(--color-brand)]/5 -mx-2 px-2 md:mx-0 md:px-0 rounded md:rounded-none mt-2 md:mt-0 overflow-hidden">
+                        <div className="relative grid grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-4 py-4 items-center text-[11px] md:text-sm bg-[var(--color-brand)]/5 -mx-2 px-2 md:mx-0 md:px-0 rounded md:rounded-none mt-2 md:mt-0 overflow-hidden">
                             <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[var(--color-brand)]"></div>
-                            <div className="col-span-1 font-bold text-[var(--color-txt-main)] pl-3">
+                            <div className="col-span-1 font-bold text-[var(--color-txt-main)] pl-3 md:pl-4 truncate pr-2">
                                 CA Annuel
                             </div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-muted)]">
@@ -231,8 +242,8 @@ export default function RoiSimulator() {
                             <div className="text-label-tech text-[var(--color-txt-dim)] mb-1">
                                 Capital laissé à la concurrence
                             </div>
-                            {/* MISE À JOUR : Utilisation de MoneyFull pour forcer le chiffre entier sur tous les supports */}
-                            <div className="text-display !text-[clamp(2.5rem,5vw,3rem)] font-bold text-[var(--color-txt-main)] tracking-tight">
+                            {/* whitespace-nowrap pour sécuriser l'affichage sur mobile */}
+                            <div className="text-display !text-[clamp(2.2rem,5vw,3rem)] font-bold text-[var(--color-txt-main)] tracking-tight whitespace-nowrap">
                                 +<MoneyFull value={stats.gainYearly} />
                             </div>
                         </div>

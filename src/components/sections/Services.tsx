@@ -14,9 +14,8 @@ export default function Services() {
       href: "/vitrine",
       icon: <Monitor size={40} strokeWidth={1.5} />,
       features: ["Design Immersif", "Motion & 3D", "Storytelling"],
-      // Style : Brand (Orange/Purple) -> Orange -> White
       hoverStyle: "hover:border-[var(--color-brand)]/50 hover:bg-[var(--color-brand)]/5 active:border-[var(--color-brand)]/50 active:bg-[var(--color-brand)]/5",
-      titleGradient: "from-[var(--color-brand)] via-orange-400 to-white/50",
+      gradient: "linear-gradient(to right, var(--color-brand), var(--color-action)",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-[var(--color-brand)] group-active:text-[var(--color-brand)]"
     },
     {
@@ -27,9 +26,8 @@ export default function Services() {
       href: "/ecommerce",
       icon: <ShoppingBag size={40} strokeWidth={1.5} />,
       features: ["Conversion Rate Opt.", "Paiement Rapide", "Scalabilité"],
-      // Style : Lime -> Emerald -> White
       hoverStyle: "hover:border-lime-500/50 hover:bg-lime-500/5 active:border-lime-500/50 active:bg-lime-500/5",
-      titleGradient: "from-lime-400 via-emerald-400 to-white/50",
+      gradient: "linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-lime-400 group-active:text-lime-400"
     },
     {
@@ -40,9 +38,8 @@ export default function Services() {
       href: "/outils-ia",
       icon: <Cpu size={40} strokeWidth={1.5} />,
       features: ["Chatbots IA", "Automatisation", "Data Analysis"],
-      // Style : Yellow -> Amber -> White
       hoverStyle: "hover:border-yellow-400/50 hover:bg-yellow-400/5 active:border-yellow-400/50 active:bg-yellow-400/5",
-      titleGradient: "from-yellow-400 via-amber-500 to-white/50",
+      gradient: "linear-gradient(to right, var(--color-main-ia), var(--color-accent-ia)",
       iconColor: "text-[var(--color-txt-dim)] group-hover:text-yellow-400 group-active:text-yellow-400"
     }
   ];
@@ -51,29 +48,36 @@ export default function Services() {
     <section className="relative w-full py-24 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
       
       {/* Background Noise & Glow */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-      
-      {/* Glow central subtil */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--color-brand)]/5 blur-[120px] rounded-full pointer-events-none opacity-20"></div>
-
+      <div className="absolute inset-0 opacity-[100] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+     
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* 1. HEADER DE SECTION */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        {/* 1. HEADER DE SECTION (Abaissé avec mt-6, espace réduit avec mb-10) */}
+        <div className="flex flex-col md:flex-row justify-between items-end mt-6 mb-10 gap-8">
           <div className="max-w-2xl">
-            {/* Titre : Utilisation de .text-display mais clampé pour ne pas être trop gros ici */}
-            <h2 className="text-display font-medium text-[var(--color-txt-main)] mb-6 !text-[clamp(2.5rem,5vw,4rem)]">
-              Choisissez votre <br />
-              <span className="text-[var(--color-txt-dim)]">Vecteur de Croissance.</span>
+            {/* Titre : Sur une ligne, mots réduits, gradient Safari Patch */}
+            <h2 className="text-display font-medium text-[var(--color-txt-main)] mb-4 !text-[clamp(1.75rem,4vw,3.5rem)] whitespace-nowrap">
+              Vecteurs de <span 
+                className="inline-block pb-1 pr-1"
+                style={{
+                    backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    color: 'transparent'
+                }}
+              >
+                Croissance.
+              </span>
             </h2>
-            {/* Intro : .text-body-large */}
+            {/* Intro */}
             <p className="text-body-large text-[var(--color-txt-muted)]">
               Nous ne vendons pas de code. Nous vendons des résultats. <br className="hidden md:block"/>
               Sélectionnez l'infrastructure adaptée à votre ambition.
             </p>
           </div>
           
-          {/* Indicateur visuel : .text-label-tech */}
+          {/* Indicateur visuel */}
           <div className="hidden md:block pb-2">
             <span className="text-label-tech text-[var(--color-txt-dim)]">
               01 — Solutions
@@ -92,11 +96,11 @@ export default function Services() {
                 group relative flex flex-col justify-between p-8 md:p-10 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] 
                 transition-all duration-500 ease-out min-h-[420px] overflow-hidden
                 
-                /* EFFET MASSAGE (Focus PC) */
-                lg:group-hover/grid:blur-[2px] lg:group-hover/grid:opacity-40
+                /* EFFET MASSAGE CORRIGÉ */
+                lg:group-has-[:hover]/grid:blur-[2px] lg:group-has-[:hover]/grid:opacity-40
                 lg:hover:!blur-none lg:hover:!opacity-100 lg:hover:!scale-[1.02] lg:hover:z-10
                 
-                /* COULEURS DYNAMIQUES (Hover & Active/Touch) */
+                /* COULEURS DYNAMIQUES */
                 ${service.hoverStyle} hover:shadow-2xl active:scale-[0.98] lg:active:scale-[1.02]
               `}
             >
@@ -105,13 +109,10 @@ export default function Services() {
               <div>
                 {/* En-tête Carte : Icône Nue + Flèche */}
                 <div className="flex justify-between items-start mb-10">
-                  
-                  {/* Icône Service */}
                   <div className={`transition-colors duration-500 ${service.iconColor}`}>
                     {service.icon}
                   </div>
                   
-                  {/* Flèche "Nue" */}
                   <ArrowRight 
                     size={28} 
                     strokeWidth={1.5}
@@ -121,17 +122,34 @@ export default function Services() {
                    />
                 </div>
 
-                {/* Titre : Utilisation de .text-h3 (~36px) pour respecter le CSS tout en gardant l'impact */}
-                <h3 className={`text-h3 font-medium mb-2 tracking-tight transition-all duration-300 text-[var(--color-txt-main)] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-active:text-transparent group-active:bg-clip-text group-active:bg-gradient-to-r ${service.titleGradient}`}>
+                {/* Titre : Safari Patch Gradient en double calque (Base Blanche + Hover Dégradé) */}
+                <h3 className="text-h3 font-medium mb-2 tracking-tight relative">
+                  {/* Calque 1 : Texte Blanc Normal (disparaît au survol) */}
+                  <span className="transition-opacity duration-300 group-hover:opacity-0 group-active:opacity-0 text-[var(--color-txt-main)]">
                     {service.title}
+                  </span>
+                  
+                  {/* Calque 2 : Dégradé Safari Patch (apparaît au survol) */}
+                  <span
+                    className="absolute left-0 top-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-100 inline-block pb-1 pr-1"
+                    style={{
+                        backgroundImage: service.gradient,
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        color: 'transparent'
+                    }}
+                  >
+                    {service.title}
+                  </span>
                 </h3>
                 
-                {/* Sous-titre : .text-label-tech */}
+                {/* Sous-titre */}
                 <span className={`text-label-tech opacity-60 transition-colors duration-300 ${service.iconColor}`}>
                   {service.subtitle}
                 </span>
 
-                {/* Description : .text-body */}
+                {/* Description */}
                 <p className="mt-6 text-body text-[var(--color-txt-muted)] leading-relaxed">
                   {service.description}
                 </p>
@@ -142,7 +160,6 @@ export default function Services() {
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-[family-name:var(--font-inter)] text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-muted)] group-active:text-[var(--color-txt-muted)] transition-colors duration-300">
-                      {/* Petit point coloré */}
                       <div className={`w-1.5 h-1.5 rounded-full bg-[var(--color-border)] transition-colors duration-300 ${service.iconColor.replace('text-', 'bg-').replace('group-hover:', 'group-hover:bg-').replace('group-active:', 'group-active:bg-')}`}></div>
                       {feature}
                     </li>

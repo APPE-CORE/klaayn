@@ -9,11 +9,11 @@ export default function Home() {
   return (
     <main className="bg--color-void: min-h-screen">
       <Hero />
-      
-      <Services />
       <Metrics />
-      <Process/>
+      <Services />
       <Work  />
+      <Process/>
+      
       
     </main>
   );

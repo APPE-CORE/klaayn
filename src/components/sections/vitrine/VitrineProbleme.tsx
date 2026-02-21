@@ -36,7 +36,6 @@ export default function VitrineProbleme() {
             
             {/* 1. BACKGROUND */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] mix-blend-overlay"></div>
                 <div className="absolute top-0 right-1/4 w-[60vw] h-[60vw] bg-[var(--color-brand)]/5 blur-[150px] rounded-full mix-blend-screen opacity-20"></div>
             </div>
 
@@ -59,14 +58,11 @@ export default function VitrineProbleme() {
                         
                         <h2 className="text-h2 leading-[1.05] tracking-tight text-[var(--color-txt-main)]">
                             L'amateurisme est <br/>
-                            {/* MISE À JOUR : Réintégration de l'opacité 50%.
-                                On utilise 'rgba(255, 255, 255, 0.5)' au lieu de 'white/50'.
-                                Cela force Safari à interpoler vers du BLANC transparent, et non du NOIR transparent.
-                            */}
+                           
                             <span 
                                 className="inline-block pb-1 pr-1"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, var(--color-brand), #fb923c, rgba(255, 255, 255, 0.5))',
+                                    backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action)',
                                     WebkitBackgroundClip: 'text',
                                     backgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',

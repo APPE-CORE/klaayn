@@ -61,7 +61,7 @@ export default function EcommerceHero() {
                       <span 
                           className="inline-block pb-1 pr-1"
                           style={{
-                              backgroundImage: 'linear-gradient(to right, #a3e635, #34d399, rgba(255, 255, 255, 0.5))', // Lime-400 -> Emerald-400 -> White/50
+                              backgroundImage: 'linear-gradient(to right, var(--color-main-ecom), var(--color-accent-ecom)',
                               WebkitBackgroundClip: 'text',
                               backgroundClip: 'text',
                               WebkitTextFillColor: 'transparent',
