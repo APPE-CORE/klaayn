@@ -29,28 +29,24 @@ export default function Hero() {
             }} 
           />
 
-          {/* Aura Violette (Brand) */}
+          {/* Aura Violette (Brand) - PATCH PERFORMANCE */}
           <motion.div
             animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.25, 0.35, 0.25],
-              x: ["0%", "5%", "0%"],
-              y: ["0%", "-5%", "0%"]
+              scale: [1, 1.05, 1],
+              opacity: [0.25, 0.35, 0.25]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] md:top-[-20%] left-[-20%] md:left-[-10%] w-[120vw] h-[120vw] md:w-[60vw] md:h-[60vw] min-w-[300px] md:min-w-[500px] rounded-full bg-[var(--color-brand)] blur-[80px] md:blur-[150px] mix-blend-screen"
+            className="absolute top-[-10%] md:top-[-20%] left-[-20%] md:left-[-10%] w-[120vw] h-[120vw] md:w-[60vw] md:h-[60vw] min-w-[300px] md:min-w-[500px] rounded-full bg-[var(--color-brand)] blur-[80px] md:blur-[120px] will-change-transform [transform:translateZ(0)]"
           />
 
-          {/* Aura Orange (Action) */}
+          {/* Aura Orange (Action) - PATCH PERFORMANCE */}
           <motion.div
             animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.20, 0.25, 0.20],
-              x: ["0%", "-5%", "0%"],
-              y: ["0%", "5%", "0%"]
+              scale: [1, 1.05, 1],
+              opacity: [0.20, 0.25, 0.20]
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[-10%] md:bottom-[-20%] right-[-20%] md:right-[-10%] w-[130vw] h-[130vw] md:w-[70vw] md:h-[70vw] min-w-[300px] md:min-w-[600px] rounded-full bg-[var(--color-action)] blur-[80px] md:blur-[150px] mix-blend-screen"
+            className="absolute bottom-[-10%] md:bottom-[-20%] right-[-20%] md:right-[-10%] w-[130vw] h-[130vw] md:w-[70vw] md:h-[70vw] min-w-[300px] md:min-w-[600px] rounded-full bg-[var(--color-action)] blur-[80px] md:blur-[120px] will-change-transform [transform:translateZ(0)]"
           />
 
           {/* Vignette de focalisation */}
