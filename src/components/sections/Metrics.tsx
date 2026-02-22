@@ -189,7 +189,7 @@ export default function RoiSimulator() {
                 <div className="flex-1 p-6 md:p-12 flex flex-col justify-center">
 
                     <div className="w-full mb-10">
-                        {/* En-têtes : Optimisation grid mobile pour laisser plus de place au Label (1.4fr) */}
+                        {/* En-têtes */}
                         <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-4 pb-4 border-b border-[var(--color-border)] text-[var(--color-txt-dim)] text-[10px] md:text-xs">
                             <div className="col-span-1 text-label-tech">KPI</div>
                             <div className="col-span-1 text-right text-label-tech">Actuel</div>

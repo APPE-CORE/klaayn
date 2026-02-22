@@ -15,8 +15,9 @@
   --color-action-glow: rgba(255, 107, 0, 0.5); /* Lueur Orange */
 
   --color-txt-main: #ffffff;    /* Texte principal (Blanc pur) */
-  --color-txt-muted: rgba(255, 255, 255, 0.75); /* Texte secondaire (Grisé 70%) */
-  --color-txt-dim: rgba(255, 255, 255, 0.55);  /* Texte discret (Grisé 40%) */
+  --color-txt-muted: rgba(255, 255, 255, 0.75); /* Texte secondaire (Grisé 75%) */
+  --color-txt-dim: rgba(255, 255, 255, 0.55);  /* Texte discret (Grisé 55%) */
+  --color-txt-brand: #c678ff;   /* Violet lisible (WCAG 4.5:1+) */
 
   --color-main-ecom: #a3e635; /*Couleur principal du ecommerce*/
   --color-accent-ecom: #34d399; /*Couleur secondaire du ecommerce*/
@@ -39,6 +40,9 @@
   
   --color-btn-sec-bg: rgba(255, 255, 255, 0.05); /* Fond bouton secondaire */
   --color-btn-sec-border: rgba(255, 255, 255, 0.1); /* Bordure bouton secondaire */
+
+  /* FORCAGE DE LA POLICE MONO SUR OUTFIT */
+  --font-mono: var(--font-outfit), sans-serif;
 }
 
 /* Application des variables globales */
@@ -91,7 +95,7 @@ body {
     font-size: clamp(2rem, 5vw, 3.5rem);
   }
 
-  /* Titres Intermédiaires (H3 - Ajout nécessaire pour tes cartes services) */
+  /* Titres Intermédiaires (H3) */
   .text-h3 {
     font-family: var(--font-outfit), sans-serif;
     font-weight: 500;
@@ -101,7 +105,7 @@ body {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
   }
 
-  /* Titres Mineurs (H4 - Ajout nécessaire pour les détails) */
+  /* Titres Mineurs (H4) */
   .text-h4 {
     font-family: var(--font-outfit), sans-serif;
     font-weight: 500;
@@ -120,7 +124,7 @@ body {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
   }
 
-  /* Corps de texte Standard (AJOUT STRATÉGIQUE) */
+  /* Corps de texte Standard */
   .text-body {
     font-family: var(--font-inter), sans-serif;
     font-weight: 400;
@@ -129,7 +133,7 @@ body {
     font-size: 1rem; /* 16px standard */
   }
 
-  /* Petit texte (Footer/Mentions) (AJOUT STRATÉGIQUE) */
+  /* Petit texte (Footer/Mentions) */
   .text-body-sm {
     font-family: var(--font-inter), sans-serif;
     font-weight: 400;
@@ -139,17 +143,17 @@ body {
 
   /* Labels Techniques */
   .text-label-tech {
-    font-family: var(--font-jetbrains), monospace;
+    font-family: var(--font-outfit), sans-serif;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.08em;
     font-size: 0.75rem;
   }
   
   /* Labels Gras */
   .text-label-bold {
-    font-family: var(--font-jetbrains), monospace;
-    font-weight: 800;
+    font-family: var(--font-outfit), sans-serif;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.75rem;
