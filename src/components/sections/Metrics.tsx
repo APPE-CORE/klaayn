@@ -123,7 +123,7 @@ export default function RoiSimulator() {
                                 <label className="text-[var(--color-txt-main)] font-medium flex items-center gap-2">
                                     <Users size={14} className="text-[var(--color-txt-dim)]" /> Trafic / mois
                                 </label>
-                                <span className="font-mono text-[var(--color-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
+                                <span className="font-mono text-[var(--color-txt-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
                                     <NumberFmt value={traffic} />
                                 </span>
                             </div>
@@ -140,7 +140,7 @@ export default function RoiSimulator() {
                                 <label className="text-[var(--color-txt-main)] font-medium flex items-center gap-2">
                                     <MousePointerClick size={14} className="text-[var(--color-txt-dim)]" /> Taux Conversion
                                 </label>
-                                <span className="font-mono text-[var(--color-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
+                                <span className="font-mono text-[var(--color-txt-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
                                     {conversion}%
                                 </span>
                             </div>
@@ -157,7 +157,7 @@ export default function RoiSimulator() {
                                 <label className="text-[var(--color-txt-main)] font-medium flex items-center gap-2">
                                     <DollarSign size={14} className="text-[var(--color-txt-dim)]" /> Panier Moyen
                                 </label>
-                                <span className="font-mono text-[var(--color-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
+                                <span className="font-mono text-[var(--color-txt-brand)] bg-[var(--color-brand)]/10 px-2 py-0.5 rounded text-xs">
                                     {aov} €
                                 </span>
                             </div>
@@ -194,7 +194,7 @@ export default function RoiSimulator() {
                             <div className="col-span-1 text-label-tech">KPI</div>
                             <div className="col-span-1 text-right text-label-tech">Actuel</div>
                             <div className="col-span-1 text-right text-label-tech text-[var(--color-txt-main)]">Cible</div>
-                            <div className="col-span-1 text-right text-label-tech text-[var(--color-brand)]">Gain</div>
+                            <div className="col-span-1 text-right text-label-tech text-[var(--color-txt-brand)]">Gain</div>
                         </div>
 
                         {/* Ligne 1 : Conversion */}
@@ -202,7 +202,7 @@ export default function RoiSimulator() {
                             <div className="col-span-1 font-medium text-[var(--color-txt-muted)] truncate pr-2">Taux Conversion</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-muted)]">{conversion}%</div>
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-main)]">{stats.newConversion.toFixed(1)}%</div>
-                            <div className="col-span-1 text-right font-mono text-[var(--color-brand)]">+35%</div>
+                            <div className="col-span-1 text-right font-mono text-[var(--color-txt-brand)]">+35%</div>
                         </div>
 
                         {/* Ligne 2 : Revenu Mensuel */}
@@ -214,7 +214,7 @@ export default function RoiSimulator() {
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-main)]">
                                 <Money value={stats.projectedMonthly} />
                             </div>
-                            <div className="col-span-1 text-right font-mono text-[var(--color-brand)]">
+                            <div className="col-span-1 text-right font-mono text-[var(--color-txt-brand)]">
                                 +<Money value={stats.gainMonthly} />
                             </div>
                         </div>
@@ -231,7 +231,7 @@ export default function RoiSimulator() {
                             <div className="col-span-1 text-right font-mono text-[var(--color-txt-main)] font-bold">
                                 <Money value={stats.projectedYearly} />
                             </div>
-                            <div className="col-span-1 text-right font-mono text-[var(--color-brand)] font-bold">
+                            <div className="col-span-1 text-right font-mono text-[var(--color-txt-brand)] font-bold">
                                 +<Money value={stats.gainYearly} />
                             </div>
                         </div>
