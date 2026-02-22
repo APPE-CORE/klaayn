@@ -84,21 +84,22 @@ export default function RoiSimulator() {
 
         {/* HEADER SECTION */}
         <div className="text-center pt-10 mb-8 max-w-2xl mx-auto flex flex-col items-center">
-            <h2 className="text-display font-medium !text-[clamp(1.5rem,4.5vw,4rem)] mb-4 text-[var(--color-txt-main)] whitespace-nowrap tracking-tight">
+            {/* CORRECTION : Utilisation pure de .text-h2 sans clamp forcé ni whitespace-nowrap */}
+            <h2 className="text-h2 mb-4 text-[var(--color-txt-main)]">
                 Simulateur de <span 
-                    className="inline-block pb-1 pr-1"
-                    style={{
-                        backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
-                        WebkitBackgroundClip: 'text',
-                        backgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        color: 'transparent'
-                    }}
-                >
-                    Performance
+                className="inline-block pb-1 pr-1"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent'
+                }}
+              >
+                Performance
                 </span>
             </h2>
-            <p className="text-body-large text-sm md:text-base text-[var(--color-txt-muted)]">
+            <p className="text-body-large text-[var(--color-txt-muted)]">
                 Impact financier estimé après optimisation de l'infrastructure & UX.
             </p>
         </div>
@@ -110,7 +111,7 @@ export default function RoiSimulator() {
             <div className="w-full lg:w-[35%] bg-[var(--color-surface)]/30 border-b lg:border-b-0 lg:border-r border-[var(--color-border)] flex flex-col">
                 
                 <div className="h-12 border-b border-[var(--color-border)] flex items-center justify-center bg-[var(--color-surface)]/10">
-                    <span className="text-label-tech text-[var(--color-txt-dim)] font-bold">
+                    <span className="text-label-bold text-[var(--color-txt-dim)]">
                         Vous actuellement :
                     </span>
                 </div>
@@ -181,7 +182,7 @@ export default function RoiSimulator() {
             <div className="w-full lg:w-[65%] bg-[var(--color-void)] flex flex-col">
                 
                 <div className="h-12 border-b border-[var(--color-border)] flex items-center justify-center bg-[var(--color-surface)]/10">
-                    <span className="text-label-tech text-[var(--color-txt-dim)] font-bold">
+                    <span className="text-label-bold text-[var(--color-txt-dim)]">
                         Analyse d'Opportunité
                     </span>
                 </div>
@@ -239,11 +240,10 @@ export default function RoiSimulator() {
 
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 pt-6 border-t border-[var(--color-border)] border-dashed">
                         <div className="text-center md:text-left">
-                            <div className="text-label-tech text-[var(--color-txt-dim)] mb-1">
+                            <div className="text-label-bold text-[var(--color-txt-dim)] mb-1">
                                 Capital laissé à la concurrence
                             </div>
-                            {/* whitespace-nowrap pour sécuriser l'affichage sur mobile */}
-                            <div className="text-display !text-[clamp(2.2rem,5vw,3rem)] font-bold text-[var(--color-txt-main)] tracking-tight whitespace-nowrap">
+                            <div className="text-display !text-[clamp(2.2rem,5vw,3rem)] text-[var(--color-txt-main)] whitespace-nowrap">
                                 +<MoneyFull value={stats.gainYearly} />
                             </div>
                         </div>

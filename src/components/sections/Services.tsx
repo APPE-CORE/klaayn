@@ -45,43 +45,40 @@ export default function Services() {
 
   return (
     <section className="relative w-full py-24 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
-      
-      {/* Background Noise & Glow */}
-      <div className="absolute inset-0 opacity-[100] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* 1. HEADER DE SECTION (Abaissé avec mt-6, espace réduit avec mb-10) */}
-        <div className="flex flex-col md:flex-row justify-between items-end mt-6 mb-10 gap-8">
-          <div className="max-w-2xl">
-            {/* Titre : Sur une ligne, mots réduits, gradient Safari Patch */}
-            <h2 className="text-display font-medium text-[var(--color-txt-main)] mb-4 !text-[clamp(1.75rem,4vw,3.5rem)] whitespace-nowrap">
-              Vecteurs de <span 
-                className="inline-block pb-1 pr-1"
-                style={{
-                    backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
-                    WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    color: 'transparent'
-                }}
-              >
-                Croissance.
-              </span>
-            </h2>
-            {/* Intro */}
-            <p className="text-body-large text-[var(--color-txt-muted)]">
-              Nous ne vendons pas de code. Nous vendons des résultats. <br className="hidden md:block"/>
-              Sélectionnez l'infrastructure adaptée à votre ambition.
-            </p>
-          </div>
+        {/* 1. HEADER DE SECTION (Centré) */}
+        <div className="flex flex-col items-center text-center mt-6 mb-16 mx-auto max-w-3xl gap-4">
           
           {/* Indicateur visuel */}
-          <div className="hidden md:block pb-2">
+          <div className="mb-2">
             <span className="text-label-tech text-[var(--color-txt-dim)]">
               01 — Solutions
             </span>
           </div>
+
+          {/* Titre : Utilisation pure de .text-h2 */}
+          <h2 className="text-h2 text-[var(--color-txt-main)] mb-2">
+            Vecteurs de <span 
+                className="inline-block pb-1 pr-1"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent'
+                }}
+              >
+                Croissance
+            </span>
+          </h2>
+          
+          {/* Intro */}
+          <p className="text-body-large text-[var(--color-txt-muted)] max-w-2xl mx-auto">
+            Nous ne vendons pas de code. Nous vendons des résultats. <br className="hidden md:block"/>
+            Sélectionnez l'infrastructure adaptée à votre ambition.
+          </p>
         </div>
 
         {/* 2. GRILLE "TRIAD" */}
@@ -106,7 +103,6 @@ export default function Services() {
               
               {/* Contenu Haut */}
               <div>
-                {/* En-tête Carte : Icône Nue + Flèche */}
                 <div className="flex justify-between items-start mb-10">
                   <div className={`transition-colors duration-500 ${service.iconColor}`}>
                     {service.icon}
@@ -121,14 +117,11 @@ export default function Services() {
                    />
                 </div>
 
-                {/* Titre : Safari Patch Gradient en double calque (Base Blanche + Hover Dégradé) */}
-                <h3 className="text-h3 font-medium mb-2 tracking-tight relative">
-                  {/* Calque 1 : Texte Blanc Normal (disparaît au survol) */}
+                <h3 className="text-h3 mb-2 relative">
                   <span className="transition-opacity duration-300 group-hover:opacity-0 group-active:opacity-0 text-[var(--color-txt-main)]">
                     {service.title}
                   </span>
                   
-                  {/* Calque 2 : Dégradé Safari Patch (apparaît au survol) */}
                   <span
                     className="absolute left-0 top-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-100 inline-block pb-1 pr-1"
                     style={{
@@ -143,12 +136,10 @@ export default function Services() {
                   </span>
                 </h3>
                 
-                {/* Sous-titre */}
                 <span className={`text-label-tech opacity-60 transition-colors duration-300 ${service.iconColor}`}>
                   {service.subtitle}
                 </span>
 
-                {/* Description */}
                 <p className="mt-6 text-body text-[var(--color-txt-muted)] leading-relaxed">
                   {service.description}
                 </p>
@@ -158,7 +149,7 @@ export default function Services() {
               <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-[family-name:var(--font-inter)] text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-muted)] group-active:text-[var(--color-txt-muted)] transition-colors duration-300">
+                    <li key={i} className="flex items-center gap-3 text-body-sm group-hover:text-[var(--color-txt-muted)] group-active:text-[var(--color-txt-muted)] transition-colors duration-300">
                       <div className={`w-1.5 h-1.5 rounded-full bg-[var(--color-border)] transition-colors duration-300 ${service.iconColor.replace('text-', 'bg-').replace('group-hover:', 'group-hover:bg-').replace('group-active:', 'group-active:bg-')}`}></div>
                       {feature}
                     </li>

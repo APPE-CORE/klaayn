@@ -54,7 +54,7 @@ export default function Process() {
   return (
     <section ref={containerRef} className="relative w-full py-24 md:py-32 bg-[var(--color-void)] overflow-hidden">
       
-      {/* FOND : Grille technique */}
+      {/* FOND : Grille technique (Léger, 100% CSS, aucun grain externe) */}
       <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '60px 60px' }}></div>
       
       {/* --- 1. INTRODUCTION --- */}
@@ -69,28 +69,29 @@ export default function Process() {
               <span className="text-label-tech text-[var(--color-brand)]">SYSTEM PROTOCOL</span>
           </motion.div>
           
+          {/* NETTOYAGE : Suppression de whitespace-nowrap pour éviter la casse sur mobile */}
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-h2 text-[var(--color-txt-main)] mb-6 whitespace-nowrap"
+            className="text-h2 text-[var(--color-txt-main)] mb-6"
           >
-              Mécanique <span 
+              Mécanique <br className="md:hidden" />
+              <span 
                   className="inline-block pb-1 pr-1"
                   style={{
-                      backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action), rgba(255, 255, 255, 0.5))',
+                      backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       color: 'transparent'
                   }}
               >
-                  de Précision.
+                  de Précision
               </span>
           </motion.h2>
 
-          {/* AJOUT DU PARAGRAPHE ICI */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -129,6 +130,7 @@ export default function Process() {
   );
 }
 
+// Sous-composant conservé à l'identique (non utilisé dans l'immédiat mais typographié correctement)
 function BentoCard({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) {
     return (
         <div className="group relative w-full p-8 md:p-10 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] overflow-hidden transition-all duration-500
@@ -174,7 +176,8 @@ function StepCard({ step, index, total, progress }: { step: any, index: number, 
                     }}
                     className="flex items-center justify-center w-10 h-10 bg-[var(--color-void)] border-[2px] rounded-full transition-colors duration-200"
                 >
-                    <span className="text-[10px] font-mono font-bold text-[var(--color-txt-dim)]">
+                    {/* NETTOYAGE : Utilisation de .text-label-bold au lieu des classes font en dur */}
+                    <span className="text-label-bold text-[var(--color-txt-dim)]">
                         0{index + 1}
                     </span>
                 </motion.div>

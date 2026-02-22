@@ -56,8 +56,8 @@ export default function Header() {
             : "border-transparent text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:bg-[var(--color-btn-sec-bg)] hover:border-[var(--color-border)]"
         } group overflow-hidden cursor-pointer`}>
             {/* Shimmer Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            <span className="relative z-10 font-[family-name:var(--font-inter)] tracking-wide">{label}</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-txt-main)]/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            <span className="relative z-10 tracking-wide">{label}</span>
         </div>
       </Link>
     );
@@ -72,12 +72,22 @@ export default function Header() {
         }`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 
-                {/* LOGO */}
-                <Link href="/" className="flex items-center gap-2 group z-50" aria-label="Retour à l'accueil Klaayn">
+                {/* LOGO avec scroll fluide sur l'accueil */}
+                <Link 
+                    href="/" 
+                    onClick={(e) => {
+                        if (pathname === "/") {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                    }}
+                    className="flex items-center gap-2 group z-50" 
+                    aria-label="Retour à l'accueil Klaayn"
+                >
                     <div className="text-[var(--color-txt-main)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                         <Terminal size={22} strokeWidth={2.5}/>
                     </div>
-                    <span className="text-xl font-[family-name:var(--font-outfit)] font-bold tracking-tighter text-[var(--color-txt-main)]">KLAAYN.</span>
+                    <span className="text-xl font-mono font-bold tracking-tighter text-[var(--color-txt-main)]">KLAAYN.</span>
                 </Link>
 
                 {/* MENU DESKTOP (Centré) */}
@@ -103,7 +113,7 @@ export default function Header() {
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-txt-main)]/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700"></div>
                         <span className="relative z-10 text-[var(--color-txt-main)]">
                             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </span>
@@ -120,7 +130,6 @@ export default function Header() {
                     initial="hidden" 
                     animate="visible" 
                     exit="exit" 
-                    // Fond Void 40% + Backdrop Blur fort
                     className="fixed inset-0 z-[40] bg-[var(--color-void)]/40 backdrop-blur-3xl flex flex-col md:hidden"
                 >
                     {/* Effet lumineux Action */}
@@ -136,9 +145,8 @@ export default function Header() {
                                         className="group relative flex items-center justify-between border-b border-[var(--color-border)] py-8 px-2 transition-all duration-300 hover:bg-[var(--color-txt-main)]/5 active:bg-[var(--color-txt-main)]/10 active:border-[var(--color-txt-main)]/20"
                                     >
                                         <div className="flex items-baseline gap-4">
-                                            <span className="text-label-tech text-[var(--color-action)]/70 group-hover:text-[var(--color-action)]">0{index + 1}</span>
-                                            {/* Titre Menu Mobile : Utilisation de Outfit (Font Display) */}
-                                            <span className="text-3xl sm:text-4xl font-[family-name:var(--font-outfit)] font-bold text-[var(--color-txt-main)] group-hover:text-[var(--color-action)] transition-colors duration-300">
+                                            <span className="text-label-bold text-[var(--color-action)]/70 group-hover:text-[var(--color-action)]">0{index + 1}</span>
+                                            <span className="text-h2 text-[var(--color-txt-main)] group-hover:text-[var(--color-action)] transition-colors duration-300">
                                                 {link.label}
                                             </span>
                                         </div>
@@ -157,7 +165,7 @@ export default function Header() {
                         <div className="flex justify-between items-center">
                              <div className="flex flex-col gap-1">
                                 <span className="text-label-tech text-[var(--color-txt-dim)]">Contact</span>
-                                <a href="mailto:contact@klaayn.com" className="text-base font-bold font-[family-name:var(--font-inter)] text-[var(--color-txt-main)] hover:text-[var(--color-action)] transition-colors">contact@klaayn.com</a>
+                                <a href="mailto:contact@klaayn.com" className="text-body-large font-bold text-[var(--color-txt-main)] hover:text-[var(--color-action)] transition-colors">contact@klaayn.com</a>
                              </div>
                              <div className="flex gap-4">
                                 <div className="p-3 rounded-full bg-[var(--color-txt-main)]/5 border border-[var(--color-border)]">
