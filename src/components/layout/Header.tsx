@@ -41,6 +41,7 @@ export default function Header() {
     { href: "/vitrine", label: "Vitrine" },
     { href: "/ecommerce", label: "E-commerce" },
     { href: "/agence", label: "Agence" },
+    { href: "/blog", label: "Blog" },
   ];
 
   // Composant interne optimisé
