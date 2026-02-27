@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Pourquoi 95 % des sites échouent à convertir ? Découvrez pourquoi le web design dépasse la question de goût pour devenir une véritable architecture de conversion.",
   openGraph: {
     title: "Web design expert : illusionniste ou architecte de ventes ?",
-    description: "Le design de votre site doit aller au-delà de la séduction. Il doit orienter, rassurer, structurer et transformer.",
+    description: "L'interface de votre site doit aller au-delà de la séduction. Elle doit orienter, rassurer, structurer et transformer.",
     type: "article",
   },
 };
@@ -47,13 +47,13 @@ export default function WebDesignArticle() {
                 Le trafic existait. Les visiteurs arrivaient. Puis ils repartaient, silencieusement, comme on quitte une pièce trop belle pour être habitée.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                C’est là que j’ai compris que le web design constituait peut-être le plus grand malentendu du numérique. On le confond souvent avec l’esthétique. On le réduit à une question de goût. On l’habille de tendances. Mais on oublie qu’un site internet représente un outil stratégique, bien loin d'un simple portfolio artistique. En effet, un outil mal pensé peut coûter très cher.
+                C’est là que j’ai compris que la conception d'interface constituait peut-être le plus grand malentendu du numérique. On la confond souvent avec l’esthétique. On la réduit à une question de goût. On l’habille de tendances. Mais on oublie qu’un site internet représente un outil stratégique, bien loin d'un simple portfolio artistique. En effet, un outil mal pensé peut coûter très cher.
               </p>
               
               {/* Citation clé mise en avant */}
               <div className="p-8 my-10 border-l-4 border-[var(--color-brand)] bg-[var(--color-brand)]/5 rounded-r-lg">
                 <p className="text-xl font-semibold text-foreground m-0 leading-relaxed">
-                  Pourquoi 95 % des sites échouent-ils à convertir ? Pourquoi tant d’entreprises investissent-elles dans leur image sans jamais optimiser leur performance ? C'est parce que le web design doit dépasser la simple séduction. Il doit également orienter, rassurer, structurer et transformer. Autrement dit, il doit vendre.
+                  Pourquoi 95 % des sites échouent-ils à convertir ? Pourquoi tant d’entreprises investissent-elles dans leur image sans jamais optimiser leur performance ? C'est parce que l'ergonomie visuelle doit dépasser la simple séduction. Elle doit également orienter, rassurer, structurer et transformer. Autrement dit, elle doit vendre.
                 </p>
               </div>
             </section>
@@ -62,8 +62,8 @@ export default function WebDesignArticle() {
             <figure className="my-16 relative aspect-[21/9] w-full overflow-hidden rounded-xl bg-[#0a0a0a] border border-white/5 shadow-2xl">
               <Image 
                 src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2000&auto=format&fit=crop" 
-                alt="Conception stratégique et web design pour l'optimisation de l'expérience utilisateur"
-                title="Wireframing et stratégie de web design"
+                alt="Conception stratégique et ergonomie pour l'optimisation de l'expérience utilisateur"
+                title="Wireframing et stratégie d'interface"
                 fill
                 className="object-cover"
                 priority
@@ -76,13 +76,13 @@ export default function WebDesignArticle() {
                 Le malentendu autour du web design
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Le web design est souvent perçu comme une couche superficielle : couleurs, typographies, animations. Or, sa fonction réelle s'avère beaucoup plus profonde. Il organise l’information, hiérarchise les priorités et crée un parcours invisible. Par conséquent, une bonne architecture visuelle s'impose sans se faire remarquer immédiatement : elle se ressent. Elle donne l’impression que tout devient simple, évident et fluide.
+                L'apparence d'un site est souvent perçue comme une couche superficielle : couleurs, typographies, animations. Or, sa fonction réelle s'avère beaucoup plus profonde. Elle organise l’information, hiérarchise les priorités et crée un parcours invisible. Par conséquent, une bonne architecture visuelle s'impose sans se faire remarquer immédiatement : elle se ressent. Elle donne l’impression que tout devient simple, évident et fluide.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                D'ailleurs, la première question qu’un expert en web design se pose s'éloigne de la pure esthétique pour viser l'action : “Qu’est-ce que l’utilisateur doit faire ici ?”. Acheter ? Réserver ? Télécharger ? Demander un devis ? Si cette action manque de limpidité en quelques secondes, la plateforme perd déjà en efficacité.
+                D'ailleurs, la première question qu’un architecte digital se pose s'éloigne de la pure esthétique pour viser l'action : “Qu’est-ce que l’utilisateur doit faire ici ?”. Acheter ? Réserver ? Télécharger ? Demander un devis ? Si cette action manque de limpidité en quelques secondes, la plateforme perd déjà en efficacité.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Ainsi, un web design performant agit comme un guide discret. Il conduit l’œil vers les éléments stratégiques et met en valeur la proposition de valeur. De plus, il réduit la charge mentale de l'utilisateur. Là où certains voient un simple décor, un expert voit une véritable architecture de conversion.
+                Ainsi, une interface performante agit comme un guide discret. Elle conduit l’œil vers les éléments stratégiques et met en valeur la proposition de valeur. De plus, elle réduit la charge mentale de l'utilisateur. Là où certains voient un simple décor, un expert voit une véritable architecture de conversion.
               </p>
             </section>
 
@@ -99,7 +99,7 @@ export default function WebDesignArticle() {
                   <span className="text-[var(--color-brand)] font-bold text-xl shrink-0 mt-1">01.</span>
                   <p className="text-lg text-muted-foreground leading-relaxed m-0">
                     <strong className="text-foreground font-medium block mb-2 text-xl">Ils parlent trop d'eux-mêmes</strong>
-                    “Notre histoire”, “Notre vision”, “Nos valeurs”. Tout cela a du sens, toutefois, l’utilisateur arrive avec un besoin précis. Il cherche une solution, pas une autobiographie. Un web design efficace place donc le problème du client au centre et construit le discours autour de lui.
+                    “Notre histoire”, “Notre vision”, “Nos valeurs”. Tout cela a du sens, toutefois, l’utilisateur arrive avec un besoin précis. Il cherche une solution, pas une autobiographie. Une création numérique efficace place donc le problème du client au centre et construit le discours autour de lui.
                   </p>
                 </li>
                 <li className="flex gap-6 items-start">
@@ -123,8 +123,8 @@ export default function WebDesignArticle() {
             <figure className="my-16 relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-[#0a0a0a] border border-white/5 shadow-2xl">
               <Image 
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop" 
-                alt="Analyse de données et web design orienté conversion" 
-                title="Performance et analyse web design"
+                alt="Analyse de données et architecture orientée conversion" 
+                title="Performance et analyse visuelle"
                 fill
                 className="object-cover"
               />
@@ -133,29 +133,29 @@ export default function WebDesignArticle() {
             {/* Section 3 */}
             <section className="mb-16">
               <h2 className="text-3xl font-bold text-foreground tracking-tight mb-8">
-                Ce qu’un expert en web design fait différemment
+                Ce qu’un spécialiste en conversion fait différemment
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Un stratège refuse de commencer par dessiner. Au contraire, il commence par comprendre. Qui est la cible ? Quel est son niveau de maturité ? Quelles sont ses objections ? Le design devient alors la traduction visuelle d’une stratégie marketing globale.
+                Un stratège refuse de commencer par dessiner. Au contraire, il commence par comprendre. Qui est la cible ? Quel est son niveau de maturité ? Quelles sont ses objections ? La création visuelle devient alors la traduction graphique d’une stratégie marketing globale.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 Il structure le parcours comme un entonnoir : attirer, capter l’attention, instaurer la confiance, puis déclencher l’action. Chaque section a une fonction précise. Chaque élément a une justification. Par exemple, les témoignages obéissent à un placement calculé et les appels à l’action se répètent de manière mathématique.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Par ailleurs, un véritable professionnel travaille en lien étroit avec le référencement naturel. La hiérarchisation des titres et la performance technique influencent directement le positionnement. Comme l'indique <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" target="_blank" rel="noopener noreferrer" className="text-[var(--color-txt-brand)] font-medium underline decoration-[var(--color-brand)]/50 underline-offset-4 hover:decoration-[var(--color-brand)] transition-colors">Google dans ses recommandations</a>, l'algorithme valorise désormais les sites fluides et pertinents.
+                Par ailleurs, un véritable professionnel travaille en lien étroit avec le référencement naturel. La hiérarchisation des titres et la performance technique influencent directement le positionnement. Comme l'indique <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" target="_blank" rel="noopener noreferrer" className="text-[var(--color-txt-brand)] font-medium underline decoration-[var(--color-brand)]/50 underline-offset-4 hover:decoration-[var(--color-brand)] transition-colors">Google dans ses recommandations</a>, l'algorithme valorise désormais les plateformes fluides et pertinentes.
               </p>
             </section>
 
             {/* Section 4 */}
             <section className="mb-16">
               <h2 className="text-3xl font-bold text-foreground tracking-tight mb-8">
-                Web design et performance : un levier sous-estimé
+                Conception et performance : un levier sous-estimé
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Investir dans le web design représente un véritable investissement en performance, bien loin d'une simple dépense cosmétique. Un site optimisé peut augmenter significativement le taux de conversion et renforcer la crédibilité d’une marque.
+                Investir dans la structuration visuelle représente un véritable investissement en performance, bien loin d'une simple dépense cosmétique. Une plateforme optimisée peut augmenter significativement le taux de conversion et renforcer la crédibilité d’une marque.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                À l’inverse, une mauvaise conception agit comme une fuite invisible. Le trafic existe, mais il s’évapore. On accuse alors le marché ou la concurrence, alors que la structure même du site freine la transformation.
+                À l’inverse, une mauvaise architecture agit comme une fuite invisible. Le trafic existe, mais il s’évapore. On accuse alors le marché ou la concurrence, alors que la structure même du produit freine la transformation.
               </p>
             </section>
 
@@ -165,10 +165,10 @@ export default function WebDesignArticle() {
                 Conclusion
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                En résumé, le design de votre site peut agir comme une vitrine séduisante ou comme un moteur de croissance. La différence réside dans l’intention qui le sous-tend. Concevoir une présence en ligne uniquement pour l'esthétique revient à construire une boutique splendide sans penser au parcours du client à l'intérieur.
+                En résumé, l'interface de votre vitrine peut agir comme une coquille séduisante ou comme un moteur de croissance. La différence réside dans l’intention qui la sous-tend. Concevoir une présence en ligne uniquement pour l'esthétique revient à construire une boutique splendide sans penser au parcours du client à l'intérieur.
               </p>
               <p className="text-xl font-medium text-foreground leading-relaxed mt-10 border-l-4 border-[var(--color-brand)] pl-6 py-2">
-                Un expert en développement va au-delà de la création d'un univers visuel ; il construit une expérience orientée vers la conversion. Finalement, dans un environnement numérique saturé, cette différence dépasse le cadre esthétique : elle s'avère purement économique.
+                Un expert en web design va au-delà de la création d'un univers visuel ; il construit une expérience orientée vers la conversion. Finalement, dans un environnement numérique saturé, cette différence dépasse le cadre esthétique : elle s'avère purement économique.
               </p>
             </section>
 
@@ -178,7 +178,7 @@ export default function WebDesignArticle() {
                 Arrêtez de payer pour de l'esthétique.
               </h3>
               <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-                Transformez votre site en une véritable architecture de conversion. Concevons un site où chaque pixel sert vos ventes.
+                Transformez votre site en une véritable architecture de conversion. Concevons une interface où chaque pixel sert vos ventes.
               </p>
               <Link 
                 href="/contact" 
