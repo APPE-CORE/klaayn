@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Pourquoi 95 % des sites échouent à convertir ? Découvrez pourquoi le web design dépasse la question de goût pour devenir une véritable architecture de conversion.",
   openGraph: {
     title: "Web design expert : illusionniste ou architecte de ventes ?",
-    description: "Le web design de votre site doit aller au-delà de la séduction. Il doit orienter, rassurer, structurer et transformer.",
+    description: "Le design de votre site doit aller au-delà de la séduction. Il doit orienter, rassurer, structurer et transformer.",
     type: "article",
   },
 };
@@ -136,7 +136,7 @@ export default function WebDesignArticle() {
                 Ce qu’un expert en web design fait différemment
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Un stratège refuse de commencer par dessiner. Au contraire, il commence par comprendre. Qui est la cible ? Quel est son niveau de maturité ? Quelles sont ses objections ? Le web design devient alors la traduction visuelle d’une stratégie marketing globale.
+                Un stratège refuse de commencer par dessiner. Au contraire, il commence par comprendre. Qui est la cible ? Quel est son niveau de maturité ? Quelles sont ses objections ? Le design devient alors la traduction visuelle d’une stratégie marketing globale.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 Il structure le parcours comme un entonnoir : attirer, capter l’attention, instaurer la confiance, puis déclencher l’action. Chaque section a une fonction précise. Chaque élément a une justification. Par exemple, les témoignages obéissent à un placement calculé et les appels à l’action se répètent de manière mathématique.
@@ -168,7 +168,7 @@ export default function WebDesignArticle() {
                 En résumé, le design de votre site peut agir comme une vitrine séduisante ou comme un moteur de croissance. La différence réside dans l’intention qui le sous-tend. Concevoir une présence en ligne uniquement pour l'esthétique revient à construire une boutique splendide sans penser au parcours du client à l'intérieur.
               </p>
               <p className="text-xl font-medium text-foreground leading-relaxed mt-10 border-l-4 border-[var(--color-brand)] pl-6 py-2">
-                Un expert en web design va au-delà de la création d'un univers visuel ; il construit une expérience orientée vers la conversion. Finalement, dans un environnement numérique saturé, cette différence dépasse le cadre esthétique : elle s'avère purement économique.
+                Un expert en développement va au-delà de la création d'un univers visuel ; il construit une expérience orientée vers la conversion. Finalement, dans un environnement numérique saturé, cette différence dépasse le cadre esthétique : elle s'avère purement économique.
               </p>
             </section>
 
@@ -178,7 +178,7 @@ export default function WebDesignArticle() {
                 Arrêtez de payer pour de l'esthétique.
               </h3>
               <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-                Transformez votre site en une véritable architecture de conversion. Concevons un web design où chaque pixel sert vos ventes.
+                Transformez votre site en une véritable architecture de conversion. Concevons un site où chaque pixel sert vos ventes.
               </p>
               <Link 
                 href="/contact" 
