@@ -9,7 +9,7 @@ export default function Footer() {
   const serviceLinks = [
     { name: "Site Vitrine", href: "/vitrine" },
     { name: "E-commerce", href: "/ecommerce" },
-    { name: "Outils IA", href: "/outils-ia" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const agencyLinks = [

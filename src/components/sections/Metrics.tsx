@@ -241,7 +241,7 @@ export default function RoiSimulator() {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 pt-6 border-t border-[var(--color-border)] border-dashed">
                         <div className="text-center md:text-left">
                             <div className="text-label-bold text-[var(--color-txt-dim)] mb-1">
-                                Capital laissé à la concurrence
+                                Vous laisser à vos concurrents / an :
                             </div>
                             <div className="text-display !text-[clamp(2.2rem,5vw,3rem)] text-[var(--color-txt-main)] whitespace-nowrap">
                                 +<MoneyFull value={stats.gainYearly} />
