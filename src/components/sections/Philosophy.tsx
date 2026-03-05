@@ -1,108 +1,169 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function Philosophy() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+// --- STRUCTURE DE DONNÉES (Maîtrise Typographique & Copywriting Équilibré) ---
+// Note : L'utilisation de \u00A0 (espace insécable) empêche le navigateur de couper la ligne au milieu d'un groupe de mots important.
+const PARAGRAPHS = [
+  [
+    { text: "Un site internet ", type: "normal" },
+    { text: "n'est pas une simple décoration. ", type: "muted" },
+    { text: "C'est votre principal ", type: "normal" },
+    { text: "levier\u00A0de\u00A0croissance. ", type: "growth" },
+    { text: "S'il ne vend pas, c'est une ", type: "normal" },
+    { text: "perte\u00A0d'argent.", type: "pain" },
+  ],
+  [
+    { text: "L'attention de vos visiteurs ", type: "normal" },
+    { text: "est\u00A0précieuse. ", type: "brand" },
+    { text: "Un parcours ", type: "normal" },
+    { text: "fluide\u00A0et\u00A0intuitif ", type: "growth" },
+    { text: "retient leur intérêt. ", type: "normal" },
+    { text: "Une interface confuse ", type: "normal" },
+    { text: "expédie\u00A0vos\u00A0clients ", type: "normal" },
+    { text: "chez\u00A0vos\u00A0concurrents.", type: "pain" },
+  ],
+  [
+    { text: "Nous concevons des plateformes ", type: "normal" },
+    { text: "sur-mesure, ", type: "brand" },
+    { text: "rapides\u00A0et\u00A0évidentes. ", type: "brand" },
+    { text: "break", type: "break" }, // Déclenche un saut de ligne espacé
+    { text: "Notre\u00A0seule\u00A0mission\u00A0: ", type: "muted" },
+    { text: "augmenter\u00A0vos\u00A0ventes.", type: "growth" },
+  ]
+];
 
-  // Détection Mobile
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+// --- COMPOSANT CHUNK (Le Moteur Optique) ---
+function Chunk({ chunk, progress, range }: { chunk: { text: string; type: string }; progress: any; range: [number, number] }) {
+  // Gestion du saut de ligne avec espacement pour la phrase finale
+  if (chunk.type === "break") {
+    return <span className="block h-6 md:h-10 w-full" aria-hidden="true" />;
+  }
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
-  const glow = "drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]";
+  // L'opacité part de 25% (le texte inactif reste lisible) et va jusqu'à 100%
+  const opacity = useTransform(progress, range, [0.25, 1]);
+  const filter = useTransform(progress, range, ["blur(2.5px)", "blur(0px)"]);
   
-  // STANDARD TYPOGRAPHIQUE STRICT
-  const standardFontClass = "text-display text-[10vw] md:text-[5vw] text-white text-center leading-[1.1] tracking-tight";
+  let colorClass = "text-[var(--color-txt-main)]";
 
-  // --- ANIMATIONS ---
-  
-  // ACTE 1
-  const r1_Input = isMobile ? [0, 0.08, 0.18, 0.23] : [0.05, 0.10, 0.18, 0.23];
-  const opacity1 = useTransform(smoothProgress, r1_Input, [0, 1, 1, 0]);
-  const blur1 = useTransform(smoothProgress, r1_Input, isMobile ? ["0px", "0px", "0px", "0px"] : ["10px", "0px", "0px", "10px"]);
+  // Attribution stricte de tes variables CSS
+  if (chunk.type === "pain") {
+    colorClass = "text-[var(--color-action)] font-medium [text-shadow:0_0_15px_rgba(255,107,0,0.3)]";
+  } else if (chunk.type === "brand") {
+    colorClass = "text-[var(--color-brand)] font-medium [text-shadow:0_0_15px_rgba(124,31,172,0.3)]";
+  } else if (chunk.type === "growth") {
+    colorClass = "text-[var(--color-main-ecom)] font-medium [text-shadow:0_0_15px_rgba(16,185,129,0.3)]";
+  } else if (chunk.type === "muted") {
+    colorClass = "text-[var(--color-txt-muted)] italic font-light opacity-80";
+  }
 
-  // ACTE 2
-  const opacity2 = useTransform(smoothProgress, [0.25, 0.32, 0.40, 0.47], [0, 1, 1, 0]);
-  const scale2 = useTransform(smoothProgress, [0.25, 0.47], [0.95, 1.05]);
-
-  // ACTE 3
-  const opacity3 = useTransform(smoothProgress, [0.5, 0.58, 0.68, 0.76], [0, 1, 1, 0]);
-  const spacing3 = useTransform(smoothProgress, [0.5, 0.76], ["-0.05em", "0.02em"]);
-
-  // ACTE 4
-  const opacity4 = useTransform(smoothProgress, [0.8, 0.88, 0.96, 1], [0, 1, 1, 0]);
-  const y4 = useTransform(smoothProgress, [0.8, 1], [20, -20]);
+  // Transformation dynamique de la couleur lors du scroll
+  const colorTransform = useTransform(progress, range, [
+    "var(--color-txt-dim)", 
+    chunk.type === "pain" ? "var(--color-action)" : 
+    chunk.type === "brand" ? "var(--color-brand)" : 
+    chunk.type === "growth" ? "var(--color-main-ecom)" : 
+    chunk.type === "muted" ? "var(--color-txt-muted)" : 
+    "var(--color-txt-main)"
+  ]);
 
   return (
-    <section ref={containerRef} className="relative h-[1000vh] bg-void font-sans cursor-default">
+    <motion.span 
+      style={{ opacity, filter, color: colorTransform }} 
+      className={`inline transition-colors duration-300 ${colorClass}`}
+    >
+      {chunk.text}
+    </motion.span>
+  );
+}
+
+// --- SÉPARATEUR MINIMALISTE ---
+function SimpleLineSeparator() {
+  return (
+    <div className="flex justify-center items-center py-8 md:py-12 opacity-40 w-full select-none">
+      <div className="w-[1px] h-16 md:h-24 bg-gradient-to-b from-transparent via-[var(--color-border)] to-transparent" />
+    </div>
+  );
+}
+
+export default function Philosophy() {
+  const textRef = useRef<HTMLDivElement>(null);
+
+  // Moteur de défilement
+  const { scrollYProgress } = useScroll({
+    target: textRef,
+    offset: ["start 85%", "end 60%"] 
+  });
+
+  const totalChunks = PARAGRAPHS.reduce((acc, p) => acc + p.length, 0);
+  let globalChunkIndex = 0; 
+
+  return (
+    <section className="relative w-full bg-[var(--color-void)] border-t border-[var(--color-border)] py-24 md:py-[15vh] overflow-hidden">
       
-      {/* CADRE STICKY */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Halo de fond subtil */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[60vh] bg-[var(--color-brand)]/5 blur-[120px] rounded-full pointer-events-none z-0" />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 flex flex-col items-center">
         
-        {/* FOND */}
-        <div className="absolute inset-0 bg-void z-0 pointer-events-none">
-             <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
-             <div className="absolute inset-0 bg-radial-gradient from-transparent to-void opacity-80"></div>
+        {/* =========================================
+            TITRE 
+            ========================================= */}
+        <div className="badge-pill mb-6 md:mb-10 flex items-center gap-2.5 px-4 py-1.5 border-[var(--color-border)]/50 bg-[var(--color-surface)]/30 backdrop-blur-md">
+          <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-action)] animate-pulse" />
+          <span className="text-label-tech text-[var(--color-txt-main)] opacity-90">
+            Pourquoi ?
+          </span>
         </div>
 
-        {/* --- ACTE 1 --- */}
-        <motion.div 
-            style={{ opacity: opacity1, filter: blur1 }} 
-            className="absolute z-10 text-center w-full px-4 flex flex-col items-center justify-center pointer-events-none"
-        >
-            <h2 className={`${standardFontClass} ${glow}`}>
-                Le marché suffoque.
-            </h2>
-            {/* CORRECTION ICI : mt-3 et md:mt-4 pour rapprocher le texte */}
-            <p className="mt-3 md:mt-4 text-body-large text-base md:text-lg text-txt-muted max-w-xl mx-auto">
-                Trop de bruit. Trop de copies.
-            </p>
-        </motion.div>
+        <h2 className="text-h2 text-[var(--color-txt-main)] text-center w-full mb-16 md:mb-24">
+          La raison de <span 
+            className="inline-block"
+            style={{
+              backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              color: 'transparent'
+            }}
+          >
+            votre présence ici ?
+          </span>
+        </h2>
 
-        {/* --- ACTE 2 --- */}
-        <motion.div
-            style={{ opacity: opacity2, scale: scale2 }}
-            className="absolute z-10 w-full px-4 flex items-center justify-center pointer-events-none"
+        {/* =========================================
+            PARAGRAPHES (Animation Typographique Parfaite)
+            ========================================= */}
+        <div 
+          ref={textRef}
+          className="flex flex-col w-full max-w-3xl mx-auto text-center"
         >
-            <h2 className={`${standardFontClass} ${glow}`}>
-                L'indifférence est <br/>
-                la nouvelle norme.
-            </h2>
-        </motion.div>
+          {PARAGRAPHS.map((paragraph, pIndex) => (
+            <React.Fragment key={pIndex}>
+              
+              <p className="text-[clamp(1.25rem,2.5vw,2.25rem)] font-[family-name:var(--font-outfit)] font-light leading-[1.4] tracking-tight text-[var(--color-txt-main)] [text-wrap:balance]">
+                {paragraph.map((chunk, cIndex) => {
+                  const start = globalChunkIndex / totalChunks;
+                  const end = start + (1 / totalChunks);
+                  
+                  // On n'incrémente pas le compteur pour les sauts de ligne invisibles
+                  if (chunk.type !== "break") {
+                    globalChunkIndex++;
+                  }
 
-        {/* --- ACTE 3 --- */}
-        <motion.div 
-            style={{ opacity: opacity3, letterSpacing: spacing3 }} 
-            className="absolute z-20 text-center w-full px-4 flex items-center justify-center pointer-events-none"
-        >
-            <h2 className={`${standardFontClass} ${glow}`}>
-                Votre survie se joue <br />
-                <span className="text-white border-b-2 border-brand pb-1">en 3 secondes</span>.
-            </h2>
-        </motion.div>
+                  return (
+                    <Chunk key={`${pIndex}-${cIndex}`} chunk={chunk} progress={scrollYProgress} range={[start, end]} />
+                  );
+                })}
+              </p>
 
-        {/* --- ACTE 4 --- */}
-        <motion.div
-            style={{ opacity: opacity4, y: y4 }}
-            className="absolute z-10 w-full px-4 flex items-center justify-center pointer-events-none"
-        >
-            <h2 className={`${standardFontClass} ${glow}`}>
-                Cessez de participer. <br/>
-                <span className="text-white border-b-2 border-brand pb-1">Commencez</span> à dominer.
-            </h2>
-        </motion.div>
+              {/* Ligne verticale épurée entre les paragraphes */}
+              {pIndex !== PARAGRAPHS.length - 1 && <SimpleLineSeparator />}
+              
+            </React.Fragment>
+          ))}
+        </div>
 
       </div>
     </section>

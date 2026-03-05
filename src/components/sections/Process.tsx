@@ -161,7 +161,7 @@ export default function Process() {
         <div className="w-full flex flex-col items-center text-center px-6 shrink-0 z-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-6">
-              Mécanique de <span 
+              On fonctionne <span 
                 className="inline-block pb-1 pr-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
@@ -171,7 +171,7 @@ export default function Process() {
                   color: 'transparent'
                 }}
               >
-                Précision.
+                comment ?
               </span>
             </h2>
 

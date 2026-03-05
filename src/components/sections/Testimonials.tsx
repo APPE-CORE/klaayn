@@ -35,7 +35,7 @@ function IlluminatingQuote({ item, index, setActiveIndex }: { item: typeof QUOTE
   }, [isInView, index, setActiveIndex]);
 
   return (
-    <div ref={ref} className="min-h-[50vh] flex flex-col justify-center py-24 relative">
+    <div ref={ref} className="min-h-[50vh] flex flex-col justify-center py-20 relative">
       <motion.div
         initial={false}
         animate={{

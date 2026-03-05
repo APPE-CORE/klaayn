@@ -78,9 +78,9 @@ export default function TrustBand() {
     <section className="relative w-full py-12 md:py-16 bg-[var(--color-void)] overflow-hidden border-y border-[var(--color-border)]/50">
       
       {/* HEADER : Cadrage strict */}
-      <div className="max-w-7xl mx-auto px-6 mb-12 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 mb-12 text-center md:text-center">
         <p className="text-label-tech text-[var(--color-txt-main)] uppercase tracking-widest opacity-80">
-          Les fondations technologiques des leaders mondiaux
+          Les fondations des leaders mondiaux
         </p>
       </div>
 

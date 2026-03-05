@@ -56,7 +56,7 @@ export default function SelectedWorkCarousel() {
   }, [activeIndex]);
 
   return (
-    <section className="relative w-full bg-[var(--color-void)] text-[var(--color-txt-main)] py-24 md:py-32 overflow-hidden border-t border-[var(--color-border)]">
+    <section className="relative w-full bg-[var(--color-void)] text-[var(--color-txt-main)] py-26 overflow-hidden border-t border-[var(--color-border)]">
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
@@ -73,7 +73,7 @@ export default function SelectedWorkCarousel() {
               transition={{ delay: 0.1 }}
               className="text-h2 mb-4 flex flex-wrap items-center gap-x-3 text-[var(--color-txt-main)]"
             >
-              Nos derniers <span 
+              Vous voulez <span 
                 className="inline-block pb-1 pr-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
@@ -83,7 +83,7 @@ export default function SelectedWorkCarousel() {
                   color: 'transparent'
                 }}
               >
-                Monuments.
+                des exemples ?
               </span>
             </motion.h2>
 

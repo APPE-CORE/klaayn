@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <main className="bg-[var(--color-void)]: min-h-screen">
       <Hero/>
-      
       <TrustBand/>
+      <Philosophy/>
       <Metrics/>
       <Services/>
       <Work/>

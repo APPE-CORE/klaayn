@@ -36,7 +36,7 @@ export default function Faq() {
   };
 
   return (
-    <section className="relative w-full py-24 md:py-32 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
+    <section className="relative w-full py-0 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
       
       <div className="max-w-3xl mx-auto px-6 relative z-10">
 
@@ -63,7 +63,7 @@ export default function Faq() {
             transition={{ delay: 0.1 }}
             className="text-h2 text-[var(--color-txt-main)] mb-2"
           >
-            Anticiper l'<span 
+            Parlons <span 
                 className="inline-block pb-1 pr-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
@@ -73,7 +73,7 @@ export default function Faq() {
                   color: 'transparent'
                 }}
               >
-                Inévitable
+                carte sur table
             </span>
           </motion.h2>
           

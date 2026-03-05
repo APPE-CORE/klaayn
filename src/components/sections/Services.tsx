@@ -44,7 +44,7 @@ export default function Services() {
   ];
 
   return (
-    <section className="relative w-full py-24 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
+    <section className="relative w-full py-26 bg-[var(--color-void)] text-[var(--color-txt-main)] overflow-hidden">
      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
@@ -53,7 +53,7 @@ export default function Services() {
           
           {/* Titre : Utilisation pure de .text-h2 */}
           <h2 className="text-h2 text-[var(--color-txt-main)] mb-2">
-            Vecteurs de <span 
+            On vous <span 
                 className="inline-block pb-1 pr-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
@@ -63,7 +63,7 @@ export default function Services() {
                   color: 'transparent'
                 }}
               >
-                Croissance
+                propose quoi ?
             </span>
           </h2>
           

@@ -75,7 +75,7 @@ export default function RoiSimulator() {
   );
 
   return (
-    <section className="relative w-full py-24 bg-[var(--color-contrast)]">
+    <section className="relative w-full py-26 bg-[var(--color-contrast)]">
       
       {/* Fond Technique */}
       <div className="absolute inset-0 bg-[size:24px_24px] opacity-20 pointer-events-none"></div>
@@ -86,7 +86,7 @@ export default function RoiSimulator() {
         <div className="text-center pt-10 mb-8 max-w-2xl mx-auto flex flex-col items-center">
             {/* CORRECTION : Utilisation pure de .text-h2 sans clamp forcé ni whitespace-nowrap */}
             <h2 className="text-h2 mb-4 text-[var(--color-txt-main)]">
-                Simulateur de <span 
+                Commençons par <span 
                 className="inline-block pb-1 pr-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
@@ -96,7 +96,7 @@ export default function RoiSimulator() {
                   color: 'transparent'
                 }}
               >
-                Performance
+                vous :
                 </span>
             </h2>
             <p className="text-body-large text-[var(--color-txt-muted)]">
