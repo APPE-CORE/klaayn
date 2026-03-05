@@ -51,13 +51,6 @@ export default function Services() {
         {/* 1. HEADER DE SECTION (Centré) */}
         <div className="flex flex-col items-center text-center mt-6 mb-16 mx-auto max-w-3xl gap-4">
           
-          {/* Indicateur visuel */}
-          <div className="mb-2">
-            <span className="text-label-tech text-[var(--color-txt-dim)]">
-              01 — Solutions
-            </span>
-          </div>
-
           {/* Titre : Utilisation pure de .text-h2 */}
           <h2 className="text-h2 text-[var(--color-txt-main)] mb-2">
             Vecteurs de <span 

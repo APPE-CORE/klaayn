@@ -1,227 +1,200 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
-import { Search, PenTool, Code2, Rocket, Users, Infinity } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { Search, PenTool, Code2, Rocket } from "lucide-react";
 
-// DONNÉES
+// --- TEXTES ÉPURÉS ---
 const STEPS = [
   {
     id: "01",
     title: "Extraction",
     subtitle: "Audit & Stratégie",
-    description: "Nous scannons votre business. Pas de devinettes. Nous identifions les blocages, les opportunités inexploitées et définissons l'angle d'attaque unique.",
+    description: "Scan de l'infrastructure. Identification des frictions. Définition de l'angle d'attaque.",
     icon: Search,
-    tech: ["SWOT", "Analytics", "User Personas"]
+    tech: ["Data Analytics", "SWOT"]
   },
   {
     id: "02",
     title: "Architecture",
     subtitle: "UX & Design System",
-    description: "Conception du squelette. Nous créons une structure visuelle faite pour convertir. Chaque pixel a une fonction. Le design sert l'autorité.",
+    description: "Conception orientée conversion. Chaque pixel est justifié par une finalité.",
     icon: PenTool,
-    tech: ["Figma", "Wireframes", "Prototyping"]
+    tech: ["Figma", "Wireframes"]
   },
   {
     id: "03",
     title: "Construction",
     subtitle: "Dev & Performance",
-    description: "Code chirurgical. Stack moderne (Next.js). Animations GPU. Votre plateforme est bâtie pour la vitesse instantanée et une fluidité absolue.",
+    description: "Code chirurgical. Stack moderne. Pour une vitesse instantanée et une fluidité absolue.",
     icon: Code2,
-    tech: ["React", "WebGL", "Tailwind"]
+    tech: ["Next.js", "Tailwind"]
   },
   {
     id: "04",
     title: "Déploiement",
     subtitle: "Launch & Scale",
-    description: "Mise en orbite. Tests de charge. Indexation SEO immédiate. Nous vous remettons les clés d'une machine de guerre prête à dominer.",
+    description: "Mise en orbite. Indexation immédiate. Remise des clés d'une machine prête à dominer.",
     icon: Rocket,
-    tech: ["Vercel", "SEO", "CI/CD"]
+    tech: ["Vercel", "SEO"]
   }
 ];
 
-export default function Process() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
-  const animatedProgress = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
-  const scaleY = useSpring(animatedProgress, { stiffness: 60, damping: 20 });
-
+// --- COMPOSANT CARTE MOTORISÉ PAR FRAMER ---
+function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS[0], index: number, yTransform: any, isActive: boolean }) {
   return (
-    <section ref={containerRef} className="relative w-full py-24 md:py-32 bg-[var(--color-void)] overflow-hidden">
-      
-      {/* FOND : Grille technique (Léger, 100% CSS, aucun grain externe) */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '60px 60px' }}></div>
-      
-      {/* --- 1. INTRODUCTION --- */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 mb-24 flex flex-col items-center text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-6"
-          >
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] animate-pulse shadow-[0_0_15px_var(--color-brand)]"></span>
-              <span className="text-label-tech text-[var(--color-brand)]">SYSTEM PROTOCOL</span>
-          </motion.div>
-          
-          {/* NETTOYAGE : Suppression de whitespace-nowrap pour éviter la casse sur mobile */}
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-h2 text-[var(--color-txt-main)] mb-6"
-          >
-              Mécanique <br className="md:hidden" />
-              <span 
-                  className="inline-block pb-1 pr-1"
-                  style={{
-                      backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      color: 'transparent'
-                  }}
-              >
-                  de Précision
-              </span>
-          </motion.h2>
+    <motion.div
+      // Resserrement de l'empilement : index * 15 (au lieu de 24)
+      style={{ y: yTransform, top: index * 15, zIndex: index + 10 }}
+      className={`absolute w-full bg-[var(--color-void)] rounded-[var(--radius-card)] transition-colors duration-500 overflow-hidden
+        ${isActive 
+            ? "border border-[var(--color-action)] shadow-[0_-10px_40px_rgba(255,107,0,0.15)]" 
+            : "border border-[var(--color-border)] shadow-[0_-3px_15px_rgba(0,0,0,0.7)]"
+        }
+      `}
+    >
+      {/* Ligne d'accentuation (Couleur Action pure quand la carte est en mouvement) */}
+      <div className={`absolute top-0 left-0 w-full h-[1px] transition-colors duration-500
+          ${isActive ? "bg-[var(--color-action)] opacity-100" : "bg-[var(--color-border)] opacity-50"}
+      `} />
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-body-large max-w-2xl text-[var(--color-txt-dim)]"
-          >
-              Nous ne laissons aucune place au hasard. Notre méthodologie est un protocole strict, conçu pour transformer votre vision en une infrastructure digitale dominante, étape par étape.
-          </motion.p>
-      </div>
-
-      {/* --- 2. LA TIMELINE --- */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 mb-32">
-          
-          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[var(--color-border)] -translate-x-1/2 z-0"></div>
-          
-          <motion.div 
-            style={{ scaleY: scaleY, transformOrigin: "top" }}
-            className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[var(--color-brand)] shadow-[0_0_15px_var(--color-brand)] -translate-x-1/2 z-0"
-          />
-
-          <div className="flex flex-col gap-12 md:gap-24">
-              {STEPS.map((step, index) => (
-                  <StepCard 
-                    key={index} 
-                    step={step} 
-                    index={index} 
-                    total={STEPS.length}
-                    progress={scrollYProgress} 
-                  />
-              ))}
+      <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8 p-6 lg:px-10 lg:py-8">
+        
+        {/* 1. Bloc Gauche : Icône & Titres */}
+        <div className="flex items-center gap-5 lg:w-[300px] shrink-0">
+          <div className={`p-3 rounded-xl transition-colors duration-500
+            ${isActive 
+              ? "bg-[var(--color-action)]/10 border border-[var(--color-action)]/50 text-[var(--color-action)]" 
+              : "bg-[var(--color-surface)]/20 border border-[var(--color-border)] text-[var(--color-txt-main)]"
+            }
+          `}>
+            <step.icon size={22} strokeWidth={1.5} />
           </div>
-      </div>
+          
+          <div className="flex flex-col">
+            <span className={`text-xs font-mono uppercase tracking-widest mb-1 transition-colors duration-500
+              ${isActive ? "text-[var(--color-action)] font-bold" : "text-[var(--color-txt-dim)]"}
+            `}>
+              // ÉTAPE {step.id}
+            </span>
+            <h3 className="text-h4 text-[var(--color-txt-main)]">
+              {step.title}
+            </h3>
+          </div>
+        </div>
 
-    </section>
+        {/* 2. Bloc Central : Description */}
+        <div className="flex-1">
+          <p className={`text-body max-w-md transition-colors duration-500
+            ${isActive ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-muted)]"}
+          `}>
+            {step.description}
+          </p>
+        </div>
+
+        {/* 3. Bloc Droit : Stack Technique */}
+        <div className="flex flex-wrap gap-2 lg:justify-end shrink-0 lg:w-[180px]">
+          {step.tech.map((t, i) => (
+            <span 
+              key={i} 
+              className={`px-2 py-1 text-[11px] font-mono tracking-widest uppercase rounded transition-colors duration-500
+                ${isActive 
+                  ? "text-[var(--color-action)] bg-[var(--color-action)]/10 border border-[var(--color-action)]/50" 
+                  : "text-[var(--color-txt-dim)] bg-[var(--color-surface)]/30 border border-[var(--color-border)]"
+                }
+              `}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+      </div>
+    </motion.div>
   );
 }
 
-// Sous-composant conservé à l'identique (non utilisé dans l'immédiat mais typographié correctement)
-function BentoCard({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) {
-    return (
-        <div className="group relative w-full p-8 md:p-10 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] overflow-hidden transition-all duration-500
-            hover:border-[var(--color-brand)] hover:bg-[var(--color-brand)]/5 hover:shadow-[0_0_30px_rgba(124,31,172,0.15)]
-            active:border-[var(--color-brand)] active:bg-[var(--color-brand)]/10 active:scale-[0.98]">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-1000"></div>
-            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-                <div className="p-4 rounded-lg bg-[var(--color-void)] border border-[var(--color-border)] text-[var(--color-brand)] group-hover:border-[var(--color-brand)] group-hover:text-[var(--color-txt-main)] transition-colors">
-                    <Icon size={32} />
-                </div>
-                <div>
-                    <h3 className="text-h3 text-[var(--color-txt-main)] mb-2">{title}</h3>
-                    <p className="text-body text-[var(--color-txt-muted)]">{desc}</p>
-                </div>
-            </div>
+export default function Process() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Moteur de calcul du scroll
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calcul mathématique des trajectoires
+  const y1 = 0; 
+  const y2 = useTransform(scrollYProgress, [0.05, 0.30], ["100vh", "0vh"]);
+  const y3 = useTransform(scrollYProgress, [0.35, 0.60], ["100vh", "0vh"]);
+  const y4 = useTransform(scrollYProgress, [0.65, 0.90], ["100vh", "0vh"]);
+
+  // Moteur d'état d'allumage
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.05) setActiveIndex(0);
+    else if (latest >= 0.05 && latest < 0.35) setActiveIndex(1);
+    else if (latest >= 0.35 && latest < 0.65) setActiveIndex(2);
+    else if (latest >= 0.65 && latest < 0.95) setActiveIndex(3);
+    else setActiveIndex(-1);
+  });
+
+  return (
+    <section ref={sectionRef} className="relative w-full h-[400vh] bg-[var(--color-void)] text-[var(--color-txt-main)]">
+      
+      {/* FOND : Grille Blueprint Subtile */}
+      <div 
+        className="absolute inset-0 opacity-[0.1] pointer-events-none" 
+        style={{ 
+          backgroundImage: `linear-gradient(to right, var(--color-border) 1px, transparent 1px), linear-gradient(to bottom, var(--color-border) 1px, transparent 1px)`, 
+          backgroundSize: "64px 64px",
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+        }} 
+      />
+
+      {/* Abaissement global de la section : pt-32 md:pt-40 (au lieu de 24/32) */}
+      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col pt-40 md:pt-60 pb-8">
+        
+        {/* =========================================
+            EN-TÊTE 
+            ========================================= */}
+        <div className="w-full flex flex-col items-center text-center px-6 shrink-0 z-10">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-h2 mb-6">
+              Mécanique de <span 
+                className="inline-block pb-1 pr-1"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent'
+                }}
+              >
+                Précision.
+              </span>
+            </h2>
+
+            <p className="text-body-large text-[var(--color-txt-muted)]">
+              L'improvisation coûte cher. Notre méthodologie est un protocole strict, conçu pour transformer votre vision en une infrastructure dominante.
+            </p>
+          </div>
         </div>
-    );
-}
 
-function StepCard({ step, index, total, progress }: { step: any, index: number, total: number, progress: MotionValue<number> }) {
-    const isEven = index % 2 === 0;
-    const threshold = (index + 0.2) / total; 
-    
-    const borderColor = useTransform(progress, [threshold - 0.05, threshold], ["rgba(255,255,255,0.08)", "#7c1fac"]);
-    const boxShadow = useTransform(progress, [threshold - 0.05, threshold], ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 15px rgba(124,31,172,0.6)"]);
-    const scaleNode = useTransform(progress, [threshold - 0.05, threshold, threshold + 0.05], [1, 1.2, 1]); 
+        {/* =========================================
+            MOTEUR D'EMPILEMENT ABSOLU
+            ========================================= */}
+        {/* Le 20px de marge entre le paragraphe et les cartes est préservé */}
+        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 mt-[40px] flex-1">
+          <div className="relative w-full h-full">
+            <ProcessCard step={STEPS[0]} index={0} yTransform={y1} isActive={activeIndex === 0} />
+            <ProcessCard step={STEPS[1]} index={1} yTransform={y2} isActive={activeIndex === 1} />
+            <ProcessCard step={STEPS[2]} index={2} yTransform={y3} isActive={activeIndex === 2} />
+            <ProcessCard step={STEPS[3]} index={3} yTransform={y4} isActive={activeIndex === 3} />
+          </div>
+        </div>
 
-    return (
-        <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className={`relative w-full flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-0 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
-        >
-            
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 md:top-1/2 md:-translate-y-1/2 z-20 pointer-events-none">
-                <motion.div 
-                    style={{ 
-                        borderColor: borderColor,
-                        boxShadow: boxShadow,
-                        scale: scaleNode
-                    }}
-                    className="flex items-center justify-center w-10 h-10 bg-[var(--color-void)] border-[2px] rounded-full transition-colors duration-200"
-                >
-                    {/* NETTOYAGE : Utilisation de .text-label-bold au lieu des classes font en dur */}
-                    <span className="text-label-bold text-[var(--color-txt-dim)]">
-                        0{index + 1}
-                    </span>
-                </motion.div>
-            </div>
-
-            <div className="hidden md:block w-1/2" />
-
-            <div className={`w-full md:w-1/2 px-0 z-10 ${isEven ? "md:pl-12 md:text-right" : "md:pr-12 md:text-left"}`}>
-                
-                <div className="group relative p-6 md:p-8 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-void)] transition-all duration-500 overflow-hidden
-                    hover:border-[var(--color-brand)] hover:shadow-[0_0_20px_rgba(124,31,172,0.3)]
-                    active:border-[var(--color-brand)] active:bg-[var(--color-void)] active:shadow-[0_0_20px_rgba(124,31,172,0.3)] active:scale-[0.98]">
-                    
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-
-                    <div className={`relative z-10 flex items-center justify-center md:justify-start gap-4 mb-4 ${isEven ? "md:flex-row-reverse" : "md:flex-row"}`}>
-                        <div className="p-2 bg-[var(--color-void)] border border-[var(--color-border)] rounded-lg text-[var(--color-txt-muted)] group-hover:text-[var(--color-brand)] group-hover:border-[var(--color-brand)] transition-colors duration-300">
-                            {React.createElement(step.icon, { size: 20 })}
-                        </div>
-                        <h3 className="text-h3 text-[var(--color-txt-main)] group-hover:text-[var(--color-txt-main)] transition-colors">
-                            {step.title}
-                        </h3>
-                    </div>
-
-                    <div className="relative z-10 text-center md:text-left">
-                        <h4 className="text-label-bold text-[var(--color-brand)] mb-3">
-                            {step.subtitle}
-                        </h4>
-                        <p className="text-body text-[var(--color-txt-muted)] mb-6 group-hover:text-[var(--color-txt-main)]/80 transition-colors">
-                            {step.description}
-                        </p>
-
-                        <div className={`flex flex-wrap justify-center gap-2 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
-                            {step.tech.map((t: string, i: number) => (
-                                <span key={i} className="px-2 py-1 text-label-tech text-[var(--color-txt-dim)] border border-[var(--color-border)] rounded bg-black/20 group-hover:border-[var(--color-border)] group-hover:text-[var(--color-txt-muted)] transition-colors">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </motion.div>
-    );
+      </div>
+    </section>
+  );
 }

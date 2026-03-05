@@ -28,8 +28,8 @@ const FAQS = [
 ];
 
 export default function Faq() {
-  // Le premier accordéon est ouvert par défaut pour inciter à la lecture
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Tous les accordéons sont fermés par défaut pour forcer une interaction intentionnelle
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

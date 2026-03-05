@@ -135,7 +135,7 @@ export default function Hero() {
               <Zap size={16} className="text-[var(--color-brand)]" />
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-[13px] font-[family-name:var(--font-outfit)] font-semibold text-[var(--color-txt-main)]">Performance Absolue</span>
+              <span className="text-[13px] font-[family-name:var(--font-outfit)] font-semibold text-[var(--color-txt-main)]">Un site internet a votre image...</span>
               <span className="text-[11px] text-[var(--color-txt-muted)]">Latence &lt; 50ms</span>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function Hero() {
               <Target size={16} className="text-[var(--color-action)]" />
             </div>
             <div className="flex flex-col text-left md:text-right">
-              <span className="text-[13px] font-[family-name:var(--font-outfit)] font-semibold text-[var(--color-txt-main)]">Conversion Maximisée</span>
+              <span className="text-[13px] font-[family-name:var(--font-outfit)] font-semibold text-[var(--color-txt-main)]">Construit pour une conversion maximale</span>
               <span className="text-[11px] text-[var(--color-txt-muted)]">UX orientée résultats</span>
             </div>
           </div>
