@@ -56,7 +56,7 @@ export default function SelectedWorkCarousel() {
   }, [activeIndex]);
 
   return (
-    <section className="relative w-full bg-[var(--color-void)] text-[var(--color-txt-main)] py-26 overflow-hidden border-t border-[var(--color-border)]">
+    <section className="relative w-full bg-[var(--color-contrast)] text-[var(--color-txt-main)] py-26 overflow-hidden">
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
@@ -92,7 +92,7 @@ export default function SelectedWorkCarousel() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-body-large text-[var(--color-txt-muted)]"
+              className="text-body-large"
             >
               L'impact n'est pas une coïncidence. C'est une architecture. Découvrez les écosystèmes qui dominent leurs marchés.
             </motion.p>
@@ -162,7 +162,7 @@ export default function SelectedWorkCarousel() {
                         
                         {/* Top-Left : Icône et Titre */}
                         <div className="flex items-center gap-4 min-w-0">
-                            <div className={`shrink-0 p-2.5 rounded-xl transition-all duration-[800ms] border backdrop-blur-md
+                            <div className={`shrink-0 p-2.5 rounded-[var(--radius-card)] transition-all duration-[800ms] border backdrop-blur-md
                                 ${isActive 
                                     ? 'bg-[var(--color-surface)]/50 border-[var(--color-border)] text-[var(--color-txt-main)]' 
                                     : 'bg-[var(--color-void)]/40 border-transparent text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)]'
@@ -182,10 +182,10 @@ export default function SelectedWorkCarousel() {
                         </div>
 
                         {/* Top-Right : KPI Badge */}
-                        <div className={`hidden md:flex items-center gap-3 px-4 py-2 bg-[var(--color-surface)]/30 border border-[var(--color-border)] rounded-xl backdrop-blur-md shrink-0
+                        <div className={`hidden md:flex items-center gap-3 px-4 py-2 bg-[var(--color-surface)]/30 border border-[var(--color-border)] rounded-[var(--radius-card)] backdrop-blur-md shrink-0
                             ${isActive ? 'opacity-100 transition-opacity duration-500 delay-300 pointer-events-auto' : 'opacity-0 transition-opacity duration-150 pointer-events-none'}
                         `}>
-                            <span className="text-[10px] font-mono tracking-widest uppercase text-[var(--color-txt-dim)]">
+                            <span className="text-label-tech text-[var(--color-txt-dim)]">
                                 {project.metric.label}
                             </span>
                             <span className="text-sm font-bold text-[var(--color-brand)]">
@@ -211,13 +211,13 @@ export default function SelectedWorkCarousel() {
                         
                         {/* Bottom-Left : Description et Tags */}
                         <div className="flex-1 max-w-lg">
-                            <p className="text-body text-[var(--color-txt-muted)] mb-0 md:mb-5 line-clamp-2 md:line-clamp-none">
+                            <p className="text-body mb-0 md:mb-5 line-clamp-2 md:line-clamp-none">
                                 {project.description}
                             </p>
                             
                             <div className="hidden md:flex flex-wrap gap-2">
                                 {project.tags.map((tag: string, i: number) => (
-                                    <span key={i} className="px-2.5 py-1 text-[10px] font-mono tracking-widest uppercase text-[var(--color-txt-dim)] bg-[var(--color-surface)]/40 border border-[var(--color-border)] rounded-md backdrop-blur-sm">
+                                    <span key={i} className="px-2.5 py-1 text-label-tech text-[var(--color-txt-dim)] bg-[var(--color-surface)]/40 border border-[var(--color-border)] rounded-[var(--radius-card)] backdrop-blur-sm">
                                         {tag}
                                     </span>
                                 ))}
@@ -225,11 +225,11 @@ export default function SelectedWorkCarousel() {
                         </div>
 
                         {/* Bottom-Right : Mobile KPI & CTA */}
-                        <div className="flex flex-row items-center justify-between w-full md:w-auto shrink-0 mt-3 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-[var(--color-border)]/30">
+                        <div className="flex flex-row items-center justify-between w-full md:w-auto shrink-0 mt-3 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-[var(--color-border)]">
                             
                             {/* KPI Badge (Mobile Uniquement) */}
-                            <div className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-[var(--color-surface)]/30 border border-[var(--color-border)] rounded-lg backdrop-blur-md">
-                                <span className="text-[9px] font-mono tracking-widest uppercase text-[var(--color-txt-dim)]">
+                            <div className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-[var(--color-surface)]/30 border border-[var(--color-border)] rounded-[var(--radius-card)] backdrop-blur-md">
+                                <span className="text-label-tech text-[var(--color-txt-dim)]">
                                     {project.metric.label}
                                 </span>
                                 <span className="text-xs font-bold text-[var(--color-brand)]">
@@ -264,7 +264,8 @@ export default function SelectedWorkCarousel() {
                     <div 
                         key={index}
                         onClick={() => setActiveIndex(index)}
-                        className={`flex items-center justify-center cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'flex-[2.5]' : 'flex-[1]'}`}
+                        /* UNIQUE CHANGEMENT ICI : synchronisation des flex-[3.5] et duration-[800ms] pour coller parfaitement aux cartes */
+                        className={`flex items-center justify-center cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'flex-[3.5]' : 'flex-[1]'}`}
                     >
                         <div className="w-[60%] h-[2px] bg-[var(--color-border)] rounded-full overflow-hidden hover:bg-[var(--color-txt-dim)] transition-colors duration-500">
                             {isActive && (

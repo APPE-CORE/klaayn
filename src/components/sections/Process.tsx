@@ -46,9 +46,9 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
     <motion.div
       // Resserrement de l'empilement : index * 15 (au lieu de 24)
       style={{ y: yTransform, top: index * 15, zIndex: index + 10 }}
-      className={`absolute w-full bg-[var(--color-void)] rounded-[var(--radius-card)] transition-colors duration-500 overflow-hidden
+      className={`absolute w-full bg-[var(--color-void)] rounded-[var(--radius-card)] transition-colors duration-800 overflow-hidden
         ${isActive 
-            ? "border border-[var(--color-action)] shadow-[0_-10px_40px_rgba(255,107,0,0.15)]" 
+            ? "border border-[var(--color-action)] shadow-[0_-00px_40px_var(--color-action-glow)]" 
             : "border border-[var(--color-border)] shadow-[0_-3px_15px_rgba(0,0,0,0.7)]"
         }
       `}
@@ -62,7 +62,7 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
         
         {/* 1. Bloc Gauche : Icône & Titres */}
         <div className="flex items-center gap-5 lg:w-[300px] shrink-0">
-          <div className={`p-3 rounded-xl transition-colors duration-500
+          <div className={`p-3 rounded-[var(--radius-card)] transition-colors duration-500
             ${isActive 
               ? "bg-[var(--color-action)]/10 border border-[var(--color-action)]/50 text-[var(--color-action)]" 
               : "bg-[var(--color-surface)]/20 border border-[var(--color-border)] text-[var(--color-txt-main)]"
@@ -72,7 +72,7 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
           </div>
           
           <div className="flex flex-col">
-            <span className={`text-xs font-mono uppercase tracking-widest mb-1 transition-colors duration-500
+            <span className={`text-label-tech mb-1 transition-colors duration-500
               ${isActive ? "text-[var(--color-action)] font-bold" : "text-[var(--color-txt-dim)]"}
             `}>
               // ÉTAPE {step.id}
@@ -86,7 +86,7 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
         {/* 2. Bloc Central : Description */}
         <div className="flex-1">
           <p className={`text-body max-w-md transition-colors duration-500
-            ${isActive ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-muted)]"}
+            ${isActive ? "text-[var(--color-txt-main)]" : ""}
           `}>
             {step.description}
           </p>
@@ -97,7 +97,7 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
           {step.tech.map((t, i) => (
             <span 
               key={i} 
-              className={`px-2 py-1 text-[11px] font-mono tracking-widest uppercase rounded transition-colors duration-500
+              className={`px-2 py-1 text-label-tech rounded-[var(--radius-card)] transition-colors duration-500
                 ${isActive 
                   ? "text-[var(--color-action)] bg-[var(--color-action)]/10 border border-[var(--color-action)]/50" 
                   : "text-[var(--color-txt-dim)] bg-[var(--color-surface)]/30 border border-[var(--color-border)]"
@@ -142,16 +142,6 @@ export default function Process() {
   return (
     <section ref={sectionRef} className="relative w-full h-[400vh] bg-[var(--color-void)] text-[var(--color-txt-main)]">
       
-      {/* FOND : Grille Blueprint Subtile */}
-      <div 
-        className="absolute inset-0 opacity-[0.1] pointer-events-none" 
-        style={{ 
-          backgroundImage: `linear-gradient(to right, var(--color-border) 1px, transparent 1px), linear-gradient(to bottom, var(--color-border) 1px, transparent 1px)`, 
-          backgroundSize: "64px 64px",
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
-        }} 
-      />
-
       {/* Abaissement global de la section : pt-32 md:pt-40 (au lieu de 24/32) */}
       <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col pt-40 md:pt-60 pb-8">
         
@@ -175,7 +165,7 @@ export default function Process() {
               </span>
             </h2>
 
-            <p className="text-body-large text-[var(--color-txt-muted)]">
+            <p className="text-body-large">
               L'improvisation coûte cher. Notre méthodologie est un protocole strict, conçu pour transformer votre vision en une infrastructure dominante.
             </p>
           </div>

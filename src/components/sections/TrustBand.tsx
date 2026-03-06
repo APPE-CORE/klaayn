@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 
-// --- LE ROSTER DE L'ÉLITE (SVG Nettoyés & Espacement Luxe) ---
+// --- LE ROSTER DE L'ÉLITE ---
 const GIANTS = [
   {
     name: "OpenAI",
@@ -75,59 +74,39 @@ const GIANTS = [
 
 export default function TrustBand() {
   return (
-    <section className="relative w-full py-12 md:py-16 bg-[var(--color-void)] overflow-hidden border-y border-[var(--color-border)]/50">
+    // L'espacement supérieur passe de pt-8 à pt-12 (mobile) et pt-16 (desktop).
+    <section className="relative w-full pt-12 md:pt-16 pb-20 bg-[var(--color-void)] overflow-hidden flex flex-col items-center">
       
-      {/* HEADER : Cadrage strict */}
-      <div className="max-w-7xl mx-auto px-6 mb-12 text-center md:text-center">
-        <p className="text-label-tech text-[var(--color-txt-main)] uppercase tracking-widest opacity-80">
-          Les fondations des leaders mondiaux
-        </p>
-      </div>
-
-      {/* MASQUE OPTIQUE */}
+      {/* 1. LE FLUX DES LOGOS */}
       <div 
-        className="w-full flex overflow-hidden relative select-none"
+        className="w-full flex overflow-hidden relative select-none z-10"
         style={{
           maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
           WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
         }}
       >
-        {/* LE MOTEUR D'ANIMATION (CSS Pur - 0 JS) */}
-        {/* Durée augmentée à 55s pour ralentir le flux en raison de l'espace ajouté */}
-        <div className="flex w-max shrink-0 items-center animate-[marquee_55s_linear_infinite] [transform:translateZ(0)] will-change-transform">
+        <div className="flex w-max shrink-0 items-center animate-[marquee_60s_linear_infinite] [transform:translateZ(0)] will-change-transform">
           
-          {/* Duplication stricte pour la boucle */}
-          {[...Array(2)].map((_, arrayIndex) => (
-            <div key={arrayIndex} className="flex items-center justify-around gap-16 md:gap-32 px-8 md:px-16">
+          {[...Array(3)].map((_, arrayIndex) => (
+            <div key={arrayIndex} className="flex items-center gap-20 md:gap-32 px-10 md:px-16">
               
               {GIANTS.map((giant, index) => (
                 <div 
                   key={`${arrayIndex}-${index}`} 
-                  className="flex items-center gap-5 cursor-default"
+                  className="flex items-center gap-4 group cursor-default opacity-60 hover:opacity-100 transition-opacity duration-500"
                 >
+                  <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[var(--color-txt-main)]">
+                    {giant.svg}
+                  </div>
                   
-                  {/* PARTIE GAUCHE : Logo Verrouillé (Couleur Pleine) */}
-                  <div className="flex items-center gap-4">
-                    {/* LE VECTEUR : Isolé, text-[var(--color-txt-main)] pour du blanc/noir opaque absolu */}
-                    <div className="w-6 h-6 flex items-center justify-center shrink-0 text-[var(--color-txt-main)]">
-                      {giant.svg}
-                    </div>
-                    {/* LE NOM : Blanc pur, statique */}
-                    <span className="font-[family-name:var(--font-outfit)] font-semibold text-[var(--color-txt-main)] text-lg tracking-wide">
+                  <div className="flex flex-col">
+                    <span className="font-mono font-semibold text-[var(--color-txt-main)] text-base tracking-wide leading-none mb-1">
                       {giant.name}
                     </span>
-                  </div>
-
-                  {/* SÉPARATEUR */}
-                  <div className="w-[1px] h-6 bg-[var(--color-border)] opacity-60"></div>
-
-                  {/* PARTIE DROITE : L'Architecture */}
-                  <div className="flex items-center">
-                    <span className="text-sm font-mono text-[var(--color-txt-main)] opacity-70 whitespace-nowrap">
-                      Architecture <span className="font-semibold text-[var(--color-txt-main)] opacity-100">{giant.stack}</span>
+                    <span className="text-body-sm font-mono text-[var(--color-txt-dim)] leading-none">
+                      {giant.stack}
                     </span>
                   </div>
-
                 </div>
               ))}
 
@@ -137,12 +116,21 @@ export default function TrustBand() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+      {/* 2. L'ANCRAGE */}
+      <div className="relative z-10 mt-12 animate-fade-up">
+        <h2 className="text-label-tech text-[var(--color-txt-dim)] uppercase tracking-[0.2em]">
+          La structure des géants...
+        </h2>
+      </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `
+      }} />
 
     </section>
   );

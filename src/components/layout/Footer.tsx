@@ -76,7 +76,7 @@ export default function Footer() {
 
             {/* Titre Gradient */}
             <h2 className="text-h2 mb-6 max-w-3xl text-[var(--color-txt-main)] drop-shadow-sm">
-              Convaincu ? Il est temps de <br className="hidden md:block" />
+              Cohérent pour vous ? <br className="hidden md:block" />
               <span 
                 className="inline-block pb-1 pr-1"
                 style={{
@@ -87,7 +87,7 @@ export default function Footer() {
                     color: 'transparent'
                 }}
               >
-                passer à l'action.
+                Passons à l'action
               </span>
             </h2>
 
