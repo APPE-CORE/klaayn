@@ -6,8 +6,9 @@ import {
   Monitor, ShoppingBag, Cpu, Sparkles, 
   Zap, PenTool, Search, CheckCircle2, 
   Terminal, Globe, ShieldCheck, Activity, 
-  Layers, BarChart3, ArrowRight
+  Layers, Send
 } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 // --- TYPES & DATA ---
 
@@ -30,7 +31,6 @@ const OPTIONS = [
   { id: "ai", title: "Intégration IA", icon: Cpu, desc: "Chatbots, Automation." },
   { id: "3d", title: "Expérience 3D", icon: Globe, desc: "Three.js, Immersion." },
   { id: "seo", title: "SEO Sémantique", icon: Search, desc: "Dominance Google." },
-  { id: "copy", title: "Copywriting", icon: PenTool, desc: "Textes de vente." },
   { id: "maintenance", title: "Souveraineté", icon: ShieldCheck, desc: "Maintenance & Sécu." },
 ];
 
@@ -54,6 +54,17 @@ export default function Contact() {
     message: ""
   });
 
+  const isReady = Boolean(
+      selectedService && 
+      budget && 
+      timeline && 
+      formData.firstname.trim() !== "" && 
+      formData.lastname.trim() !== "" && 
+      formData.email.trim() !== "" && 
+      formData.company.trim() !== "" &&
+      formData.message.trim() !== ""
+  );
+
   const toggleOption = (id: string) => {
     if (selectedOptions.includes(id)) {
       setSelectedOptions(selectedOptions.filter(item => item !== id));
@@ -74,7 +85,7 @@ export default function Contact() {
       
       if (!selectedService) errors.service = "Architecture requise.";
       if (!formData.email.includes("@")) errors.email = "Email invalide.";
-      if (!formData.message) errors.message = "Message vide.";
+      if (!formData.message) errors.message = "Message vide."; 
       
       setFormErrors(errors);
 
@@ -90,33 +101,52 @@ export default function Contact() {
     <main className="bg-[var(--color-void)] min-h-screen pt-32 pb-32 md:pt-40 md:pb-40 text-[var(--color-txt-main)]">
       
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 text-center md:text-left">
+      <div className="max-w-5xl mx-auto px-6 mb-16 md:mb-24 flex flex-col items-center text-center overflow-visible">
+          
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-            className="flex items-center justify-center md:justify-start gap-3 mb-6"
+            className="badge-pill mb-6 flex items-center gap-2.5 px-4 py-1.5"
           >
-              <span className="w-2 h-2 rounded-full bg-[var(--color-brand)] animate-pulse shadow-[0_0_15px_var(--color-brand)]"></span>
-              <span className="text-label-tech text-[var(--color-brand)]">INITIALISATION DU PROJET</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)]"></span>
+              <span className="text-label-tech text-[var(--color-txt-main)] opacity-90">INITIALISATION</span>
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-display text-[var(--color-txt-main)] mb-6"
+            className="text-display text-[var(--color-txt-main)] pb-4"
           >
-              Configurons<br />
-              <span className="text-[var(--color-txt-dim)]">votre projet !</span>
+              Configurons <br className="md:hidden" />
+              <span 
+                className="inline-block pb-2 pr-2"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, var(--color-brand), var(--color-action))',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent'
+                }}
+              >
+                votre projet !
+              </span>
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-body-large text-[var(--color-txt-muted)] max-w-2xl"
+          >
+            Chaque détail compte. Précisez vos besoins ci-dessous pour que nous puissions concevoir une architecture calibrée sur vos objectifs.
+          </motion.p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-24 relative">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
         
         {/* --- COLONNE GAUCHE : LE CONFIGURATEUR --- */}
-        <div className="lg:col-span-8 flex flex-col gap-24 md:gap-32">
+        <div className="lg:col-span-8 flex flex-col gap-20 md:gap-28">
             
             {/* 1. ARCHITECTURE */}
             <section id="section-architecture">
-                <NumberTitle number="01" title="Architecture" subtitle="Quel type de système construisons-nous ?" error={formErrors.service || undefined} />
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-10">
+                <SectionTitle title="Architecture" subtitle="Quel type de système construisons-nous ?" error={formErrors.service || undefined} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                     {SERVICES.map((service) => (
                         <div 
                             key={service.id}
@@ -124,22 +154,22 @@ export default function Contact() {
                                 setSelectedService(service.id);
                                 if(formErrors.service) setFormErrors({...formErrors, service: null});
                             }}
-                            className={`group cursor-pointer relative p-6 rounded-[var(--radius-card)] border transition-all duration-300 overflow-hidden flex flex-col items-center text-center md:items-start md:text-left
+                            className={`group cursor-pointer relative p-6 rounded-[var(--radius-card)] border transition-all duration-300 overflow-hidden flex flex-col items-start text-left
                             ${selectedService === service.id 
-                                ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5 shadow-[0_0_30px_rgba(124,31,172,0.15)]" 
+                                ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5" 
                                 : formErrors.service 
                                     ? "border-red-500/50 bg-red-500/5"
-                                    : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-brand)]/50 hover:bg-[var(--color-txt-main)]/[0.03]"
+                                    : "border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] hover:border-[var(--color-txt-dim)] hover:bg-[var(--color-surface)]/[0.05]"
                             }`}
                         >
-                            <div className="w-full flex justify-between items-start mb-4">
-                                <service.icon className={`transition-colors ${selectedService === service.id ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)]"}`} size={24} />
-                                <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${selectedService === service.id ? "border-[var(--color-brand)] bg-[var(--color-brand)]" : "border-[var(--color-border)]"}`}>
-                                    {selectedService === service.id && <CheckCircle2 size={12} className="text-white" />}
+                            <div className="w-full flex justify-between items-start mb-6">
+                                <service.icon className={`transition-colors duration-300 ${selectedService === service.id ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)] group-hover:text-[var(--color-txt-main)]"}`} size={22} strokeWidth={1.5} />
+                                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-300 ${selectedService === service.id ? "border-[var(--color-brand)] bg-[var(--color-brand)]" : "border-[var(--color-border)]"}`}>
+                                    {selectedService === service.id && <CheckCircle2 size={10} className="text-[var(--color-txt-main)]" />}
                                 </div>
                             </div>
-                            <h3 className="text-h4 font-bold text-[var(--color-txt-main)] mb-2">{service.title}</h3>
-                            <p className="text-body-sm text-[var(--color-txt-muted)] leading-tight">{service.desc}</p>
+                            <h3 className="text-h4 text-[var(--color-txt-main)] mb-2">{service.title}</h3>
+                            <p className="text-body-sm text-[var(--color-txt-muted)]">{service.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -147,25 +177,27 @@ export default function Contact() {
 
             {/* 2. UPGRADES */}
             <section>
-                <NumberTitle number="02" title="Upgrades" subtitle="Ajoutez des modules de performance." />
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-10">
+                <SectionTitle title="Upgrades" subtitle="Ajoutez des modules de performance à votre système." />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     {OPTIONS.map((opt) => (
                         <div 
                             key={opt.id}
                             onClick={() => toggleOption(opt.id)}
-                            className={`cursor-pointer relative p-5 md:p-6 rounded-[var(--radius-card)] border transition-all duration-300 flex flex-col items-center text-center md:items-start md:text-left gap-3
+                            className={`cursor-pointer relative p-4 md:p-5 rounded-[var(--radius-card)] border transition-all duration-300 flex items-start gap-4 text-left
                             ${selectedOptions.includes(opt.id)
                                 ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5" 
-                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-txt-main)]/[0.03]"
+                                : "border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] hover:border-[var(--color-txt-dim)] hover:bg-[var(--color-surface)]/[0.05]"
                             }`}
                         >
-                            <div className="w-full flex justify-between items-center">
-                                <opt.icon size={20} className={selectedOptions.includes(opt.id) ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)]"} />
-                                {selectedOptions.includes(opt.id) && <motion.div initial={{scale:0}} animate={{scale:1}}><Sparkles size={14} className="text-[var(--color-brand)]"/></motion.div>}
+                            <div className={`mt-0.5 transition-colors ${selectedOptions.includes(opt.id) ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)]"}`}>
+                                <opt.icon size={20} strokeWidth={1.5} />
                             </div>
-                            <div>
-                                <h4 className="text-sm font-bold text-[var(--color-txt-main)]">{opt.title}</h4>
-                                <p className="text-body-sm text-[var(--color-txt-muted)] mt-1 leading-tight">{opt.desc}</p>
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center mb-1">
+                                    <h4 className="text-body text-[var(--color-txt-main)]">{opt.title}</h4>
+                                    {selectedOptions.includes(opt.id) && <motion.div initial={{scale:0}} animate={{scale:1}}><Sparkles size={14} className="text-[var(--color-brand)]"/></motion.div>}
+                                </div>
+                                <p className="text-body-sm text-[var(--color-txt-muted)]">{opt.desc}</p>
                             </div>
                         </div>
                     ))}
@@ -174,21 +206,21 @@ export default function Contact() {
 
             {/* 3. CALIBRATION */}
             <section>
-                <NumberTitle number="03" title="Calibration" subtitle="Définissez les paramètres de la mission." />
+                <SectionTitle title="Calibration" subtitle="Définissez les paramètres de la mission." />
                 
-                <div className="mt-8 md:mt-10 space-y-10">
+                <div className="space-y-10">
                     {/* Budget */}
                     <div>
-                        <label className="text-label-tech text-[var(--color-brand)] mb-4 block text-center md:text-left">Investissement Prévu</label>
-                        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                        <label className="text-label-tech text-[var(--color-txt-dim)] mb-4 block">Investissement Prévu</label>
+                        <div className="flex flex-wrap gap-3">
                             {BUDGETS.map((b) => (
                                 <button 
                                     key={b}
                                     onClick={() => setBudget(b)}
-                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-[var(--radius-card)] text-sm font-bold border transition-all duration-300
+                                    className={`px-6 py-3.5 rounded-[var(--radius-card)] text-body transition-all duration-300 border
                                     ${budget === b 
-                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
-                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)]"
+                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)]/10 text-[var(--color-txt-main)]" 
+                                        : "border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] text-[var(--color-txt-dim)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)] hover:bg-[var(--color-surface)]/[0.05]"
                                     }`}
                                 >
                                     {b}
@@ -199,16 +231,16 @@ export default function Contact() {
 
                     {/* Timeline */}
                     <div>
-                        <label className="text-label-tech text-[var(--color-brand)] mb-4 block text-center md:text-left">Horizon Temporel</label>
-                        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                        <label className="text-label-tech text-[var(--color-txt-dim)] mb-4 block">Horizon Temporel</label>
+                        <div className="flex flex-wrap gap-3">
                             {TIMELINES.map((t) => (
                                 <button 
                                     key={t}
                                     onClick={() => setTimeline(t)}
-                                    className={`w-full sm:w-auto px-6 py-3.5 rounded-[var(--radius-card)] text-sm font-bold border transition-all duration-300
+                                    className={`px-6 py-3.5 rounded-[var(--radius-card)] text-body transition-all duration-300 border
                                     ${timeline === t 
-                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white shadow-[0_0_20px_rgba(124,31,172,0.4)]" 
-                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-txt-muted)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)]"
+                                        ? "border-[var(--color-brand)] bg-[var(--color-brand)]/10 text-[var(--color-txt-main)]" 
+                                        : "border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] text-[var(--color-txt-dim)] hover:text-[var(--color-txt-main)] hover:border-[var(--color-txt-dim)] hover:bg-[var(--color-surface)]/[0.05]"
                                     }`}
                                 >
                                     {t}
@@ -221,8 +253,8 @@ export default function Contact() {
 
             {/* 4. IDENTITÉ */}
             <section>
-                <NumberTitle number="04" title="Pilote" subtitle="Qui prend les commandes ?" />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-10">
+                <SectionTitle title="Pilote" subtitle="À qui avons-nous l'honneur ?" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <Input name="firstname" label="Prénom" placeholder="Thomas" value={formData.firstname} onChange={handleInputChange} />
                     <Input name="lastname" label="Nom" placeholder="Anderson" value={formData.lastname} onChange={handleInputChange} />
                     
@@ -237,11 +269,11 @@ export default function Contact() {
                         error={formErrors.email || undefined}
                     />
                     
-                    <Input name="company" label="Société" placeholder="Fibbert corp." fullWidth value={formData.company} onChange={handleInputChange} />
+                    <Input name="company" label="Société" placeholder="MetaCortex Inc." fullWidth value={formData.company} onChange={handleInputChange} />
                     
                     <div className="md:col-span-2">
-                        <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block ml-1 text-left">
-                            Transmission (Message Personnel)
+                        <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block text-left">
+                            Transmission
                             {formErrors.message && <span className="text-red-500 ml-2 animate-pulse">* Requis</span>}
                         </label>
                         <textarea 
@@ -249,10 +281,11 @@ export default function Contact() {
                             value={formData.message}
                             onChange={handleInputChange}
                             rows={5}
-                            className={`w-full bg-[var(--color-surface)] rounded-[var(--radius-card)] p-4 text-[var(--color-txt-main)] placeholder-white/20 focus:outline-none focus:ring-1 transition-all resize-none text-left
+                            // MISE À JOUR : Ajout de hover:border-[var(--color-txt-dim)]
+                            className={`w-full bg-[var(--color-surface)]/[0.02] rounded-[var(--radius-card)] p-5 text-body text-[var(--color-txt-main)] placeholder-[var(--color-txt-dim)] focus:outline-none transition-all resize-none text-left
                             ${formErrors.message 
-                                ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
-                                : "border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-[var(--color-brand)]"
+                                ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]" 
+                                : "border border-[var(--color-border)] hover:border-[var(--color-txt-dim)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)]"
                             }`}
                             placeholder="Détaillez votre vision, vos cibles, vos ambitions..."
                         />
@@ -261,50 +294,23 @@ export default function Contact() {
             </section>
 
             {/* SUBMIT SECTION (MOBILE SEULEMENT) */}
-            <div className="pt-6 pb-12 space-y-10 lg:hidden">
+            <div className="pt-2 pb-12 space-y-10 lg:hidden">
                 <div>
                     <SummaryCard 
                         selectedService={selectedService} 
                         selectedOptions={selectedOptions} 
                         budget={budget} 
-                        timeline={timeline} 
+                        timeline={timeline}
+                        isReady={isReady} 
                     />
                 </div>
 
-                <div className="flex flex-col items-center md:items-start w-full">
-                    
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={handleSubmit}
-                      className="group relative w-full md:w-auto flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-[var(--radius-card)] transition-all duration-300 overflow-hidden
-                        border border-[var(--color-border)] bg-[var(--color-surface)] 
-                        hover:border-[var(--color-action)] hover:bg-[var(--color-action)]/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                        active:border-[var(--color-action)] active:bg-[var(--color-action)]/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                      "
-                    >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-
-                          <div className="flex flex-col items-start relative z-10 overflow-hidden">
-                              <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-[var(--color-action)] transition-colors duration-300">
-                                  Action
-                              </span>
-                              <span className="text-lg md:text-xl font-bold text-[var(--color-txt-main)] tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
-                                  Lancer le protocole
-                              </span>
-                          </div>
-
-                          <div className="relative z-10 shrink-0">
-                              <ArrowRight 
-                                size={28} 
-                                className="text-[var(--color-txt-muted)] group-hover:text-white transition-all duration-500 ease-out 
-                                group-hover:-rotate-45" 
-                              />
-                          </div>
-                    </motion.button>
-
-                    <p className="mt-6 text-body-sm text-[var(--color-txt-dim)] text-center md:text-left flex items-center justify-center md:justify-start gap-2 w-full">
-                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées.<br/>Confidentialité garantie.
+                <div className="flex flex-col items-center w-full">
+                    <div className="w-full px-6">
+                        <Button onClick={handleSubmit} icon={Send} className="w-full justify-center">Transmettre les paramètres</Button>
+                    </div>
+                    <p className="mt-6 text-body-sm text-[var(--color-txt-dim)] text-center flex items-center justify-center gap-2 w-full">
+                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées. Confidentialité absolue.
                     </p>
                 </div>
             </div>
@@ -313,48 +319,22 @@ export default function Contact() {
 
         {/* --- COLONNE DROITE : LE RÉCAPITULATIF (PC ONLY - STICKY) --- */}
         <div className="hidden lg:block lg:col-span-4 relative h-full">
-            <div className="sticky top-36 w-full space-y-6 -mt-[20px]">
+            <div className="sticky top-36 w-full space-y-6">
                 
                 <SummaryCard 
                     selectedService={selectedService} 
                     selectedOptions={selectedOptions} 
                     budget={budget} 
-                    timeline={timeline} 
+                    timeline={timeline}
+                    isReady={isReady} 
                 />
 
-                <div className="flex flex-col items-center w-full">
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={handleSubmit}
-                      className="group relative w-full flex items-center justify-between gap-8 pl-6 pr-6 py-5 rounded-[var(--radius-card)] transition-all duration-300 overflow-hidden
-                        border border-[var(--color-border)] bg-[var(--color-surface)] 
-                        hover:border-[var(--color-action)] hover:bg-[var(--color-action)]/10 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                        active:border-[var(--color-action)] active:bg-[var(--color-action)]/10 active:shadow-[0_0_20px_rgba(249,115,22,0.4)]
-                      "
-                    >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-
-                          <div className="flex flex-col items-start relative z-10 overflow-hidden">
-                              <span className="text-label-tech text-[var(--color-txt-dim)] group-hover:text-[var(--color-action)] transition-colors duration-300">
-                                  Action
-                              </span>
-                              <span className="text-lg md:text-xl font-bold text-[var(--color-txt-main)] tracking-wide group-hover:text-white transition-colors duration-300 mt-1 whitespace-nowrap">
-                                  Lancer le protocole
-                              </span>
-                          </div>
-
-                          <div className="relative z-10 shrink-0">
-                              <ArrowRight 
-                                size={28} 
-                                className="text-[var(--color-txt-muted)] group-hover:text-white transition-all duration-500 ease-out 
-                                group-hover:-rotate-45" 
-                              />
-                          </div>
-                    </motion.button>
-
-                    <p className="mt-4 text-body-sm text-[var(--color-txt-dim)] text-center flex items-center justify-center gap-2 w-full">
-                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées.<br/>Confidentialité garantie.
+                <div className="flex flex-col items-center w-full pt-4">
+                    <div className="w-full px-6">
+                        <Button onClick={handleSubmit} icon={Send} className="w-full justify-center">Transmettre les paramètres</Button>
+                    </div>
+                    <p className="mt-5 text-body-sm text-[var(--color-txt-dim)] text-center flex items-center justify-center gap-2 w-full">
+                        <Zap size={12} className="text-[var(--color-brand)]"/> Réponse sous 24h ouvrées.
                     </p>
                 </div>
 
@@ -366,18 +346,16 @@ export default function Contact() {
   );
 }
 
-// --- SOUS-COMPOSANTS ---
+// --- SOUS-COMPOSANTS PURIFIÉS ---
 
-function NumberTitle({ number, title, subtitle, error }: { number: string, title: string, subtitle: string, error?: string }) {
+function SectionTitle({ title, subtitle, error }: { title: string, subtitle: string, error?: string }) {
     return (
-        <div className="flex flex-col items-center text-center md:flex-row md:items-start md:text-left gap-2 md:gap-4">
-            <span className={`text-label-tech pt-1 opacity-60 ${error ? "text-red-500" : "text-[var(--color-brand)]"}`}>/{number}</span>
-            <div>
-                <h2 className={`text-h2 font-medium ${error ? "text-red-500" : "text-[var(--color-txt-main)]"}`}>
-                    {title} {error && <span className="text-sm font-mono ml-2 text-red-500 animate-pulse">! {error}</span>}
-                </h2>
-                <p className="text-body text-[var(--color-txt-muted)] text-sm mt-1 leading-relaxed max-w-md">{subtitle}</p>
-            </div>
+        <div className="flex flex-col mb-8">
+            <h2 className={`text-h2 ${error ? "text-red-500" : "text-[var(--color-txt-main)]"} flex items-center gap-3 mb-2`}>
+                {title} {error && <span className="text-body-sm font-mono text-red-500 animate-pulse">! {error}</span>}
+            </h2>
+            <p className="text-body text-[var(--color-txt-muted)]">{subtitle}</p>
+            <div className="w-full h-[1px] bg-[var(--color-border)] mt-6" />
         </div>
     );
 }
@@ -396,7 +374,7 @@ interface InputProps {
 function Input({ label, placeholder, type = "text", fullWidth = false, name, value, onChange, error }: InputProps) {
     return (
         <div className={fullWidth ? "md:col-span-2" : ""}>
-            <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block ml-1 text-left">
+            <label className="text-label-tech text-[var(--color-txt-muted)] mb-2 block text-left">
                 {label}
                 {error && <span className="text-red-500 ml-2 animate-pulse">* {error}</span>}
             </label>
@@ -406,79 +384,61 @@ function Input({ label, placeholder, type = "text", fullWidth = false, name, val
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={`w-full bg-[var(--color-surface)] rounded-[var(--radius-card)] px-4 py-4 text-[var(--color-txt-main)] placeholder-white/20 focus:outline-none focus:ring-1 transition-all text-left
+                // MISE À JOUR : Ajout de hover:border-[var(--color-txt-dim)]
+                className={`w-full bg-[var(--color-surface)]/[0.02] rounded-[var(--radius-card)] px-5 py-4 text-body text-[var(--color-txt-main)] placeholder-[var(--color-txt-dim)] focus:outline-none transition-all text-left
                 ${error 
-                    ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
-                    : "border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-[var(--color-brand)]"
+                    ? "border border-red-500 focus:border-red-500 focus:ring-red-500 shadow-[0_0_10px_rgba(239,68,68,0.1)]" 
+                    : "border border-[var(--color-border)] hover:border-[var(--color-txt-dim)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)]"
                 }`}
             />
         </div>
     );
 }
 
-function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any) {
+function SummaryCard({ selectedService, selectedOptions, budget, timeline, isReady }: any) {
     const currentServiceObject = SERVICES.find(s => s.id === selectedService);
 
     return (
-        <motion.div 
-            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-full overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-contrast)] shadow-2xl"
-        >
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--color-brand)]/10 blur-[80px] rounded-full pointer-events-none"></div>
+        <div className="relative w-full rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] overflow-hidden">
             
-            <div className="relative border-b border-[var(--color-border)] px-6 py-5 flex items-center justify-between bg-white/[0.02]">
+            {/* Header du Panel */}
+            <div className="border-b border-[var(--color-border)] px-6 py-5 flex items-center justify-between bg-[var(--color-surface)]/[0.02]">
                  <div className="flex items-center gap-3">
-                    <Activity size={16} className="text-[var(--color-brand)] animate-pulse" />
-                    <span className="text-label-tech text-[var(--color-txt-main)] font-bold">
-                        PROJECT_SCOPE
+                    <Activity size={16} className="text-[var(--color-brand)]" />
+                    <span className="text-label-bold text-[var(--color-txt-main)]">
+                        Récapitulatif
                     </span>
-                 </div>
-                 <div className="flex items-center gap-1.5 opacity-50">
-                     <div className="w-1 h-1 rounded-full bg-white"></div>
-                     <div className="w-1 h-1 rounded-full bg-white"></div>
-                     <div className="w-1 h-1 rounded-full bg-white"></div>
                  </div>
             </div>
 
-            <div className="relative p-6 space-y-8">
+            <div className="p-6 space-y-8">
                 
+                {/* Architecture */}
                 <div className="space-y-3">
                     <span className="text-label-tech text-[var(--color-txt-dim)] flex items-center gap-2">
-                        <Layers size={10} /> Architecture Core
+                        <Layers size={12} /> Architecture
                     </span>
                     
                     {currentServiceObject ? (
-                        <motion.div 
-                            initial={{ opacity: 0, y: 5 }} 
-                            animate={{ opacity: 1, y: 0 }} 
-                            key={selectedService || "empty"}
-                            className="p-4 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center gap-4"
-                        >
-                            <div className="w-10 h-10 rounded-full bg-[var(--color-brand)]/10 flex items-center justify-center border border-[var(--color-brand)]/20 shrink-0">
-                                <currentServiceObject.icon size={20} className="text-[var(--color-brand)]" />
-                            </div>
-                            <div>
-                                <div className="text-base font-bold text-[var(--color-txt-main)] leading-tight">
-                                    {currentServiceObject.title}
-                                </div>
-                                <div className="text-label-tech text-[var(--color-txt-dim)] mt-1">
-                                    ID: {currentServiceObject.id.toUpperCase()}
-                                </div>
-                            </div>
-                        </motion.div>
+                        <div className="flex items-center justify-between py-2 border-b border-[var(--color-border)]">
+                            <span className="text-body text-[var(--color-txt-main)]">{currentServiceObject.title}</span>
+                            <currentServiceObject.icon size={16} className="text-[var(--color-brand)]" />
+                        </div>
                     ) : (
-                        <div className="p-4 rounded-lg border border-[var(--color-border)] border-dashed flex items-center justify-center text-[var(--color-txt-dim)] text-xs font-mono italic h-[74px]">
-                            // En attente de sélection...
+                        <div className="py-5 mt-2 flex flex-col items-center justify-center rounded-[var(--radius-card)] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] text-[var(--color-txt-dim)] transition-all">
+                            <Layers size={20} className="mb-2 opacity-40" />
+                            <span className="text-body-sm font-mono italic">// En attente...</span>
                         </div>
                     )}
                 </div>
 
+                {/* Options */}
                 <div className="space-y-3">
                     <span className="text-label-tech text-[var(--color-txt-dim)] flex items-center gap-2">
-                        <Cpu size={10} /> Modules Installés
+                        <Cpu size={12} /> Modules
                     </span>
                     
-                    <div className="min-h-[60px] flex flex-col gap-2">
+                    <div className="min-h-[40px] flex flex-col gap-2">
                         <AnimatePresence mode="popLayout">
                             {selectedOptions.length > 0 ? (
                                 selectedOptions.map((optId: string) => (
@@ -487,52 +447,50 @@ function SummaryCard({ selectedService, selectedOptions, budget, timeline }: any
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: 10 }}
-                                        className="flex items-center justify-between text-sm py-1.5 border-b border-[var(--color-border)] last:border-0"
+                                        className="flex items-center justify-between text-body-sm py-1"
                                     >
                                         <span className="text-[var(--color-txt-muted)] flex items-center gap-2">
-                                            <span className="w-1 h-1 bg-[var(--color-brand)] rounded-full"></span>
+                                            <span className="text-[var(--color-txt-dim)] opacity-50 font-mono">-</span>
                                             {OPTIONS.find(o => o.id === optId)?.title}
                                         </span>
-                                        <CheckCircle2 size={12} className="text-white/20" />
+                                        <CheckCircle2 size={14} className="text-[var(--color-brand)]" />
                                     </motion.div>
                                 ))
                             ) : (
-                                <span className="text-[var(--color-txt-dim)] text-xs font-mono py-2">-- Aucun module additionnel --</span>
+                                <span className="text-[var(--color-txt-dim)] text-body-sm font-mono py-1 italic">-- Aucun --</span>
                             )}
                         </AnimatePresence>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-px bg-[var(--color-border)] rounded-lg overflow-hidden border border-[var(--color-border)]">
-                    <div className="bg-[var(--color-void)] p-3 flex flex-col gap-1">
-                        <span className="text-label-tech text-[var(--color-txt-dim)] !text-[8px]">Investissement</span>
-                        <span className={`text-sm font-bold ${budget ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)]"}`}>
+                {/* Métriques (Budget & Time) */}
+                <div className="pt-4 border-t border-[var(--color-border)] grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1">
+                        <span className="text-label-tech text-[var(--color-txt-dim)]">Budget</span>
+                        <span className={`text-body ${budget ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)] font-mono italic"}`}>
                             {budget || "---"}
                         </span>
                     </div>
-                    <div className="bg-[var(--color-void)] p-3 flex flex-col gap-1">
-                        <span className="text-label-tech text-[var(--color-txt-dim)] !text-[8px]">Délai Est.</span>
-                        <span className={`text-sm font-bold ${timeline ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)]"}`}>
+                    <div className="flex flex-col gap-1">
+                        <span className="text-label-tech text-[var(--color-txt-dim)]">Timeline</span>
+                        <span className={`text-body ${timeline ? "text-[var(--color-txt-main)]" : "text-[var(--color-txt-dim)] font-mono italic"}`}>
                             {timeline ? timeline.split('(')[0].trim() : "---"}
                         </span>
                     </div>
                 </div>
 
-                <div className={`mt-2 rounded px-3 py-2 flex items-center justify-between border ${
-                    selectedService && budget 
-                    ? "bg-[var(--color-brand)]/10 border-[var(--color-brand)]/20" 
-                    : "bg-[var(--color-surface)] border-[var(--color-border)]"
+                {/* Status Bar */}
+                <div className={`mt-4 rounded-[var(--radius-card)] px-4 py-3 flex items-center justify-center border transition-colors duration-500 ${
+                    isReady 
+                    ? "bg-[var(--color-main-ecom)]/5 border-[var(--color-main-ecom)]/30" 
+                    : "bg-[var(--color-action)]/5 border-[var(--color-action)]/30"
                 }`}>
-                     <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full ${selectedService && budget ? "bg-[var(--color-brand)] animate-pulse" : "bg-red-500"}`}></div>
-                        <span className={`text-label-tech ${selectedService && budget ? "text-[var(--color-brand)]" : "text-[var(--color-txt-dim)]"}`}>
-                            {selectedService && budget ? "SYSTEM_READY" : "AWAITING_INPUT"}
-                        </span>
-                     </div>
-                     {selectedService && budget && <BarChart3 size={12} className="text-[var(--color-brand)]" />}
+                    <span className={`text-label-bold text-center ${isReady ? "text-[var(--color-main-ecom)]" : "text-[var(--color-action)]"}`}>
+                        {isReady ? "Prêt pour transmission" : "En attente de paramètres"}
+                    </span>
                 </div>
 
             </div>
-        </motion.div>
+        </div>
     );
 }

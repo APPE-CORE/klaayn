@@ -82,8 +82,8 @@ export default function Services() {
               key={service.id}
               href={service.href}
               className={`
-                group relative flex flex-col justify-between p-8 md:p-10 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] 
-                transition-all duration-500 ease-out min-h-[420px] overflow-hidden
+                group relative flex flex-col justify-between p-6 md:p-8 rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)]/[0.02] 
+                transition-all duration-500 ease-out min-h-[340px] overflow-hidden
                 
                 /* EFFET MASSAGE CORRIGÉ */
                 lg:group-has-[:hover]/grid:blur-[2px] lg:group-has-[:hover]/grid:opacity-40
@@ -96,7 +96,7 @@ export default function Services() {
               
               {/* Contenu Haut */}
               <div>
-                <div className="flex justify-between items-start mb-10">
+                <div className="flex justify-between items-start mb-6">
                   <div className={`transition-colors duration-500 ${service.iconColor}`}>
                     {service.icon}
                   </div>
@@ -133,13 +133,13 @@ export default function Services() {
                   {service.subtitle}
                 </span>
 
-                <p className="mt-6 text-body text-[var(--color-txt-muted)] leading-relaxed">
+                <p className="mt-4 text-body text-[var(--color-txt-muted)] leading-relaxed">
                   {service.description}
                 </p>
               </div>
 
               {/* Contenu Bas (Features) */}
-              <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
+              <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-body-sm group-hover:text-[var(--color-txt-muted)] group-active:text-[var(--color-txt-muted)] transition-colors duration-300">

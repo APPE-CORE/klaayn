@@ -46,10 +46,10 @@ function ProcessCard({ step, index, yTransform, isActive }: { step: typeof STEPS
     <motion.div
       // Resserrement de l'empilement : index * 15 (au lieu de 24)
       style={{ y: yTransform, top: index * 15, zIndex: index + 10 }}
-      className={`absolute w-full bg-[var(--color-void)] rounded-[var(--radius-card)] transition-colors duration-800 overflow-hidden
+      className={`absolute w-full bg-[var(--color-void)] rounded-[var(--radius-card)] transition-colors duration-500 overflow-hidden
         ${isActive 
-            ? "border border-[var(--color-action)] shadow-[0_-00px_40px_var(--color-action-glow)]" 
-            : "border border-[var(--color-border)] shadow-[0_-3px_15px_rgba(0,0,0,0.7)]"
+            ? "border border-[var(--color-action)] shadow-[0_-0px_40px_var(--color-action-glow)]" 
+            : "border border-[var(--color-border)] shadow-[0_-0px_15px_rgba(0,0,0,0.7)]"
         }
       `}
     >

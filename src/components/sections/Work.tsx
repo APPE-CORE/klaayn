@@ -139,13 +139,13 @@ export default function SelectedWorkCarousel() {
                         src={project.image} 
                         alt={project.client} 
                         className={`w-full h-full object-cover transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]
-                          ${isActive ? 'opacity-100' : 'opacity-40'}
+                          ${isActive ? 'opacity-100' : 'opacity-60'}
                         `} 
                     />
                 </div>
 
                 {/* --- OVERLAYS DE PROTECTION --- */}
-                <div className={`absolute inset-0 transition-opacity duration-[800ms] pointer-events-none bg-black/50 
+                <div className={`absolute inset-0 transition-opacity duration-[800ms] pointer-events-none bg-black/20 
                   ${isActive ? 'opacity-0' : 'opacity-100'}
                 `} />
                 <div className={`absolute inset-0 transition-opacity duration-[800ms] pointer-events-none bg-gradient-to-t from-[var(--color-void)] via-[var(--color-void)]/60 to-transparent 
@@ -252,35 +252,6 @@ export default function SelectedWorkCarousel() {
             );
           })}
 
-        </div>
-
-        {/* =========================================
-            3. PROGRESS BARS
-            ========================================= */}
-        <div className="hidden md:flex w-full mt-6 gap-4">
-            {PROJECTS.map((_, index) => {
-                const isActive = activeIndex === index;
-                return (
-                    <div 
-                        key={index}
-                        onClick={() => setActiveIndex(index)}
-                        /* UNIQUE CHANGEMENT ICI : synchronisation des flex-[3.5] et duration-[800ms] pour coller parfaitement aux cartes */
-                        className={`flex items-center justify-center cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'flex-[3.5]' : 'flex-[1]'}`}
-                    >
-                        <div className="w-[60%] h-[2px] bg-[var(--color-border)] rounded-full overflow-hidden hover:bg-[var(--color-txt-dim)] transition-colors duration-500">
-                            {isActive && (
-                                <motion.div
-                                    key={`progress-${activeIndex}`}
-                                    initial={{ width: "0%" }}
-                                    animate={{ width: "100%" }}
-                                    transition={{ duration: AUTOPLAY_DURATION / 1000, ease: "linear" }}
-                                    className="h-full bg-[var(--color-txt-main)] shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-                                />
-                            )}
-                        </div>
-                    </div>
-                );
-            })}
         </div>
 
         {/* Bouton Mobile Global Uniquement */}
